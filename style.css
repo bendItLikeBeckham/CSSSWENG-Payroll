@@ -49,6 +49,19 @@ body{
     font-size: 20vh;
     color: var(--green-m);
     margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 45%;
+}
+.log-buttons p{
+    color: var(--lightgray);
+    font-family: 'Archivo', sans-serif;
+    font-size: 1vw;
+    font-size: 1.5vw;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
 }
 
 .right-emp-dash{
