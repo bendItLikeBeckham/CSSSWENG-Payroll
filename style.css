@@ -45,6 +45,11 @@ body{
     font-weight: 600;
     text-align: center;
 }
+.log-buttons{
+    font-size: 20vh;
+    color: var(--green-m);
+    margin-top: 60px;
+}
 
 .right-emp-dash{
     width: 30vw;
