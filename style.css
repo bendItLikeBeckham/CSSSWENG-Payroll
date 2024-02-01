@@ -32,6 +32,7 @@ body{
 
 .date-time{
     font-family: 'Archivo', sans-serif;
+    color: var(--darkgray-m);
 }
 
 .date-time h1{
