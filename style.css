@@ -27,7 +27,7 @@ body{
     align-items: center;
 }
 .logo{
-    width: 150px;
+    width: 10vw;
 }
 
 .date-time{
@@ -36,11 +36,12 @@ body{
 }
 
 .date-time h1{
-    font-size: 100px;
+    font-size: 8vw;
+    margin-top: 20px;
     margin-bottom: 0;
 }
 .date-time p{
-    font-size: 20px;
+    font-size: 1.5vw;
     font-weight: 600;
     text-align: center;
 }
