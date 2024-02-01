@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap');
-@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css')
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 
 :root{
-    --green: #86B745;
-    --white: #F7F7F7;
-
-
-
+    --green-m: #86B745;
+    --white-m: #F7F7F7;
+    --darkgray-m: #262827;
+    --white-hov: #E1DFDF;
+    --gray: #3A3D3C;
+    --lightgray: #5F5F5E;
+    --lightergray: #ACACAA;
 }
