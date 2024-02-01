@@ -17,21 +17,37 @@ body{
     background-color: var(--white-m);
     display: flex;
     flex-direction: row;
+    margin: 0;
 }
 
 .left-emp-dash{
-    width: 65vw;
+    width: 70vw;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .logo{
     width: 150px;
 }
 
+.date-time{
+    font-family: 'Archivo', sans-serif;
+}
 
+.date-time h1{
+    font-size: 100px;
+    margin-bottom: 0;
+}
+.date-time p{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
 
 .right-emp-dash{
-    width: 35vw;
+    width: 30vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
+    background-color: var(--darkgray-m);
 }
