@@ -18,6 +18,7 @@ body{
     display: flex;
     flex-direction: row;
     margin: 0;
+    font-family: 'Archivo', sans-serif;
 }
 
 .left-emp-dash{
@@ -31,7 +32,6 @@ body{
 }
 
 .date-time{
-    font-family: 'Archivo', sans-serif;
     color: var(--darkgray-m);
 }
 
@@ -56,7 +56,6 @@ body{
 }
 .log-buttons p{
     color: var(--lightgray);
-    font-family: 'Archivo', sans-serif;
     font-size: 1vw;
     font-size: 1.5vw;
     font-weight: 600;
@@ -70,4 +69,9 @@ body{
     display: flex;
     justify-content: center;
     background-color: var(--darkgray-m);
+}
+.right-emp-dash h1{
+    color: var(--white-m);
+    font-size: 6vh;
+    margin-top: 8vh;
 }
