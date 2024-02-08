@@ -76,21 +76,28 @@ body{
     font-size: 6vh;
     margin: 8vh 0 12vh 0;
 }
-.dash-button{
+.right-emp-dash button{
     color: var(--green-m);
     display: flex;
     align-items: center;
     padding:2vh 1vw 1vh 1vw;
     border-radius: 50px;
+    border: 0;
+    background-color: var(--darkgray-m);
+    width: 70%;
+    margin-bottom: 5%;
 }
-.dash-button :hover{
-    cursor: pointer;
+.right-emp-dash button:hover{
+    background-color: var(--gray);
 }
-.dash-button i{
+
+.right-emp-dash i{
     font-size: 5vh;
+    justify-self: self-start;
 }
-.dash-button p{
+.right-emp-dash p{
     font-size: 2.5vh;
     font-weight: 600;
     margin: 0 3vw 1vh 3vw;
+    justify-self: center;
 }
