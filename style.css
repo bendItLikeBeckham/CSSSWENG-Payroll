@@ -65,6 +65,14 @@ body{
 }
 .log-buttons button:hover{
     background-color: var(--white-hov);
+    cursor: pointer;
+}
+.log-buttons button:active{
+    background-color: var(--gray);
+    cursor: pointer;
+    p{
+        color: white;
+    }
 }
 .log-buttons p{
     color: var(--lightgray);
@@ -74,9 +82,9 @@ body{
     text-align: center;
     margin: 0;
 }
-
 .right-emp-dash{
     width: 30vw;
+    height: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -101,8 +109,11 @@ body{
 }
 .right-emp-dash button:hover{
     background-color: var(--gray);
+    cursor: pointer;
 }
-
+.right-emp-dash button:active{
+    background-color: var(--lightgray);
+}
 .right-emp-dash i{
     font-size: 5vh;
     justify-self: self-start;
@@ -112,4 +123,16 @@ body{
     font-weight: 600;
     margin: 0 3vw 1vh 3vw;
     justify-self: center;
+}
+.right-emp-dash h2{
+    color: var(--white-m);
+    margin-top: 55%;
+}
+.right-emp-dash h2:hover{
+    color: var(--lightergray);
+    cursor: pointer;
+}
+.right-emp-dash h2:active{
+    color: var(--lightgray);
+    cursor: pointer;
 }
