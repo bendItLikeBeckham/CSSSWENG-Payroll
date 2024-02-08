@@ -31,16 +31,16 @@ body{
     width: 10vw;
 }
 
-.date-time{
+.date-time-log{
     color: var(--darkgray-m);
 }
 
-.date-time h1{
+.date-time-log h1{
     font-size: 8vw;
     margin-top: 20px;
     margin-bottom: 0;
 }
-.date-time p{
+.date-time-log p{
     font-size: 1.5vw;
     font-weight: 600;
     text-align: center;
