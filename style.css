@@ -165,9 +165,27 @@ body{
 }
 .left-payroll-mid{
     align-self: center;
-    height: 55vh;
+    height: 50vh;
     width: 90%;
     border-radius: 20px;
     margin-top: 2vh;
     background-color: var(--white-hov);
+    padding: 20px 30px 20px 10px;
+}
+.left-payroll-mid table{
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+}
+.left-payroll-mid tr:first-child {
+    padding: 10px;
+    text-align: center;
+}
+.left-payroll-mid th:first-child{
+    padding: 10px;
+    text-align: left;
+}
+.left-payroll-mid td{
+    padding: 10px;
+    text-align: center;
 }
