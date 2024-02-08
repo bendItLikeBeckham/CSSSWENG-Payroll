@@ -223,6 +223,23 @@ body{
 }
 .pay-per{
     width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+.pay-per-num{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 2.5vh;
+}
+.pay-per h2{
+    font-size: 2.2vh;
+    margin-top: 5vh;
+    margin-bottom: 0;
+}
+.pay-per p{
+    margin: 0;
 }
 .weekly-total{
     width: 25%;
