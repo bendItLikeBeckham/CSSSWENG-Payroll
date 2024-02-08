@@ -176,6 +176,7 @@ body{
     width: 100%;
     height: 100%;
     margin-left: 10px;
+    border-spacing: 0px;
 }
 .left-payroll-mid tr:first-child {
     padding: 10px;
