@@ -165,7 +165,7 @@ body{
 }
 .left-payroll-mid{
     align-self: center;
-    height: 50vh;
+    height: 40vh;
     width: 90%;
     border-radius: 20px;
     margin-top: 2vh;
@@ -179,14 +179,67 @@ body{
     border-spacing: 0px;
 }
 .left-payroll-mid tr:first-child {
-    padding: 10px;
+    padding: 5px;
     text-align: center;
 }
 .left-payroll-mid th:first-child{
-    padding: 10px;
+    padding: 5px;
     text-align: left;
 }
 .left-payroll-mid td{
-    padding: 10px;
+    padding: 5px;
     text-align: center;
+}
+.right-payroll h1{
+    font-size: 1.5vw; 
+    margin: 10vh 0 5vh 0;
+}
+.right-payroll h2{
+    margin-top: 10vh;
+}
+.log-btn-payroll{
+    margin-top: 8vh;
+}
+.log-btn-payroll i{
+    font-size: 10vh;
+}
+.left-payroll-btm{
+    padding: 0.5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+    width: 95%;
+}
+.btm-payroll{
+    height: 27vh;
+    border-radius: 20px;
+    margin-top: 2vh;
+    background-color: var(--white-hov);
+    padding: 20px 30px 20px 10px;
+}
+.piechart{
+    width: 25%;
+}
+.pay-per{
+    width: 35%;
+}
+.weekly-total{
+    width: 25%;
+}
+.weekly-total h1{
+    margin-top: 0;
+    text-align: center;
+    color: var(--green-m);
+}
+.weekly-total table{
+    width: 100%;
+    font-size: 2.5vh;
+    margin-left: 0.5vw;
+}
+.weekly-total td{
+    padding-bottom: 1vh;
+}
+.weekly-total h2{
+    margin-left: 0.5vw;
 }
