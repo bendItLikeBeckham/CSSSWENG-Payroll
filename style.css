@@ -63,6 +63,7 @@ body{
     border-radius: 20px;
     border: 0;
     background-color: var(--white-m);
+    font-family: 'Archivo', sans-serif;
 }
 .log-buttons button:hover{
     background-color: var(--white-hov);
@@ -107,6 +108,7 @@ body{
     background-color: var(--darkgray-m);
     width: 70%;
     margin-bottom: 5%;
+    font-family: 'Archivo', sans-serif;
 }
 .right-emp-dash button:hover{
     background-color: var(--gray);
@@ -345,7 +347,7 @@ body{
     letter-spacing: 1px;
 }
 .pw-icon{
-    color: var(--white-m);
+    color: var(--lightergray);
 }
 .pw-icon:hover{
     cursor: pointer;
@@ -377,6 +379,7 @@ body{
     border: 0;
     background-color: var(--green-m);
     width: 10vw;
+    font-family: 'Archivo', sans-serif;
 }
 .login-right button:hover{
     background-color: var(--lightgray);
