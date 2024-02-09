@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employee Log Page</title>
+    <title>Green at Work</title>
     <link rel="stylesheet" href="style.css"> 
     <script src="script.js"></script> 
 </head>
@@ -12,24 +12,36 @@
 <div class="login-right">
     <h1>Log-in</h1>
     <div class="login-input">
-        <div>
-            <i class="fi fi-sr-envelope"></i>
+        <div class="log-field">
+            <i class="fi fi-sr-envelope green-icon"></i>
             <input type="email" name="email" placeholder="Email" class="log-text">
         </div>
-        <div>
-           <i class="fi fi-sr-lock"></i>        
-            <input type="password" name="password" placeholder="Password" class="log-text"> 
-        </div>    
+        <div class="log-field">
+            <i class="fi fi-sr-lock green-icon"></i>        
+            <input type="password" name="password" placeholder="Password" id="password" class="log-text">
+            <i class="fi fi-rr-eye-crossed pw-icon" id="eye-icon"></i>    
+        </div>
     </div>
     <div>
         <p>Forgot Password?</p> 
     </div>
     <div>
-        <button type="button">
-            <h2>Enter</h2>
-        </button>
+        <button type="button"><h2>Enter</h2></button>
     </div>
-    
 </div>
+<script>
+    let eyeicon = document.getElementById("eye-icon");
+    let password = document.getElementById("password");
+
+    eyeicon.onclick = function(){
+        if(password.type == "password"){
+            password.type = "text";
+            eyeicon.className = "fi fi-rr-eye pw-icon"
+        }else{
+            password.type = "password";
+            eyeicon.className = "fi fi-rr-eye-crossed pw-icon"
+        }
+    }
+</script>
 </body>
 </html>

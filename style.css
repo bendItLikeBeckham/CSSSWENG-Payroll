@@ -314,15 +314,19 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 40%;
     margin-bottom: 5vh;
     border: 3px solid var(--white-m);
     border-radius: 10px;
     padding: 5px;
 }
-.login-input i{
-    color: var(--green-m);
+.log-field i{
     font-size: 3vh;
     margin-left: 1vw;
+    margin-right: 1vw;
+}
+.green-icon{
+    color: var(--green-m);
 }
 .log-text{
     width: 25vw;
@@ -339,6 +343,12 @@ body{
     font-family: 'Archivo', sans-serif;
     font-size: 3vh;
     letter-spacing: 1px;
+}
+.pw-icon{
+    color: var(--white-m);
+}
+.pw-icon:hover{
+    cursor: pointer;
 }
 .login-right div{
     display: flex;
