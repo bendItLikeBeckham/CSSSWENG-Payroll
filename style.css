@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap');
 @import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
-
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
 :root{
     --green-m: #86B745;
     --white-m: #F7F7F7;
@@ -281,3 +281,76 @@ body{
     clip-path: polygon(50% 50%, 100% 50%, 100% 50%);
     transform-origin: 100% 50%;
 }
+
+.login-left{
+    width: 30vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+.login-left img{
+    align-self: center;
+    width: 70%;
+    height: auto;
+}
+.login-right{
+    width: 70vw;
+    height: 100vh;
+    background-color: var(--darkgray-m);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.login-right h1{
+    color: var(--white-m);
+    font-size: 6vh;
+    margin: 15vh 15vw 5vh 20vw;
+}
+.login-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-input div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5vh;
+    border: 3px solid var(--white-m);
+    border-radius: 10px;
+    padding: 5px;
+}
+.login-input i{
+    color: var(--green-m);
+    font-size: 3vh;
+    margin-left: 1vw;
+}
+.log-text{
+    width: 25vw;
+    background-color: var(--darkgray-m);
+    outline: 0;
+    border: 0;
+    padding: 18px 15px;
+    letter-spacing: 1px;
+    color: var(--white-m);
+    font-size: 3vh;
+}
+.log-text::placeholder{
+    color: var(--white-m);
+    font-family: 'Archivo', sans-serif;
+    font-size: 3vh;
+    letter-spacing: 1px;
+}
+.login-right div{
+    display: flex;
+    justify-content: center;
+    p{
+        color: var(--green-m);
+        text-align: center;
+        margin-top: 0;
+    }
+    p:hover{
+        color: var(--lightgray);
+        cursor: pointer;
+    }
+}
+
