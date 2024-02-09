@@ -349,8 +349,29 @@ body{
         margin-top: 0;
     }
     p:hover{
+        color: var(--lightergray);
+        cursor: pointer;
+    }
+    p:active{
         color: var(--lightgray);
         cursor: pointer;
     }
 }
-
+.login-right button{
+    color: var(--white-m);
+    display: flex;
+    align-items: center;
+    margin-top: 10vh;
+    justify-content: center;
+    border-radius: 50px;
+    border: 0;
+    background-color: var(--green-m);
+    width: 10vw;
+}
+.login-right button:hover{
+    background-color: var(--lightgray);
+    cursor: pointer;
+}
+.login-right button:active{
+    background-color: var(--gray);
+}
