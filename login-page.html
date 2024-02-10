@@ -9,25 +9,28 @@
 <div class="login-left">
     <img src="greenatwork-logo.png" alt="Green at Work Logo">
 </div>
+<!-- add forms to make it work -->
 <div class="login-right">
     <h1>Log-in</h1>
-    <div class="login-input">
-        <div class="log-field">
-            <i class="fi fi-sr-envelope green-icon"></i>
-            <input type="email" name="email" placeholder="Email" class="log-text">
+    <form id="login-form">
+        <div class="login-input">
+            <div class="log-field">
+                <i class="fi fi-sr-envelope green-icon"></i>
+                <input type="email" name="email" placeholder="Email" id="email" class="log-text">
+            </div>
+            <div class="log-field">
+                <i class="fi fi-sr-lock green-icon"></i>        
+                <input type="password" name="password" placeholder="Password" id="password" class="log-text">
+                <i class="fi fi-rr-eye-crossed pw-icon" id="eye-icon"></i>    
+            </div>
         </div>
-        <div class="log-field">
-            <i class="fi fi-sr-lock green-icon"></i>        
-            <input type="password" name="password" placeholder="Password" id="password" class="log-text">
-            <i class="fi fi-rr-eye-crossed pw-icon" id="eye-icon"></i>    
+        <div>
+            <p>Forgot Password?</p> 
         </div>
-    </div>
-    <div>
-        <p>Forgot Password?</p> 
-    </div>
-    <div>
-        <button type="button"><h2>Enter</h2></button>
-    </div>
+        <div>
+            <button type="button" id="login-button"><h2>Enter</h2></button>
+        </div>
+    </form>
 </div>
 <script>
     let eyeicon = document.getElementById("eye-icon");
@@ -43,5 +46,6 @@
         }
     }
 </script>
+<script src="login.js"></script>
 </body>
 </html>
