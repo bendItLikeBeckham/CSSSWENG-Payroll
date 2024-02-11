@@ -4,6 +4,7 @@
     <title>Employee Dashboard</title>
     <link rel="stylesheet" href="style.css"> 
     <script src="script.js"></script> 
+
 </head>
 <body>
 <div class="left-payroll">
@@ -26,67 +27,67 @@
             </tr>
             <tr>
                 <th>Monday</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td id="dayHours1">8</td>
+                <td id="dayMinutes1">30</td>
+                <td id="mondayHourlyPay">0</td>
+                <td id="mondayMinutePay">0</td>
+                <td id="dayTotal1">0</td>
             </tr>
             <tr>
                 <th>Tuesday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td id="dayHours2">8</td>
+                <td id="dayMinutes2">0</td>
+                <td id="tuesdayHourlyPay">0</td>
+                <td id="tuesdayMinutePay">0</td>
+                <td id="dayTotal2">0</td>
             </tr>
             <tr>
                 <th>Wednesday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td id="dayHours3">8</td>
+                <td id="dayMinutes3">0</td>
+                <td id="wednesdayHourlyPay">0</td>
+                <td id="wednesdayMinutePay">0</td>
+                <td id="dayTotal3">0</td>
             </tr>
             <tr>
                 <th>Thursday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td id="dayHours4">7</td>
+                <td id="dayMinutes4">30</td>
+                <td id="thursdayHourlyPay">0</td>
+                <td id="thursdayMinutePay">0</td>
+                <td id="dayTotal4"0></td>
             </tr>
             <tr>
                 <th>Friday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td id="dayHours5">9</td>
+                <td id="dayMinutes5">0</td>
+                <td id="fridayHourlyPay">0</td>
+                <td id="fridayMinutePay">0</td>
+                <td id="dayTotal5">0</td>
             </tr>
             <tr>
                 <th>Saturday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td id="dayHours6">0</td>
+                <td id="dayMinutes6">0</td>
+                <td id="fridayHourlyPay">0</td>
+                <td id="fridayMinutePay">0</td>
+                <td id="dayTotal6">0</td>
             </tr>
             <tr>
                 <th>Adjust Friday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td id="dayHours7">0</td>
+                <td id="dayMinutes7">0</td>
+                <td id="adjFridayHourlyPay">0</td>
+                <td id="adjFridayMinutePay">0</td>
+                <td id="dayTotal7">0</td>
             </tr>
             <tr>
                 <th>Adjust Saturday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td id="dayHours8">0</td>
+                <td id="dayMinutes8">0</td>
+                <td id="adjSaturdayHourlyPay">0</td>
+                <td id="adjSaturdayMinutePay">0</td>
+                <td id="dayTotal8">0</td>
             </tr>
         </table>
     </div>
@@ -96,8 +97,8 @@
         </div>
         <div class="pay-per btm-payroll">
             <div class="pay-per-num">
-                <p>Pay per Hour: ₱ <span>99.99</span></p>
-                <p>Pay per Minute: ₱ <span>99.99</span></p> 
+                <p>Pay per Hour: ₱ <span id="hourlyPay">0</span></p>
+                <p>Pay per Minute: ₱ <span id="minutePay">0</span></p> 
             </div>
             <div>
                 <h2>Additional Notes:</h2>
@@ -109,24 +110,24 @@
             <table>
                 <tr>
                     <td>Bale:</td>
-                    <td>0</td>
+                    <td>₱<span id="bale">20</span></td>
                 </tr>
                 <tr>
                     <td>Bonus:</td>
-                    <td>0</td>
+                    <td>₱<span id="bonus">300.50</span></td>
                 </tr>
                 <tr>
                     <td>Deductions:</td>
-                    <td>0</td>
+                    <td>₱<span id="deductions">50.60</span></td>
                 </tr>
             </table>
-            <h2>Total: ₱ <span>99,999</span></h2>
+            <h2>Total: ₱ <span id="totalWeeklySalary"></span></h2>
         </div>
     </div>
 
 </div>
 <div class="right-emp-dash right-payroll">
-    <h1>Hello, <span>username</span>!</h1>
+    <h1>Hello, <span id="username">username</span>!</h1>
     <button type="button">
         <i class="fi fi-rr-settings"></i>
         <p>Settings</p>
@@ -141,5 +142,6 @@
     </button>  
     <h2>Log-Out</h2>
 </div>
+<script src="salaryComputation.js"></script>
 </body>
 </html>
