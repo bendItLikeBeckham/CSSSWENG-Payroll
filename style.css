@@ -102,7 +102,7 @@ body{
     color: var(--green-m);
     display: flex;
     align-items: center;
-    padding:2vh 1vw 1vh 1vw;
+    padding:2vh 1vw 1vh 0vw;
     border-radius: 50px;
     border: 0;
     background-color: var(--darkgray-m);
@@ -389,4 +389,47 @@ body{
 }
 .login-right button:active{
     background-color: var(--gray);
+}
+.admin-rightdash-top{
+    color: var(--white-m);
+    text-align: center;
+}
+.admin-rightdash-top h1{
+    font-size: 4vh;
+    margin-top: 7vh;
+    margin-bottom: 1vh;
+}
+.admin-rightdash-top p{
+    font-weight: 400;
+    font-size: 2vh;
+    margin: 0;
+}
+.ad-dash-spacer{
+    margin-bottom: 12vh;
+}
+.ad-rightdash-btn{
+    align-self: center;
+}
+.ad-rightdash-btn i{
+    padding-left: 2vw;
+}
+.ad-rightdash-btn p{
+    text-align: center;
+}
+.admin-rightdash-bottom{
+    margin-top: 15vh;
+}
+.admin-rightdash-mid{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.admin-rightdash-mid button{
+    width: 90%;
+}
+.admin-leftdash{
+    margin: 3vh 3vw 3vh 3vw;
+}
+.admin-leftdash{
+    margin: 3vh 3vw 3vh 3vw;
 }
