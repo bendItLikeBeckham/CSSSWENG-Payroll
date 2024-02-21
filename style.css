@@ -433,3 +433,32 @@ body{
 .admin-leftdash{
     margin: 3vh 3vw 3vh 3vw;
 }
+.admin-leftdash-top h2{
+    color: var(--darkgray-m);
+}
+.dropdown{
+    display: flex;
+    background-color: var(--white-hov);
+    width: 25%;
+    border-radius: 10px;
+}
+.dropdown p{
+    margin: 1vw;
+}
+.dropdown input{
+    background-color: var(--white-hov);
+    border-width: 0;
+    font-family: 'Archivo', sans-serif;
+    margin-left: 3vw;
+    color: var(--darkgray-m);
+}
+.admin-leftdash table{
+    width: 90%;
+    height: 100%;
+    margin-top: 3vw;
+    border-spacing: 0;
+}
+.admin-leftdash td{
+    text-align: center;
+    border: 3px solid var(--darkgray-m);
+}
