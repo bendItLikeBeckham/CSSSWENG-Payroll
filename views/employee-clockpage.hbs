@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Log Page</title>
+    <link rel="stylesheet" href="/css/style.css"> 
+    <script src="/js/script.js"></script> 
+</head>
+<body>
+<div class="left-emp-dash">
+    <img src="/css/images/greenatwork-logo.png" alt="Green at Work Logo" class="logo">
+    <div class="date-time-log">
+        <h1 id="time">00:00:00</h1>
+        <p id="date">Monday, January 1, 2024</p>
+    </div>
+    <div class="log-buttons">
+        <button type="button">
+            <i class="fi fi-rr-enter"></i>
+            <p>Time-in</p>
+        </button>
+        <button type="button">
+            <i class="fi fi-rr-exit"></i>
+            <p>Time-out</p>   
+        </button>  
+    </div>
+</div>
+
+<div class="right-emp-dash">
+    <h1>Dashboard</h1>
+    <button type="button">
+        <i class="fi fi-rr-circle-user"></i>
+        <p>Profile</p>
+    </button>
+    <button type="button">
+        <i class="fi fi-rr-settings"></i>
+        <p>Settings</p>
+    </button>
+    {{!-- <h2>Log-Out</h2> --}}
+    <h2><a href="/logout">Log-Out</a></h2>
+</div>
+</body>
+</html>
