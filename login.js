@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
             var password = SamplePasswordArray[email_index];
             if(password_input === password){
                 console.log("password matches the email");
-                window.location.href = "employee-dashboard.html";
+                window.location.href = "employee-clockpage.html";
             }else{
                 console.log("incorrect password");
                 document.getElementById("login-form").reset();
