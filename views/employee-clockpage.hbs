@@ -12,8 +12,25 @@
         <h1 id="time">00:00:00</h1>
         <p id="date">Monday, January 1, 2024</p>
     </div>
+
+    <div class = "popup" id="popup-1">
+        
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="closeBtn()">&times;</div>
+            <h1>Please Enter OTP</h1>
+            <form id="otp-form" onsubmit="submitOtp(event)">
+                <div class="otp-form">
+                    <input type="text" name="otp_value" placeholder="****" id="otp_value" class="log-text">
+                <span class="resend-otp" onclick="generateOtp()"><p>Resend OTP</p></span>
+                </div>
+                <div class="otp-button"><button type="submit" id="otp-button-send">Enter</button></div>
+            </form>
+        </div>
+    </div>
+
     <div class="log-buttons">
-        <button type="button">
+        <button type="button" onclick="togglePopup()">
             <i class="fi fi-rr-enter"></i>
             <p>Time-in</p>
         </button>
@@ -37,5 +54,6 @@
     {{!-- <h2>Log-Out</h2> --}}
     <h2><a href="/logout">Log-Out</a></h2>
 </div>
+<script src="/js/otp-verify.js"></script>
 </body>
 </html>
