@@ -439,13 +439,22 @@ body{
 .dropdown{
     display: flex;
     background-color: var(--white-hov);
-    width: 25%;
+    width: 28%;
+    height: 6vh;
     border-radius: 10px;
 }
-.dropdown p{
+.dropdown p, .dropdown label{
     margin: 1vw;
+    align-self: center;
 }
-.dropdown input{
+.dropdown select{
+    justify-self: flex-end;
+    width: 13vw;
+    font-size: 2.2vh;
+    background-color: var(--white-hov);
+    border-color: var(--white-hov);
+}
+.dropdown input {
     background-color: var(--white-hov);
     border-width: 0;
     font-family: 'Archivo', sans-serif;
@@ -453,14 +462,15 @@ body{
     color: var(--darkgray-m);
 }
 .admin-leftdash table{
-    width: 90%;
+    width: 100%;
     height: 100%;
-    margin-top: 3vw;
+    margin-top: 2vw;
     border-spacing: 0;
 }
 .admin-leftdash td{
     text-align: center;
-    border: 3px solid var(--darkgray-m);
+    border: 1px solid var(--darkgray-m);
+    padding: .5vh;
 }
 .popup .overlay{
     position: fixed;
@@ -530,3 +540,78 @@ body{
     text-decoration: underline;
     padding-top: 10px;
 }
+.empman-header{
+    display: flex;
+    justify-content: space-between;
+}
+.dropdown-page select{
+    font-family: 'Archivo', sans-serif;
+    font-size: 20px;
+    width: 250px;
+}
+.empman-midhead{
+    display: flex;
+    justify-content: space-between;
+}
+.num-input{
+    display: flex;
+    margin-top: 5vh;
+    flex-direction: row;
+}
+.num-input p{
+    margin: 0;
+    margin-left: 2vw;    
+}
+.empman-btm{
+    display: flex;
+    margin-top: 4vh;
+    justify-content: space-between;
+    width: 70%;
+}
+.num-input-1{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+}
+.num-input-1 p{
+    margin-bottom: 2vh;
+    font-size: 2.5vh;
+}
+.empman-btm h1{
+    color: var(--green-m);
+    margin-top: 5vh;
+}
+.empman-btm h3{
+    margin-top: 5vh;
+}
+.attrec-table{
+    height: 60vh;
+}
+.log-table{
+    margin-top: 10px;
+    height: 70vh;
+    overflow-y: auto;
+}
+.log-table table{
+    margin-top: 0;
+}
+.log-table td{
+    padding: 3vh 3vh 3vh 3vh;
+}
+.log-table thead th {
+    position: sticky; 
+    top: 0;
+    margin: 0;
+    padding: 3vh 3vh 3vh 3vh;
+    background-color: var(--white-m);
+}
+.emp-info{
+    display: flex;
+    width: 100%;
+    margin-top: 5vh;
+    font-size: 2.5vh;
+}
+.emp-info div{
+    width: 100%;
+}
+

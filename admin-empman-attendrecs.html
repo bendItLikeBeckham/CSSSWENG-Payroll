@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/public/css/style.css"> 
+    <link rel="icon" type="image/x-icon" href="/public/css/images/greenatwork-logo.png">
+    <script src="/public/js/script.js"></script> 
+</head>
+<body>
+<div class="left-payroll admin-leftdash">
+    <div class="admin-leftdash-top">
+        <h2>Employee Management</h2>
+        <div class="empman-header">
+            <div class="dropdown-page">
+                <select>
+                    <option>Attendance Records</option>
+                    <option>Employee Information</option>
+                    <option>Weekly Payroll</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <label>Employee:</label>
+                <select><!-- Placeholder info -->
+                    <option>Smith, John</option>
+                    <option>Smith, Jack</option>
+                    <option>Brown, Tom</option>
+                </select>
+            </div>  
+        </div>
+        <div class="empman-midhead">
+            <div class="dropdown">
+                <p> Month:</p>
+                <input type="Month">
+            </div>
+            <div class="num-input">
+                <p>Total Atendances:</p>
+                <p>0</p><!-- Placeholder info -->
+                <p>Total Absences:</p>
+                <p>0</p><!-- Placeholder info -->
+            </div>
+        </div>   
+    </div>
+    <div class="attrec-table">
+        <table>
+            <tr>
+                <th>Week </th>
+                <th></th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+            <tr>
+                <td rowspan="2">Week 1</td>
+                <td>Time-In:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Time-Out:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="2">Week 2</td>
+                <td>Time-In:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Time-Out:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="2">Week 3</td>
+                <td>Time-In:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Time-Out:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td rowspan="2">Week 4</td>
+                <td>Time-In:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Time-Out:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="right-payroll right-emp-dash">
+    <div class="admin-rightdash-top">
+        <h1>Admin Dashboard</h1>
+        <p>As of <span id="date">Monday, January 1, 2024</span></p> 
+        <p id="time">00:00:00</p>
+    </div>
+    <div class="ad-dash-spacer"></div>
+    <div class="admin-rightdash-mid">
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-calendar-clock"></i>
+            <p>Time-in/out Logs</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-employee-man"></i>
+            <p>Employee Management</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-users-alt"></i>
+            <p>Add Employee</p>
+        </button>
+    </div>
+    <div class="admin-rightdash-bottom">
+        <h2>Log-out</h2>   
+    </div>
+</div>
+</body>
+</html>
