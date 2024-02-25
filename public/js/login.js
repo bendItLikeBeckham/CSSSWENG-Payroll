@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function(){
         var password_input = document.getElementById("password").value;
         var error_message = document.getElementById("error_issue");
 
-        console.log("email log "+ email_input);
-        console.log("pass log "+ password_input);
+        console.log("email log "+ email_input);//remove later
+        console.log("pass log "+ password_input);//remove later
 
         try{
             const response = await fetch('/login_account', {
@@ -27,7 +27,11 @@ document.addEventListener("DOMContentLoaded", function(){
             const data = await response.json();
 
             if(data.success){//add below here which page is loaded regarding the employee type
-                window.location.href = '/employee_dashboard';
+                if(data.type === "Employee"){
+                    window.location.href = '/employee_clockpage';
+                }else{
+                    window.location.href = '/admin_dashboard';
+                }    
             }else{
                 error_message.textContent = data.message;
             }

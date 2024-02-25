@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css"> 
+    <link rel="icon" type="image/x-icon" href="/css/images/greenatwork-logo.png">
+    <script src="/js/script.js"></script> 
+</head>
+<body>
+<div class="left-payroll admin-leftdash">
+    <div class="admin-leftdash-top">
+        <h2>Time-In/Out Logs</h2>
+        <div class="dropdown">
+            <p>Date:</p>
+            <input type="date">
+        </div>     
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Shift Schedule</th>
+                <th>Time-In</th>
+                <th>Time-Out</th>
+                <th>Total Hours</th>
+            </tr>
+            {{#each emp_sum}}
+            <tr>
+                <td>{{this.Email}}</td>
+                <td>Monday</td>
+                <td>{{this.Mon_Time_In}}</td>
+                <td>{{this.Mon_Time_Out}}</td>
+                <td>{{this.Mon_Hours}}</td>
+            </tr>
+            <tr>
+                <td>{{this.Email}}</td>
+                <td>Tuesday</td>
+                <td>{{this.Tue_Time_In}}</td>
+                <td>{{this.Tue_Time_Out}}</td>
+                <td>{{this.Tue_Hours}}</td>
+            </tr>
+            <tr>
+                <td>{{this.Email}}</td>
+                <td>Wednesday</td>
+                <td>{{this.Wed_Time_In}}</td>
+                <td>{{this.Wed_Time_Out}}</td>
+                <td>{{this.Wed_Hours}}</td>
+            </tr>
+            <tr>
+                <td>{{this.Email}}</td>
+                <td>Thursday</td>
+                <td>{{this.Thu_Time_In}}</td>
+                <td>{{this.Thu_Time_Out}}</td>
+                <td>{{this.Thu_Hours}}</td>
+            </tr>
+            <tr>
+                <td>{{this.Email}}</td>
+                <td>Friday</td>
+                <td>{{this.Fri_Time_In}}</td>
+                <td>{{this.Fri_Time_Out}}</td>
+                <td>{{this.Fri_Hours}}</td>
+            </tr>
+            <tr>
+                <td>{{this.Email}}</td>
+                <td>Saturday</td>
+                <td>{{this.Sat_Time_In}}</td>
+                <td>{{this.Sat_Time_Out}}</td>
+                <td>{{this.Sat_Hours}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>
+<div class="right-payroll right-emp-dash">
+    <div class="admin-rightdash-top">
+        <h1>Admin Dashboard</h1>
+        <p>As of <span id="date">Monday, January 1, 2024</span></p> 
+        <p id="time">00:00:00</p>
+    </div>
+    <div class="ad-dash-spacer"></div>
+    <div class="admin-rightdash-mid">
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-calendar-clock"></i>
+            <p>Time-in/out Logs</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-employee-man"></i>
+            <p>Employee Management</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-users-alt"></i>
+            <p>Add Employee</p>
+        </button>
+    </div>
+    <div class="admin-rightdash-bottom">
+        {{!-- <h2>Log-out</h2>    --}}
+        <h2><a href="/logout">Log-Out</a></h2>
+    </div>
+</div>
+<script src="/js/display-employee-summary.js"></script>
+</body>
+</html>

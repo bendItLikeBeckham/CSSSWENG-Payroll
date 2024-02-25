@@ -34,7 +34,7 @@
             <i class="fi fi-rr-enter"></i>
             <p>Time-in</p>
         </button>
-        <button type="button">
+        <button type="button" id="time-out-btn">
             <i class="fi fi-rr-exit"></i>
             <p>Time-out</p>   
         </button>  
@@ -45,8 +45,15 @@
     <h1>Dashboard</h1>
     <button type="button">
         <i class="fi fi-rr-circle-user"></i>
+         {{!-- <p>Profile</p> --}}
+        <p><a href="/employee_dashboard">Profile</a></p>
+    </button>
+    {{!-- <form action="/employee_dashboard" method="get">
+    <button type="button">
+        <i class="fi fi-rr-circle-user"></i>
         <p>Profile</p>
     </button>
+    </form> --}}
     <button type="button">
         <i class="fi fi-rr-settings"></i>
         <p>Settings</p>
@@ -55,5 +62,6 @@
     <h2><a href="/logout">Log-Out</a></h2>
 </div>
 <script src="/js/otp-verify.js"></script>
+<script src="/js/time_retrieval.js"></script>
 </body>
 </html>

@@ -3,15 +3,15 @@ const login_controllers = require('../controllers/login-controller');
 const employee_dashboard_controllers = require('../controllers/employee-dashboard-controller');
 const employee_clockpage_controllers = require('../controllers/employee-clockpage-controller');
 const logout_controllers = require('../controllers/logout-controller');
-const otp_controller = require('../controllers/otp-controller')
-
+const otp_controller = require('../controllers/otp-controller');
+const admin_dash_logs_controllers = require('../controllers/admin-dash-logs-controller');
 
 
 
 //to be deleted the dummy_register_controller
 const dummy_register_controllers = require('../controllers/dummy-register-controller');
 //^
-
+ 
 const express = require('express');
 const logout_controller = require('../controllers/logout-controller');
 const app = express();
@@ -28,7 +28,10 @@ app.get('/employee_clockpage', employee_clockpage_controllers.get_employee_clock
 app.get('/logout', logout_controllers.get_logout);
 app.post('/generate_otp', otp_controller.post_generate_otp);
 app.post('/verify_otp', otp_controller.post_verify_otp);
-
-
+app.post('/employee_time_in', employee_clockpage_controllers.post_employee_time_in);
+app.post('/employee_time_out', employee_clockpage_controllers.post_employee_time_out);
+app.get('/admin_dashboard', admin_dash_logs_controllers.get_admin_dash_logs);
+app.get('/retrieve_employee_payroll', employee_dashboard_controllers.get_employee_details);
+app.get('/retrieve_employee_summary', admin_dash_logs_controllers.get_employee_summary);
 
 module.exports = app;

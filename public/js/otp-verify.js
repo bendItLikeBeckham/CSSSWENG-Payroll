@@ -34,6 +34,32 @@ function generateOtp(){
       .then(data => {
         if (data.correctNumber == otp) {
           alert(`Your input (${otp}) is correct.`);
+          //include functions here if otp is correct, time-in post method here?
+          //changes start here
+          let current_time = new Date();
+          let hours = current_time.getHours();
+          let minutes = current_time.getMinutes();
+          let weekdayIndex = current_time.getDay();
+          let formattedTime = hours + ':' + minutes;
+
+          console.log("hour: " + hours); //remove later
+          console.log("minutes: " + minutes); //remove later
+          console.log("weekday: " + weekdayIndex); //remove later
+          console.log("formattedTime: " + formattedTime);
+
+          fetch('/employee_time_in',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              Time_In: formattedTime,
+              TI_weekdayIndex: weekdayIndex
+              }),
+          })
+
+          //changes end here
+          window.location.href = '/employee_clockpage';
         } else {
           alert(`Sorry, your input (${otp}) is incorrect.`);
         }
