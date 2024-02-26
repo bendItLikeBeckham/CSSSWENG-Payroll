@@ -28,6 +28,7 @@ app.get('/employee_clockpage', employee_clockpage_controllers.get_employee_clock
 app.get('/logout', logout_controllers.get_logout);
 app.post('/generate_otp', otp_controller.post_generate_otp);
 app.post('/verify_otp', otp_controller.post_verify_otp);
+app.get('/get_otp', otp_controller.get_current_otp);
 app.post('/employee_time_in', employee_clockpage_controllers.post_employee_time_in);
 app.post('/employee_time_out', employee_clockpage_controllers.post_employee_time_out);
 app.get('/admin_dashboard', admin_dash_logs_controllers.get_admin_dash_logs);
