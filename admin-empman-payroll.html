@@ -12,10 +12,10 @@
         <h2>Employee Management</h2>
         <div class="empman-header">
             <div class="dropdown-page">
-                <select>
-                    <option>Weekly Payroll</option>
-                    <option>Attendance Records</option>
-                    <option>Employee Information</option>
+                <select onchange="navigate()">
+                    <option value="admin-empman-payroll.html">Weekly Payroll</option>
+                    <option value="admin-empman-attendrecs.html">Attendance Records</option>
+                    <option value="admin-empman-emprecs.html">Employee Information</option>
                 </select>
             </div>
             <div class="dropdown">
@@ -139,6 +139,15 @@
         </div>
     </div>
 </div>
+<script>
+    function navigate() {
+        var selectElement = document.querySelector(".dropdown-page select");
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        if (selectedOption.value) {
+            window.location.href = selectedOption.value;
+        }
+    }
+</script>
 <div class="right-payroll right-emp-dash">
     <div class="admin-rightdash-top">
         <h1>Admin Dashboard</h1>
@@ -151,13 +160,13 @@
             <i class="fi fi-rr-calendar-clock"></i>
             <p>Time-in/out Logs</p>
         </button>
-        <button type="button" class="ad-rightdash-btn" onclick="window.location.href = 'admin-empman-attendrecs.html';">
+        <button type="button" class="ad-rightdash-btn" onclick="window.location.href = 'admin-empman-payroll.html';">
             <i class="fi fi-rr-employee-man"></i>
             <p>Employee Management</p>
         </button>
-        <button type="button" class="ad-rightdash-btn" onclick="window.location.href = 'admin-empman-emprecs.html';">
+        <button type="button" class="ad-rightdash-btn" onclick="window.location.href = 'admin-add-emp.html';">
             <i class="fi fi-rr-users-alt"></i>
-            <p>Add Employee</p>
+            <p>Add/Delete Employee</p>
         </button>
     </div>
     <div class="admin-rightdash-bottom">
