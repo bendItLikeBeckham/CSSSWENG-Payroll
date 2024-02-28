@@ -9,38 +9,40 @@
 <body>
 <div class="left-payroll admin-leftdash">
     <div class="admin-leftdash-top">
-        <h2>Employee Management</h2>
+        <h2>Add/Delete Employee</h2>
         <div class="empman-header">
             <div class="dropdown-page">
                 <select onchange="navigate()">
-                    <option value="admin-empman-emprecs.html">Employee Information</option>
-                    <option value="admin-empman-attendrecs.html">Attendance Records</option>
-                    <option value="admin-empman-payroll.html">Weekly Payroll</option>
+                    <option value="admin-del-user.html">Delete Employee</option>
+                    <option value="admin-add-user.html">Add Employee</option>
                 </select>
             </div>
-            <div class="dropdown">
-                <label>Employee:</label>
-                <select><!-- Placeholder info -->
-                    <option>Smith, John</option>
-                    <option>Smith, Jack</option>
-                    <option>Brown, Tom</option>
-                </select>
-            </div>  
+        </div>
+        <div class="search-bar">
+            <input type="text">
+            <button>
+                <i class="fi fi-rr-search"></i>
+            </button>
         </div>
         <div class="emp-info">
             <div><!-- Placeholder info -->
-                <p>Full Name: <span>Smith, John M.</span></p>
-                <p>Address: <span>_</span></p> 
-                <p>Email: <span>_</span></p> 
-                <p>Contact Number: <span>_</span></p> 
+                <p>First Name: <span></span></p>
+                <p>Last Name: <span></span></p>
+                <p>Address: <span></span></p> 
+                <p>Contact Number: <span></span></p> 
               </div>
               <div>
-                <p>Job Type: <span>_</span></p>
-                <p>Job Title: <span>_</span></p> 
+                <p>Email: <span></span></p> 
+                <p>Password: <span></span></p>
+                <p>Role: <span></span></p> 
               </div>
         </div>
+        <div class="ad-left-btn">
+            <button type="button" class="ad-leftdash-btn">
+                <p>Confirm Delete Employee</p>
+            </button>
+        </div>
     </div>
-    
 </div>
 <script>
     function navigate() {

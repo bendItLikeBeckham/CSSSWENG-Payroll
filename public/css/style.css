@@ -619,4 +619,73 @@ body{
 .emp-info div{
     width: 100%;
 }
-
+.emp-info input{
+    font-family: 'Archivo', sans-serif;
+    background-color: var(--white-m);
+    width: 70%;
+    font-size: 2vh;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: .5vh;
+}
+.ad-left-btn{
+    display: flex;
+    width: 100%;
+    margin-top: 20vh;
+    justify-content: center;
+    align-items: flex-end;
+}
+.ad-leftdash-btn{
+    border: 0;
+    background-color: var(--green-m);
+    font-family: 'Archivo', sans-serif;
+    border-radius: 50px;
+    padding: 1vh;
+    font-weight: 600;
+    font-size: 2vh;
+    color: var(--white-m);
+    padding: 1vh 2vw 1vh 2vw;
+}
+.ad-leftdash-btn:hover{
+    cursor: pointer;
+    background-color: var(--gray);
+}
+.ad-leftdash-btn:active{
+    cursor: pointer;
+    background-color: var(--lightgray);
+}
+.role-dropdown{
+    font-family: 'Archivo', sans-serif;
+    border-radius: 10px;
+    padding: .5vh;
+    font-size: 2vh;
+}
+.search-bar {
+    position: relative;
+    width: 50%;
+    margin-top: 5vh;
+    margin-left: 18vw;
+}
+.search-bar input {
+    font-family: 'Archivo', sans-serif;
+    background-color: var(--white-m);
+    width: 100%;
+    font-size: 2vh;
+    border: 2px solid;
+    border-color: var(--darkgray-m);
+    border-radius: 10px;
+    padding: 1vh;
+    padding-right: 0;
+}
+.search-bar button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0px;
+    background-color: var(--white-m);
+    border: 0;
+}
+.search-bar i{
+    color: var(--green-m);
+    font-size: 2vh;
+}
