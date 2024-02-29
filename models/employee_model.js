@@ -9,6 +9,10 @@ var employee_schema = new mongoose.Schema({
         type: String,
         required: true
     },
+    Address:{
+        type: String,
+        required: true
+    },
     Employee_type: {
         type: String,
         default: 'Employee'
