@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
-    var register_button_submit = document.getElementById("dummy-register-button");
+    var register_button_submit = document.getElementById("register-button");
     register_button_submit.addEventListener('click', register_function);
 
     async function register_function(event){
@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
         var email_input = document.getElementById("email").value;
         var password_input = document.getElementById("password").value;
+        var address_input = document.getElementById("address").value;
+        var employee_type_input = document.getElementById("employee-type").value;
 
         try{
-            const response = await fetch('/dummy_register_employee', {
+            const response = await fetch('/register_employee', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -18,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function(){
                 body: JSON.stringify({
                     email: email_input,
                     password: password_input,
+                    address: address_input,
+                    employee_type: employee_type_input
                 }),
             });
             const data = await response.json();
