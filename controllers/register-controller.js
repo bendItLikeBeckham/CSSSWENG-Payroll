@@ -1,13 +1,13 @@
 const employee = require('../models/employee_model.js');
 const payroll = require('../models/payroll_model.js');
 
-const dummy_register_controller = {
-    get_dummy_register: function(req, res){
-        res.render('dummy-register');
+const register_controller = {
+    get_register: function(req, res){
+        res.render('register');
     }, 
 
-    post_dummy_register: async function(req, res){
-        const {email, password} = req.body;
+    post_register: async function(req, res){
+        const {email, password, address, employee_type} = req.body;
 
         const user_exists = await employee.findOne({Email: email});
         if(user_exists){
@@ -19,6 +19,8 @@ const dummy_register_controller = {
                 const new_employee = new employee({
                     Email: email,
                     Password: password,
+                    Address: address,
+                    Employee_type: employee_type
                 });
                 await new_employee.save();
                 //changes: new payroll 
@@ -73,4 +75,4 @@ const dummy_register_controller = {
     }
 }
 
-module.exports = dummy_register_controller;
+module.exports = register_controller;
