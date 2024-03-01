@@ -81,6 +81,9 @@ body{
         color: white;
     }
 }
+.log-buttons button:disabled{
+    pointer-events: none;
+}
 .log-buttons p{
     color: var(--lightgray);
     font-size: 1vw;

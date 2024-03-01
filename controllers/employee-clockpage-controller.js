@@ -13,6 +13,10 @@ const employee_clockpage_controller = {
         //req.session.ETI_weekdayIndex = 1;//remove later
         const employee_email = req.session.Email;
 
+        console.log(employee_email)
+
+        await database.updateOne(employee, {Email: req.session.Email}, {IsTimedIn: true})
+
         if(TI_weekdayIndex === 1){//change this later to TI_weekdayIndex
             await database.updateOne(payroll, {Email: employee_email}, {
                 $set: {
@@ -63,6 +67,9 @@ const employee_clockpage_controller = {
         const hr = 10.00; //hourly rate
         const mr = 0.17; //minute rate
         const day = await database.findOne(payroll, {Email: employee_email});
+
+        await database.updateOne(employee, {Email: req.session.Email}, {IsTimedIn: false})//makes employee time-in status be false 
+
         if(req.session.ETI_weekdayIndex === 1){
             let [hours, minutes] = day.Mon_Time_In.split(':');
             const TI_hour = parseInt(hours);

@@ -30,11 +30,11 @@
     </div>
 
     <div class="log-buttons">
-        <button type="button" onclick="togglePopup()">
+        <button type="button" id="time-in-btn" onclick="togglePopup()">
             <i class="fi fi-rr-enter"></i>
             <p>Time-in</p>
         </button>
-        <button type="button" id="time-out-btn">
+        <button type="button" id="time-out-btn" onclick="enableTimeIn()" disabled>
             <i class="fi fi-rr-exit"></i>
             <p>Time-out</p>   
         </button>  

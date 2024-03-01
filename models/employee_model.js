@@ -1,6 +1,18 @@
 var mongoose = require('mongoose');
 
 var employee_schema = new mongoose.Schema({
+    /*First_Name: {
+        type: String,
+        required: true
+    },
+    Last_Name: {
+        type: String,
+        required: true
+    },
+    Contact_Number: {
+        type: String,
+        required: true
+    },*/
     Email: { // or is it Username
         type: String,
         required: true
@@ -13,10 +25,14 @@ var employee_schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Employee_type: {
+    Employee_Type: {
         type: String,
         default: 'Employee'
-    } 
+    },
+    IsTimedIn: {
+        type: Boolean,
+        default: false
+    }
 });
 
 module.exports = mongoose.model('employee', employee_schema);

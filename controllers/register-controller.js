@@ -20,7 +20,8 @@ const register_controller = {
                     Email: email,
                     Password: password,
                     Address: address,
-                    Employee_type: employee_type
+                    Employee_Type: employee_type,
+                    IsTimedIn: 0
                 });
                 await new_employee.save();
                 //changes: new payroll 

@@ -1,6 +1,7 @@
 function togglePopup(){
     document.getElementById("popup-1").classList.toggle("active");
 
+    console.log(document.getElementById("time-out-btn").disabled)
     fetch('/generate_otp', { method: 'POST' })
     .then(response => response.json())
     .then(data => console.log(data))
@@ -34,6 +35,8 @@ function generateOtp(){
       .then(data => {
         if (data.correctNumber == otp) {
           alert(`Your input (${otp}) is correct.`);
+
+          enableTimeOut();
           //include functions here if otp is correct, time-in post method here?
           //changes start here
           let current_time = new Date();
@@ -59,7 +62,8 @@ function generateOtp(){
           })
 
           //changes end here
-          window.location.href = '/employee_clockpage';
+          //window.location.href = '/employee_clockpage';
+          closeBtn();
         } else {
           alert(`Sorry, your input (${otp}) is incorrect.`);
         }
@@ -67,4 +71,14 @@ function generateOtp(){
       .catch(error => console.error('Error submitting otp:', error));
   
     otpInput.value = '';
+  }
+
+  function enableTimeIn(){
+    document.getElementById("time-in-btn").disabled = false;
+    document.getElementById("time-out-btn").disabled = true;
+  }
+
+  function enableTimeOut(){
+    document.getElementById("time-in-btn").disabled = true;
+    document.getElementById("time-out-btn").disabled = false;
   }

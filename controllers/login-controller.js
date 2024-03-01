@@ -20,7 +20,7 @@ const login_controller = {
                 req.session.Email = email;
                 req.session.Employee_type = user_exists.Employee_type;
                 //^
-                if(user_exists.Employee_type === "Employee"){
+                if(user_exists.Employee_Type === "Employee"){
                     res.status(200).json({success: true, type: "Employee", message: "Login Successful!"});
                 }else{
                     res.status(200).json({success: true, type: "Admin", message: "Login Successful!"});
