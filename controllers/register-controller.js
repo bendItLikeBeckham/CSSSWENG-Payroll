@@ -16,7 +16,7 @@ const register_controller = {
             return res.status(400).json({message: "Missing Password!"});
         }else{
             try{
-                const new_employee = new employee({
+                const new_employee = new employee({//to add full name, contact number, job type, job title - will add/change later Joaquin
                     Email: email,
                     Password: password,
                     Address: address,
@@ -28,7 +28,7 @@ const register_controller = {
                 const initial_date = new Date();
                 const new_payroll = new payroll({
                     Email: email,
-                    Initial_date: initial_date,
+                    Initial_date: initial_date,//change to weeks passed. add the date per day of the week. add day total time. debug what if time in monday and time out tuesday- will add/change later Joaquin
                     Mon_Hours: 0,
                     Mon_Minutes: 0,
                     Mon_Time_In: 0,

@@ -6,6 +6,9 @@ const logout_controllers = require('../controllers/logout-controller');
 const otp_controller = require('../controllers/otp-controller');
 const admin_dash_logs_controllers = require('../controllers/admin-dash-logs-controller');
 const delete_user_controller = require('../controllers/delete-user-controller');
+const admin_empman_attendrecs_controllers = require('../controllers/admin-empman-attendrecs-controller');
+const admin_empman_emprecs_controllers = require('../controllers/admin-empman-emprecs-controller');
+const admin_empman_payroll_controllers = require('../controllers/admin-empman-payroll-controller');
 
 const register_controllers = require('../controllers/register-controller');
  
@@ -33,5 +36,14 @@ app.get('/retrieve_employee_payroll', employee_dashboard_controllers.get_employe
 app.get('/retrieve_employee_summary', admin_dash_logs_controllers.get_employee_summary);
 app.get('/delete_user', delete_user_controller.get_delete_user );
 app.post('/delete_chosen_user', delete_user_controller.post_delete_user);
+app.get('/admin_empman_attendrecs', admin_empman_attendrecs_controllers.get_admin_empman_attendrecs);
+app.get('/admin_empman_emprecs', admin_empman_emprecs_controllers.get_admin_empman_emprecs);
+app.get('/admin_empman_payroll', admin_empman_payroll_controllers.get_admin_empman_payroll);
+app.get('/admin_retrieve_employee_total_ar', admin_empman_attendrecs_controllers.get_emp_total);
+app.get('/admin_retrieve_emp_pay', admin_empman_attendrecs_controllers.get_emp_pay);
+app.get('/admin_retrieve_employee_total_ei', admin_empman_emprecs_controllers.get_emp_total);
+app.get('/admin_retrieve_emp_det', admin_empman_emprecs_controllers.get_emp_det);
+app.get('/admin_retrieve_employee_total_wp', admin_empman_payroll_controllers.get_emp_total);
+app.get('/admin_retrieve_emp_wpay', admin_empman_payroll_controllers.get_emp_wpay);
 
 module.exports = app;

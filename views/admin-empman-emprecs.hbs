@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css"> 
+    <link rel="icon" type="image/x-icon" href="/css/images/greenatwork-logo.png">
+    <script src="/js/script.js"></script> 
+</head>
+<body>
+<div class="left-payroll admin-leftdash">
+    <div class="admin-leftdash-top">
+        <h2>Employee Management</h2>
+        <div class="empman-header">
+            <div class="dropdown-page">
+                <select id="emp-mgm-page-id">
+                    <option>Employee Information</option>
+                    <option>Attendance Records</option>
+                    <option>Weekly Payroll</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <label>Employee:</label>
+                <select id="emp-dropdown-id"><!-- Placeholder info -->
+                    <option>Select</option>
+                    {{#each emp_total}}
+                    <option>{{this.Email}}</option>
+                    {{/each}}
+                </select>
+            </div>  
+        </div>
+        <div class="emp-info">
+            <div><!-- Placeholder info -->
+                <p>Full Name: <span>_</span></p>
+                <p>Address: <span>_</span></p> 
+                <p>Email: <span>{{emp_det.Email}}</span></p> 
+                <p>Contact Number: <span>_</span></p> 
+              </div>
+              <div>
+                <p>Job Type: <span>{{emp_det.Employee_type}}</span></p>
+                <p>Job Title: <span>_</span></p> 
+              </div>
+        </div>
+    </div>
+    
+</div>
+<div class="right-payroll right-emp-dash">
+    <div class="admin-rightdash-top">
+        <h1>Admin Dashboard</h1>
+        <p>As of <span id="date">Monday, January 1, 2024</span></p> 
+        <p id="time">00:00:00</p>
+    </div>
+    <div class="ad-dash-spacer"></div>
+    <div class="admin-rightdash-mid">
+        <button type="button" class="ad-rightdash-btn" id="Ti-To-logs-id">
+            <i class="fi fi-rr-calendar-clock"></i>
+            <p>Time-in/out Logs</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn" id="emp-mgm-id">
+            <i class="fi fi-rr-employee-man"></i>
+            <p>Employee Management</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-users-alt"></i>
+            <p>Add Employee</p>
+        </button>
+    </div>
+    <div class="admin-rightdash-bottom">
+        {{!-- <h2>Log-out</h2>    --}}
+        <h2><a href="/logout">Log-Out</a></h2>  
+    </div>
+</div>
+<script src="/js/employee-information.js"></script>
+</body>
+</html>

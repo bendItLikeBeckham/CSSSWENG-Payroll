@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css"> 
+    <link rel="icon" type="image/x-icon" href="/css/images/greenatwork-logo.png">
+    <script src="/js/script.js"></script> 
+</head>
+<body>
+<div class="left-payroll admin-leftdash">
+    <div class="admin-leftdash-top">
+        <h2>Employee Management</h2>
+        <div class="empman-header">
+            <div class="dropdown-page">
+                <select id="emp-mgm-page-id">
+                    <option>Weekly Payroll</option>
+                    <option>Attendance Records</option>
+                    <option>Employee Information</option>
+                </select>
+            </div>
+            <div class="dropdown">
+                <label>Employee:</label>
+                <select id="emp-dropdown-id"><!-- Placeholder info -->
+                    <option>Select</option>
+                    {{#each emp_total}}
+                    <option>{{this.Email}}</option>
+                    {{/each}}
+                </select>
+            </div>  
+        </div>
+        <div class="empman-midhead">
+            <div class="dropdown">
+                <p>Select Week:</p>
+                <input type="week">
+            </div>
+            <div class="num-input">
+                <p>Pay Per Hour:</p>
+                <input type="number">  
+                <p>Pay Per Minute:</p>
+                <input type="number">  
+            </div>
+        </div>   
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th></th>
+                <th>Time-In</th>
+                <th>Time-Out</th>
+                <th>Total Time</th>
+                <th>Total Valid Hours</th>
+                <th>Total Valid Minutes</th>
+                <th>Total Hour Rate</th>
+                <th>Total Minute Rate</th>
+            </tr>
+            <tr><!-- Placeholder info -->
+                <td>Monday</td>
+                <td>{{emp_wpay.Mon_Time_In}}</td>
+                <td>{{emp_wpay.Mon_Time_Out}}</td>
+                <td>{{emp_wpay.Mon_Hours}}:{{emp_wpay.Mon_Minutes}}</td>
+                <td>{{emp_wpay.Mon_Hours}}</td>
+                <td>{{emp_wpay.Mon_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>{{emp_wpay.Tue_Time_In}}</td>
+                <td>{{emp_wpay.Tue_Time_Out}}</td>
+                <td>{{emp_wpay.Tue_Hours}}:{{emp_wpay.Tue_Minutes}}</td>
+                <td>{{emp_wpay.Tue_Hours}}</td>
+                <td>{{emp_wpay.Tue_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>{{emp_wpay.Wed_Time_In}}</td>
+                <td>{{emp_wpay.Wed_Time_Out}}</td>
+                <td>{{emp_wpay.Wed_Hours}}:{{emp_wpay.Wed_Minutes}}</td>
+                <td>{{emp_wpay.Wed_Hours}}</td>
+                <td>{{emp_wpay.Wed_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td>{{emp_wpay.Thu_Time_In}}</td>
+                <td>{{emp_wpay.Thu_Time_Out}}</td>
+                <td>{{emp_wpay.Thu_Hours}}:{{emp_wpay.Thu_Minutes}}</td>
+                <td>{{emp_wpay.Thu_Hours}}</td>
+                <td>{{emp_wpay.Thu_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>{{emp_wpay.Fri_Time_In}}</td>
+                <td>{{emp_wpay.Fri_Time_Out}}</td>
+                <td>{{emp_wpay.Fri_Hours}}:{{emp_wpay.Fri_Minutes}}</td>
+                <td>{{emp_wpay.Fri_Hours}}</td>
+                <td>{{emp_wpay.Fri_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td>{{emp_wpay.Sat_Time_In}}</td>
+                <td>{{emp_wpay.Sat_Time_Out}}</td>
+                <td>{{emp_wpay.Sat_Hours}}:{{emp_wpay.Sat_Minutes}}</td>
+                <td>{{emp_wpay.Sat_Hours}}</td>
+                <td>{{emp_wpay.Sat_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    {{!-- note to self test forms - joaquin --}}
+    <div class="empman-btm">
+        <div class="num-input-1">
+            <p>Additional:</p>
+            <input type="number">  
+            <p>Advance:</p>
+            <input type="number"> 
+            <p>Deduction:</p>
+            <input type="number">   
+        </div>
+        <div>
+            <h3>Total Calculated Rate:</h3>
+            <h1>Total Pay:{{emp_wpay.Weekly_Total_Pay}}</h1>
+        </div>
+    </div>
+</div>
+<div class="right-payroll right-emp-dash">
+    <div class="admin-rightdash-top">
+        <h1>Admin Dashboard</h1>
+        <p>As of <span id="date">Monday, January 1, 2024</span></p> 
+        <p id="time">00:00:00</p>
+    </div>
+    <div class="ad-dash-spacer"></div>
+    <div class="admin-rightdash-mid">
+        <button type="button" class="ad-rightdash-btn" id="Ti-To-logs-id">
+            <i class="fi fi-rr-calendar-clock"></i>
+            <p>Time-in/out Logs</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn" id="emp-mgm-id">
+            <i class="fi fi-rr-employee-man"></i>
+            <p>Employee Management</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-users-alt"></i>
+            <p>Add Employee</p>
+        </button>
+    </div>
+    <div class="admin-rightdash-bottom">
+        {{!-- <h2>Log-out</h2>    --}}
+        <h2><a href="/logout">Log-Out</a></h2>
+    </div>
+</div>
+<script src="/js/weekly-payroll.js"></script>
+</body>
+</html>
