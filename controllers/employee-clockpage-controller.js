@@ -4,7 +4,21 @@ const database = require('../models/database.js');
 
 const employee_clockpage_controller = {
     get_employee_clockpage: function (req, res){
-        res.render("employee-clockpage", {email: req.session.Email, emp_type: req.session.Employee_type});
+        res.render("employee-clockpage", {email: req.session.Email, emp_type: req.session.Employee_type, timeInStatus: req.session.IsTimedIn});
+    },
+
+    get_employee_time_in_status: async function(req, res){
+        try{
+            const employee_email = req.session.Email;
+            
+            current_employee = await database.findOne(employee,{Email: employee_email});
+            
+            const time_in_status = current_employee.IsTimedIn;
+    
+            res.json({time_in_status});
+        }catch(err){
+            res.status(500).send("Internal Server Error!");
+        }
     },
 
     post_employee_time_in: async function (req, res){

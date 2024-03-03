@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var employee_schema = new mongoose.Schema({
-    /*First_Name: {
+    First_Name: {
         type: String,
         required: true
     },
@@ -12,7 +12,7 @@ var employee_schema = new mongoose.Schema({
     Contact_Number: {
         type: String,
         required: true
-    },*/
+    },
     Email: { // or is it Username
         type: String,
         required: true
