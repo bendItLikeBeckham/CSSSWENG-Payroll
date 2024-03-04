@@ -692,3 +692,11 @@ body{
     color: var(--green-m);
     font-size: 2vh;
 }
+.status-on{
+    text-transform: uppercase;
+    color: #2A9349;
+}
+.status-off{
+    text-transform: uppercase;
+    color: #FF0033;
+}
