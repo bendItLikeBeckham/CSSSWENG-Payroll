@@ -688,6 +688,9 @@ body{
     background-color: var(--white-m);
     border: 0;
 }
+.search-bar button:hover {
+    cursor: pointer;
+}
 .search-bar i{
     color: var(--green-m);
     font-size: 2vh;
