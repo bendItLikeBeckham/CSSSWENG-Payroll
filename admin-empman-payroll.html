@@ -127,11 +127,14 @@
     <div class="empman-btm">
         <div class="num-input-1">
             <p>Additional:</p>
-            <input type="number">  
+            <input type="number" oninput="confirmInput('additional')">
+            <button onclick="showConfirmMessage('Additional')">Confirm</button>
             <p>Advance:</p>
-            <input type="number"> 
+            <input type="number" oninput="confirmInput('advance')">
+            <button onclick="showConfirmMessage('Advance')">Confirm</button>
             <p>Deduction:</p>
-            <input type="number">   
+            <input type="number" oninput="confirmInput('deduction')">
+            <button onclick="showConfirmMessage('Deduction')">Confirm</button>
         </div>
         <div>
             <h3>Total Calculated Rate:</h3>
@@ -145,6 +148,16 @@
         var selectedOption = selectElement.options[selectElement.selectedIndex];
         if (selectedOption.value) {
             window.location.href = selectedOption.value;
+        }
+    }
+
+    function confirmInput(type) {
+    }
+
+    function showConfirmMessage(inputType) {
+        var confirmation = confirm("Are you sure you want to confirm the new value for " + inputType + "?");
+        if (confirmation) {
+            alert(inputType + " CONFIRMED!");
         }
     }
 </script>
