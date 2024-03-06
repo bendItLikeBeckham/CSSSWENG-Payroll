@@ -125,16 +125,16 @@
         </table>
     </div>
     <div class="empman-btm">
-        <div class="num-input-1">
+               <div class="num-input-1">
             <p>Additional:</p>
-            <input type="number" oninput="confirmInput('additional')">
-            <button onclick="showConfirmMessage('Additional')">Confirm</button>
+            <input type="number" id="additional" oninput="validateInput('additional', this.value)">
+            <button onclick="showConfirmMessage('additional')">Confirm</button>
             <p>Advance:</p>
-            <input type="number" oninput="confirmInput('advance')">
-            <button onclick="showConfirmMessage('Advance')">Confirm</button>
+            <input type="number" id="advance" oninput="validateInput('advance', this.value)">
+            <button onclick="showConfirmMessage('advance')">Confirm</button>
             <p>Deduction:</p>
-            <input type="number" oninput="confirmInput('deduction')">
-            <button onclick="showConfirmMessage('Deduction')">Confirm</button>
+            <input type="number" id="deduction" oninput="validateInput('deduction', this.value)">
+            <button onclick="showConfirmMessage('deduction')">Confirm</button>
         </div>
         <div>
             <h3>Total Calculated Rate:</h3>
@@ -148,6 +148,13 @@
         var selectedOption = selectElement.options[selectElement.selectedIndex];
         if (selectedOption.value) {
             window.location.href = selectedOption.value;
+        }
+    }
+
+     function validateInput(inputType, value) {
+        if (isNaN(value) || value < 0 || value.includes('/') || value.includes('-')) {
+            alert("Please enter a valid non-negative integer for " + inputType + ".");
+            document.querySelector("input[type='number'][oninput*='" + inputType + "']").value = "";
         }
     }
 
