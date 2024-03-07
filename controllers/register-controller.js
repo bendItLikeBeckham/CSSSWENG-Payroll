@@ -26,43 +26,50 @@ const register_controller = {
                 await new_employee.save();
                 if(employee_type === "Employee"){
                     //changes: new payroll 
-                    const initial_date = new Date();
+                    // const initial_date = new Date();
                     const new_payroll = new payroll({
                         Email: email,
-                        Initial_date: initial_date,//change to weeks passed. add the date per day of the week. add day total time. debug what if time in monday and time out tuesday- will add/change later Joaquin
+                        // Initial_date: initial_date,//change to weeks passed. add the date per day of the week. add day total time. debug what if time in monday and time out tuesday- will add/change later Joaquin
+                        Week: 0,
                         Mon_Hours: 0,
                         Mon_Minutes: 0,
+                        Mon_Date: 0,
                         Mon_Time_In: 0,
                         Mon_Time_Out: 0,
                         Mon_Total_Pay: 0,
                         Tue_Hours: 0,
                         Tue_Minutes: 0,
+                        Tue_Date: 0,
                         Tue_Time_In: 0,
                         Tue_Time_Out: 0,
                         Tue_Total_Pay: 0,
                         Wed_Hours: 0,
                         Wed_Minutes: 0,
+                        Wed_Date: 0,
                         Wed_Time_In: 0,
                         Wed_Time_Out: 0,
                         Wed_Total_Pay: 0,
                         Thu_Hours: 0,
                         Thu_Minutes: 0,
+                        Thu_Date: 0,
                         Thu_Time_In: 0,
                         Thu_Time_Out: 0,
                         Thu_Total_Pay: 0,
                         Fri_Hours: 0,
                         Fri_Minutes: 0,
+                        Fri_Date: 0,
                         Fri_Time_In: 0,
                         Fri_Time_Out: 0,
                         Fri_Total_Pay: 0,
                         Sat_Hours: 0,
                         Sat_Minutes: 0,
+                        Sat_Date: 0,
                         Sat_Time_In: 0,
                         Sat_Time_Out: 0,
                         Sat_Total_Pay: 0,
-                        Weekly_Total_Bale: 0, //change to advance
-                        Weekly_Total_Bonus: 0, //change to additional
-                        Weekly_Total_Deductions: 0,
+                        Weekly_Total_Advance: 0,
+                        Weekly_Total_Additional: 0,
+                        Weekly_Total_Deduction: 0,
                         Weekly_Total_Pay: 0,
                     });
                     await new_payroll.save();

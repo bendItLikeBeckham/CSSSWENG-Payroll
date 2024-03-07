@@ -1,7 +1,31 @@
 document.addEventListener("DOMContentLoaded", function (){
     console.log("DOM display employee summary");
 
-    fetch("/retrieve_employee_summary")
+    var input_date = document.getElementById("get-date-id");
+    input_date.addEventListener('change', get_date);
+
+    var emp_mgm_button = document.getElementById("emp-mgm-id");
+    emp_mgm_button.addEventListener('click', emp_mgm_redirect_0);
+
+    async function emp_mgm_redirect_0(event){
+        event.preventDefault();
+
+        window.location.href = '/admin_empman_attendrecs';
+    }
+});
+
+function get_date (){
+    var input_date = document.getElementById("get-date-id");
+    var selected_date = input_date.value;
+    console.log("selected date: " + selected_date);
+
+    var day = new Date(selected_date);
+    var day_of_the_week = day.getDay();
+    var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var day_name = day_names[day_of_the_week];
+    console.log("Day of the week: " + day_name);
+
+    fetch(`/retrieve_employee_summary?s_date=${selected_date}&d_week=${day_name}`)
     .then(response =>{
         if (!response.ok){
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -9,17 +33,21 @@ document.addEventListener("DOMContentLoaded", function (){
         return response.text();
     })
     .then(html =>{
-        document.body.innerHTML = html;
+        document.body.innerHTML = html; 
         sidebar_buttons();
     })
     .catch(error =>{
         console.error('Error fetching /retrieve_employee_summary:', error);
     });
-});
+}
 
 function sidebar_buttons(){
     var emp_mgm_button = document.getElementById("emp-mgm-id");
     emp_mgm_button.addEventListener('click', emp_mgm_redirect);
+
+    var input_date = document.getElementById("get-date-id");
+    input_date.addEventListener('change', get_date);
+    
 
     async function emp_mgm_redirect(event){
         event.preventDefault();

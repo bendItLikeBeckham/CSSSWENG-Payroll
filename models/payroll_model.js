@@ -10,8 +10,8 @@ var payroll_schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Initial_date: {
-        type: Date,
+    Week: {//change
+        type: Number,
         required: true
     },
     
@@ -30,6 +30,9 @@ var payroll_schema = new mongoose.Schema({
     Mon_Total_Pay: { 
         type: Number,
     },
+    Mon_Date: {
+        type: String,
+    },
     
     Tue_Time_In: { 
         type: String
@@ -45,6 +48,9 @@ var payroll_schema = new mongoose.Schema({
     },
     Tue_Total_Pay: { 
         type: Number,
+    },
+    Tue_Date: {
+        type: String,
     },
     
     Wed_Time_In: {
@@ -62,6 +68,9 @@ var payroll_schema = new mongoose.Schema({
     Wed_Total_Pay: { 
         type: Number,
     },
+    Wed_Date: {
+        type: String,
+    },
     
     Thu_Time_In: { 
         type: String 
@@ -77,6 +86,9 @@ var payroll_schema = new mongoose.Schema({
     },
     Thu_Total_Pay: { 
         type: Number,
+    },
+    Thu_Date: {
+        type: String,
     },
     
     Fri_Time_In: { 
@@ -94,6 +106,9 @@ var payroll_schema = new mongoose.Schema({
     Fri_Total_Pay: { 
         type: Number,
     },
+    Fri_Date: {
+        type: String,
+    },
 
     Sat_Time_In: { 
         type: String 
@@ -110,14 +125,17 @@ var payroll_schema = new mongoose.Schema({
     Sat_Total_Pay: { 
         type: Number,
     },
+    Sat_Date: {
+        type: String,
+    },
 
-    Weekly_Total_Bale: {
+    Weekly_Total_Advance: {
         type: Number,
     },
-    Weekly_Total_Bonus: {
+    Weekly_Total_Additional: {
         type: Number,
     },
-    Weekly_Total_Deductions: {
+    Weekly_Total_Deduction: {
         type: Number,
     },
     Weekly_Total_Pay: {

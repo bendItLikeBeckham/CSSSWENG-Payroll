@@ -45,5 +45,6 @@ app.get('/admin_retrieve_employee_total_ei', admin_empman_emprecs_controllers.ge
 app.get('/admin_retrieve_emp_det', admin_empman_emprecs_controllers.get_emp_det);
 app.get('/admin_retrieve_employee_total_wp', admin_empman_payroll_controllers.get_emp_total);
 app.get('/admin_retrieve_emp_wpay', admin_empman_payroll_controllers.get_emp_wpay);
+app.post('/admin_update_payroll', admin_empman_payroll_controllers.post_update_payroll);
 
 module.exports = app;

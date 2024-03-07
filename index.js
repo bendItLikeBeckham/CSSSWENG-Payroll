@@ -15,6 +15,9 @@ const hostname = process.env.HOSTNAME;
 app.set('view engine', 'hbs');
 
 hbs.registerPartials(__dirname + '/views/partials')
+hbs.registerHelper('eq', function (a, b){
+    return a === b;
+});
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
