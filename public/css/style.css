@@ -688,7 +688,18 @@ body{
     background-color: var(--white-m);
     border: 0;
 }
+.search-bar button:hover {
+    cursor: pointer;
+}
 .search-bar i{
     color: var(--green-m);
     font-size: 2vh;
+}
+.status-on{
+    text-transform: uppercase;
+    color: #2A9349;
+}
+.status-off{
+    text-transform: uppercase;
+    color: #FF0033;
 }

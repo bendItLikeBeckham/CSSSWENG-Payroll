@@ -1,20 +1,48 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/public/css/style.css"> 
     <link rel="icon" type="image/x-icon" href="/public/css/images/greenatwork-logo.png">
     <script src="/public/js/script.js"></script> 
+    <style>
+        .popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            z-index: 9999;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .popup-container img {
+            max-width: 50px; /* Adjust the size of the image */
+            margin-bottom: 10px;
+        }
+
+        .confirm-buttons {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="left-payroll admin-leftdash">
     <div class="admin-leftdash-top">
-        <h2>Add/Delete Employee</h2>
+        <h2>Add/Delete User</h2>
         <div class="empman-header">
             <div class="dropdown-page">
                 <select onchange="navigate()">
-                    <option value="admin-del-user.html">Delete Employee</option>
-                    <option value="admin-add-user.html">Add Employee</option>
+                    <option value="admin-del-user.html">Delete User</option>
+                    <option value="admin-add-user.html">Add User</option>
                 </select>
             </div>
         </div>
@@ -39,7 +67,7 @@
         </div>
         <div class="ad-left-btn">
             <button type="button" class="ad-leftdash-btn">
-                <p>Confirm Delete Employee</p>
+                <p>Confirm Delete User</p>
             </button>
         </div>
     </div>
@@ -51,6 +79,32 @@
         if (selectedOption.value) {
             window.location.href = selectedOption.value;
         }
+    }
+
+        function confirmDeleteUser() {
+        var email = document.querySelector('.emp-info p:nth-child(7) span').innerText;
+        var confirmation = confirm("Are you sure you want to delete user: " + email);
+        if (confirmation) {
+            showSuccessPopup();
+        }
+    }
+
+    function showSuccessPopup() {
+        var popup = document.createElement('div');
+        popup.classList.add('popup-container');
+        popup.innerHTML = `<img src="public/css/images/remove.png"" alt="Deletion Icon">
+       
+            <p>User successfully deleted from database!</p>
+        `;
+        
+        var confirmButton = document.createElement('button');
+        confirmButton.innerText = 'Close';
+        confirmButton.onclick = function() {
+            document.body.removeChild(popup);
+        };
+        popup.appendChild(confirmButton);
+
+        document.body.appendChild(popup);
     }
 </script>
 <div class="right-payroll right-emp-dash">

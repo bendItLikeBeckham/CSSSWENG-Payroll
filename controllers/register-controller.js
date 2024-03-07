@@ -7,7 +7,7 @@ const register_controller = {
     }, 
 
     post_register: async function(req, res){
-        const {email, password, address, employee_type} = req.body;
+        const {firstName, lastName, address, contactNumber, email, password, employee_type} = req.body;
 
         const user_exists = await employee.findOne({Email: email});
         if(user_exists){
@@ -16,12 +16,15 @@ const register_controller = {
             return res.status(400).json({message: "Missing Password!"});
         }else{
             try{
-                const new_employee = new employee({//to add full name, contact number, job type, job title - will add/change later Joaquin
+                const new_employee = new employee({
+                    First_Name: firstName,
+                    Last_Name: lastName,
+                    Contact_Number: contactNumber,
                     Email: email,
                     Password: password,
                     Address: address,
                     Employee_Type: employee_type,
-                    IsTimedIn: 0
+                    IsTimedIn: false
                 });
                 await new_employee.save();
                 if(employee_type === "Employee"){

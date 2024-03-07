@@ -25,6 +25,7 @@ app.get('/employee_dashboard', employee_dashboard_controllers.get_employee_dashb
 app.get('/register', register_controllers.get_register);
 app.post('/register_employee', register_controllers.post_register);
 app.get('/employee_clockpage', employee_clockpage_controllers.get_employee_clockpage);
+app.get('/time_in_status', employee_clockpage_controllers.get_employee_time_in_status)
 app.get('/logout', logout_controllers.get_logout);
 app.post('/generate_otp', otp_controller.post_generate_otp);
 app.post('/verify_otp', otp_controller.post_verify_otp);

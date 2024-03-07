@@ -1,11 +1,23 @@
-function togglePopup(){
-    document.getElementById("popup-1").classList.toggle("active");
+window.onload  = async function enableButton(){
+  const response = await fetch('/time_in_status', {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  const { time_in_status } = await response.json();
+  console.log(time_in_status);
+  if (time_in_status === true){
+    enableTimeOut();
+  }
+  else{
+    enableTimeIn();
+  }
+}
 
-    console.log(document.getElementById("time-out-btn").disabled)
-    fetch('/generate_otp', { method: 'POST' })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error generating number:', error));
+function togglePopup(){
+    closeBtn();
+    generateOtp();
 }
 function closeBtn(){
     document.getElementById("popup-1").classList.toggle("active");
