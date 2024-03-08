@@ -296,80 +296,82 @@ const employee_clockpage_controller = {
             }
         }
 
-        const e_o_week = await database.findOne(payroll, {Email: employee_email, Week: 0});
+        //it is friday so why is it updating and deleting the payroll index week 7
 
-        const weekly_pay_total = e_o_week.Mon_Total_Pay + e_o_week.Tue_Total_Pay + e_o_week.Wed_Total_Pay +
-        e_o_week.Thu_Total_Pay + e_o_week.Fri_Total_Pay + e_o_week.Sat_Total_Pay + 
-        e_o_week.Weekly_Total_Additional + e_o_week.Weekly_Total_Advance - e_o_week.Weekly_Total_Deduction;
+        // const e_o_week = await database.findOne(payroll, {Email: employee_email, Week: 0});
 
-        //error checking here if week 1/2 doesnt exist
+        // const weekly_pay_total = e_o_week.Mon_Total_Pay + e_o_week.Tue_Total_Pay + e_o_week.Wed_Total_Pay +
+        // e_o_week.Thu_Total_Pay + e_o_week.Fri_Total_Pay + e_o_week.Sat_Total_Pay + 
+        // e_o_week.Weekly_Total_Additional + e_o_week.Weekly_Total_Advance - e_o_week.Weekly_Total_Deduction;
 
-        const week_2_exist = await database.findOne(payroll, {Email: employee_email, Week: 2});
-        if(week_2_exist){
-            await database.deleteOne(payroll, {Email: employee_email, Week: 2});
-        }
-
-        const week_1_exist = await database.findOne(payroll, {Email: employee_email, Week: 1});
-        if(week_1_exist){
-            await database.updateOne(payroll, {Email: employee_email, Week: 1}, {
-                $set: {
-                    Week: 2
-                }
-            });
-        }
         
-        await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
-            $set: {
-                Weekly_Total_Pay: weekly_pay_total,
-                Week: 1
-            }
-        });
 
-        const new_payroll = new payroll({
-            Email: employee_email,
-            Week: 0,
-            Mon_Hours: 0,
-            Mon_Minutes: 0,
-            Mon_Date: 0,
-            Mon_Time_In: 0,
-            Mon_Time_Out: 0,
-            Mon_Total_Pay: 0,
-            Tue_Hours: 0,
-            Tue_Minutes: 0,
-            Tue_Date: 0,
-            Tue_Time_In: 0,
-            Tue_Time_Out: 0,
-            Tue_Total_Pay: 0,
-            Wed_Hours: 0,
-            Wed_Minutes: 0,
-            Wed_Date: 0,
-            Wed_Time_In: 0,
-            Wed_Time_Out: 0,
-            Wed_Total_Pay: 0,
-            Thu_Hours: 0,
-            Thu_Minutes: 0,
-            Thu_Date: 0,
-            Thu_Time_In: 0,
-            Thu_Time_Out: 0,
-            Thu_Total_Pay: 0,
-            Fri_Hours: 0,
-            Fri_Minutes: 0,
-            Fri_Date: 0,
-            Fri_Time_In: 0,
-            Fri_Time_Out: 0,
-            Fri_Total_Pay: 0,
-            Sat_Hours: 0,
-            Sat_Minutes: 0,
-            Sat_Date: 0,
-            Sat_Time_In: 0,
-            Sat_Time_Out: 0,
-            Sat_Total_Pay: 0,
-            Weekly_Total_Advance: 0,
-            Weekly_Total_Additional: 0,
-            Weekly_Total_Deduction: 0,
-            Weekly_Total_Pay: 0,
-        });
-        await new_payroll.save();
+        // const week_2_exist = await database.findOne(payroll, {Email: employee_email, Week: 2});
+        // if(week_2_exist){
+        //     await database.deleteOne(payroll, {Email: employee_email, Week: 2});
+        // }
+
+        // const week_1_exist = await database.findOne(payroll, {Email: employee_email, Week: 1});
+        // if(week_1_exist){
+        //     await database.updateOne(payroll, {Email: employee_email, Week: 1}, {
+        //         $set: {
+        //             Week: 2
+        //         }
+        //     });
+        // }
+        
+        // await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
+        //     $set: {
+        //         Weekly_Total_Pay: weekly_pay_total,
+        //         Week: 1
+        //     }
+        // });
+
+        // const new_payroll = new payroll({
+        //     Email: employee_email,
+        //     Week: 0,
+        //     Mon_Hours: 0,
+        //     Mon_Minutes: 0,
+        //     Mon_Date: 0,
+        //     Mon_Time_In: 0,
+        //     Mon_Time_Out: 0,
+        //     Mon_Total_Pay: 0,
+        //     Tue_Hours: 0,
+        //     Tue_Minutes: 0,
+        //     Tue_Date: 0,
+        //     Tue_Time_In: 0,
+        //     Tue_Time_Out: 0,
+        //     Tue_Total_Pay: 0,
+        //     Wed_Hours: 0,
+        //     Wed_Minutes: 0,
+        //     Wed_Date: 0,
+        //     Wed_Time_In: 0,
+        //     Wed_Time_Out: 0,
+        //     Wed_Total_Pay: 0,
+        //     Thu_Hours: 0,
+        //     Thu_Minutes: 0,
+        //     Thu_Date: 0,
+        //     Thu_Time_In: 0,
+        //     Thu_Time_Out: 0,
+        //     Thu_Total_Pay: 0,
+        //     Fri_Hours: 0,
+        //     Fri_Minutes: 0,
+        //     Fri_Date: 0,
+        //     Fri_Time_In: 0,
+        //     Fri_Time_Out: 0,
+        //     Fri_Total_Pay: 0,
+        //     Sat_Hours: 0,
+        //     Sat_Minutes: 0,
+        //     Sat_Date: 0,
+        //     Sat_Time_In: 0,
+        //     Sat_Time_Out: 0,
+        //     Sat_Total_Pay: 0,
+        //     Weekly_Total_Advance: 0,
+        //     Weekly_Total_Additional: 0,
+        //     Weekly_Total_Deduction: 0,
+        //     Weekly_Total_Pay: 0,
+        // });
+        // await new_payroll.save();
     }
 
 }

@@ -129,6 +129,25 @@ var payroll_schema = new mongoose.Schema({
         type: String,
     },
 
+    Sun_Time_In: { 
+        type: String 
+    },
+    Sun_Time_Out: { 
+        type: String 
+    },
+    Sun_Hours: {
+        type: Number,
+    },
+    Sun_Minutes: { 
+        type: Number,
+    },
+    Sun_Total_Pay: { 
+        type: Number,
+    },
+    Sun_Date: {
+        type: String,
+    },
+
     Weekly_Total_Advance: {
         type: Number,
     },

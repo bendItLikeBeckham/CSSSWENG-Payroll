@@ -9,6 +9,8 @@ const delete_user_controller = require('../controllers/delete-user-controller');
 const admin_empman_attendrecs_controllers = require('../controllers/admin-empman-attendrecs-controller');
 const admin_empman_emprecs_controllers = require('../controllers/admin-empman-emprecs-controller');
 const admin_empman_payroll_controllers = require('../controllers/admin-empman-payroll-controller');
+const update_payroll_controllers = require('../controllers/update-payroll-controller');
+
 
 const register_controllers = require('../controllers/register-controller');
  
@@ -47,5 +49,6 @@ app.get('/admin_retrieve_emp_det', admin_empman_emprecs_controllers.get_emp_det)
 app.get('/admin_retrieve_employee_total_wp', admin_empman_payroll_controllers.get_emp_total);
 app.get('/admin_retrieve_emp_wpay', admin_empman_payroll_controllers.get_emp_wpay);
 app.post('/admin_update_payroll', admin_empman_payroll_controllers.post_update_payroll);
+app.post('/update_employee_payroll', update_payroll_controllers.post_update_employee_payroll);
 
 module.exports = app;
