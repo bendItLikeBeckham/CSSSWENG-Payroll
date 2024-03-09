@@ -2,6 +2,142 @@
 <html>
 <head>
     <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="css/images/greenatwork-logo.png">
+    <script src="js/script.js"></script>
+</head>
+<body>
+<div class="left-payroll admin-leftdash">
+    <div class="admin-leftdash-top">
+        <h2>Employee Management</h2>
+        <div class="empman-midhead">
+            <div class="dropdown">
+                <p>Select Week:</p>
+                <input type="week">
+            </div>
+        </div>   
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th></th>
+                <th>Time-In</th>
+                <th>Time-Out</th>
+                <th>Total Time</th>
+                <th>Total Valid Hours</th>
+                <th>Total Valid Minutes</th>
+                <th>Total Hour Rate</th>
+                <th>Total Minute Rate</th>
+            </tr>
+            <tr><!-- Placeholder info -->
+                <td>Monday</td>
+                <td>10:30:00</td>
+                <td>17:00:00</td>
+                <td>6:30:47</td>
+                <td>5</td>
+                <td>0</td>
+                <td>₱ 500</td>
+                <td>₱ 0</td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    <div style="display: table-row; height: 20px;">
+    </div>
+    <div class="pay-info">
+        <h3>Total Calculated Rate:</h3>
+        <h1>Total Pay:</h1>
+    </div>
+    </div>
+</div>
+
+<div class="right-payroll right-emp-dash">
+    <div class="overlay"></div>
+    <div class="admin-rightdash-top">
+        <h1>Dashboard</h1>
+        <p>As of <span id="date">Monday, January 1, 2024</span></p>
+        <p id="time">00:00:00</p>
+    </div>
+   <div class="ad-dash-spacer"></div>
+    <div class="admin-rightdash-mid">
+        <button type="button" class="ad-rightdash-btn" onclick="window.location.href = 'admin-dash-logs.html'> // will add a proper time in that will synced in
+            <i class="fi fi-rr-calendar-clock"></i>
+            <p>Time-In</p>
+        </button>
+        <button type="button" class="ad-rightdash-btn" onclick="window.location.href = 'admin-empman-payroll-1.html'> // will add a proper time out that will synced in
+            <i class="fi fi-rr-employee-man"></i>
+            <p>Time Out</p>
+        </button>
+    </div>
+    <div class="admin-rightdash-bottom">
+        <h2>Log-out</h2>
+    </div>
+</div>
+</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
     <link rel="stylesheet" href="/css/style.css"> 
     <script src="/js/script.js"></script> 
 </head>
@@ -163,3 +299,4 @@
 <script src="/js/otp-verify.js"></script>
 </body>
 </html>
+-->

@@ -7,6 +7,18 @@
     <script src="js/script.js"></script> 
 </head>
 <body>
+   <div class = "popup" id="popup-2">
+        
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="togglePopup()">&times;</div>
+            <h1>Confirm Deletion</h1>
+                <span><p>Please not that employee records will be PERMANENTLY deleted.</p></span>
+            <div class="otp-button"><button id="user-delete-button">Confrim</button></div>
+            </form>
+        </div>
+    </div>
+
 <div class="left-payroll admin-leftdash">
     <div class="admin-leftdash-top">
         <h2>Delete Employee</h2>
@@ -19,26 +31,26 @@
             </div>
         </div>
         <div class="search-bar">
-            <input type="text" name="email" placeholder="Email" id="email">
-            <button>
+            <input type="text" name="email" placeholder="Email: {{emp_sum.Email}}" id="email">
+            <button id="searchButton" onclick="displayDetail()">
                 <i class="fi fi-rr-search"></i>
             </button>
         </div>
         <div class="emp-info">
             <div><!-- Placeholder info -->
-            <p>First Name: <span></span></p>
-                <p>Last Name: <span></span></p>
-                <p>Address: <span></span></p> 
-                <p>Contact Number: <span></span></p> 
+                <p>First Name: <span>{{emp_sum.First_Name}}</span></p>
+                <p>Last Name: <span>{{emp_sum.Last_Name}}</span></p>
+                <p>Address: <span>{{emp_sum.Address}}</span></p> 
+                <p>Contact Number: <span>{{emp_sum.Contact_Number}}</span></p> 
               </div>
               <div>
-                <p>Email: <span></span></p> 
-                <p>Password: <span></span></p>
-                <p>Role: <span></span></p>
+                <p>Email: <span>{{emp_sum.Email}}</span></p> 
+                <p>Password: <span>{{emp_sum.Password}}</span></p>
+                <p>Role: <span>{{emp_sum.Employee_Type}}</span></p>
               </div>
         </div>
         <div class="ad-left-btn">
-            <button type="button" id="user-delete-button" class="ad-leftdash-btn">
+            <button type="button" onclick="togglePopup()" class="ad-leftdash-btn">
                 <p>Confirm Delete Employee</p>
             </button>
         </div>

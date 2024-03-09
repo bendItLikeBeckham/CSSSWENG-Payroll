@@ -30,3 +30,31 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 });
+
+function displayDetail(){
+    var selectedEmployee = document.getElementById("email").value;
+
+    fetch('/display_delete_info', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: selectedEmployee }), // Pass the selected email
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text();
+    })
+    .then(html => {
+        document.body.innerHTML = html;
+    })
+    .catch(error => {
+        console.error('Error fetching /display_delete_info', error);
+    });
+}
+
+function togglePopup(){
+    document.getElementById("popup-2").classList.toggle("active");
+}
