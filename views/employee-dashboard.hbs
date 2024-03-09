@@ -1,21 +1,130 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employee Dashboard</title>
-    <link rel="stylesheet" href="/css/style.css"> 
-    <script src="/js/script.js"></script> 
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/public/css/style.css"> 
+    <link rel="icon" type="image/x-icon" href="/public/css/images/greenatwork-logo.png">
+    <script src="/public/js/script.js"></script> 
 </head>
 <body>
-<div class="left-payroll">
-    <div class="left-payroll-top">
-        <img src="/css/images/greenatwork-logo.png" alt="Green at Work Logo" class="logo">
+<div class="left-payroll admin-leftdash">
+    <div class="admin-leftdash-top">
+        <h2>Employee Dashboard</h2>
+        <div class="empman-header">
+        </div>
+        <div class="empman-midhead">
+            <div class="dropdown sel-week">
+                <p>Select Week:</p>
+                <select id="emp-dropdown-week-id">
+                    <option>Week 0</option>
+                    <option>Week 1</option>
+                    <option>Week 2</option>
+                    <option>Week 3</option>
+                </select>
+            </div>
+            <div class="num-input">
+                <p>Pay Per Hour: ₱<span id="pph-id"></span></p>
+                <p>Pay Per Minute: ₱<span id="ppm-id"></span></p>
+            </div>
+        </div>   
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th></th>
+                <th>Time-In</th>
+                <th>Time-Out</th>
+                <th>Total Time</th>
+                <th>Total Valid Hours</th>
+                <th>Total Valid Minutes</th>
+                <th>Total Hour Rate</th>
+                <th>Total Minute Rate</th>
+            </tr>
+           <tr><!-- Placeholder info -->
+                <td>Monday</td>
+                <td>{{emp_wpay.Mon_Time_In}}</td>
+                <td>{{emp_wpay.Mon_Time_Out}}</td>
+                <td>{{emp_wpay.Mon_Hours}}:{{emp_wpay.Mon_Minutes}}</td>
+                <td>{{emp_wpay.Mon_Hours}}</td>
+                <td>{{emp_wpay.Mon_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>{{emp_wpay.Tue_Time_In}}</td>
+                <td>{{emp_wpay.Tue_Time_Out}}</td>
+                <td>{{emp_wpay.Tue_Hours}}:{{emp_wpay.Tue_Minutes}}</td>
+                <td>{{emp_wpay.Tue_Hours}}</td>
+                <td>{{emp_wpay.Tue_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>{{emp_wpay.Wed_Time_In}}</td>
+                <td>{{emp_wpay.Wed_Time_Out}}</td>
+                <td>{{emp_wpay.Wed_Hours}}:{{emp_wpay.Wed_Minutes}}</td>
+                <td>{{emp_wpay.Wed_Hours}}</td>
+                <td>{{emp_wpay.Wed_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td>{{emp_wpay.Thu_Time_In}}</td>
+                <td>{{emp_wpay.Thu_Time_Out}}</td>
+                <td>{{emp_wpay.Thu_Hours}}:{{emp_wpay.Thu_Minutes}}</td>
+                <td>{{emp_wpay.Thu_Hours}}</td>
+                <td>{{emp_wpay.Thu_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>{{emp_wpay.Fri_Time_In}}</td>
+                <td>{{emp_wpay.Fri_Time_Out}}</td>
+                <td>{{emp_wpay.Fri_Hours}}:{{emp_wpay.Fri_Minutes}}</td>
+                <td>{{emp_wpay.Fri_Hours}}</td>
+                <td>{{emp_wpay.Fri_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td>{{emp_wpay.Sat_Time_In}}</td>
+                <td>{{emp_wpay.Sat_Time_Out}}</td>
+                <td>{{emp_wpay.Sat_Hours}}:{{emp_wpay.Sat_Minutes}}</td>
+                <td>{{emp_wpay.Sat_Hours}}</td>
+                <td>{{emp_wpay.Sat_Minutes}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="empman-btm">
+            <div class="num-input-1">
+            <h3>Additional: ₱<span id="add-id"></span></h3>
+            <h3>Advance: ₱<span id="adv-id"></span></h3>      
+            <h3>Deduction: ₱<span id="ded-id"></span></h3>
+        </div>
         <div>
-            <h1>Payroll Summary</h1>
-            <p>As of <span id="date">Monday, January 1, 2024</span> <span id="time">00:00:00</span> </p>
+            <h3>Total Calculated Rate:</h3>
+            <h1>Total Pay:{{emp_wpay.Weekly_Total_Pay}}</h1>
         </div>
     </div>
-    {{!-- changes here --}}
-    <div class = "popup" id="popup-1">
+</div>
+<div class = "popup" id="popup-1">
         
         <div class="overlay"></div>
         <div class="content">
@@ -30,134 +139,28 @@
             </form>
         </div>
     </div>
-    {{!-- end of changes here --}}
-    <div class="left-payroll-mid">
-        <table>
-            <tr>
-                <th></th>
-                <th>Hours</th>
-                <th>Minutes</th>
-                <th>H-Pay</th>
-                <th>M-Pay</th>
-                <th>Total</th>
-            </tr>
-            <tr>
-                <th>Monday</td>
-                <td>{{emp_det.Mon_Hours}}</td>
-                <td>{{emp_det.Mon_Minutes}}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>{{emp_det.Mon_Total_Pay}}</td>
-            </tr>
-            <tr>
-                <th>Tuesday</th>
-                <td>{{emp_det.Tue_Hours}}</td>
-                <td>{{emp_det.Tue_Minutes}}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>{{emp_det.Tue_Total_Pay}}</td>
-            </tr>
-            <tr>
-                <th>Wednesday</th>
-                <td>{{emp_det.Wed_Hours}}</td>
-                <td>{{emp_det.Wed_Minutes}}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>{{emp_det.Wed_Total_Pay}}</td>
-            </tr>
-            <tr>
-                <th>Thursday</th>
-                <td>{{emp_det.Thu_Hours}}</td>
-                <td>{{emp_det.Thu_Minutes}}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>{{emp_det.Thu_Total_Pay}}</td>
-            </tr>
-            <tr>
-                <th>Friday</th>
-                <td>{{emp_det.Fri_Hours}}</td>
-                <td>{{emp_det.Fri_Minutes}}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>{{emp_det.Fri_Total_Pay}}</td>
-            </tr>
-            <tr>
-                <th>Saturday</th>
-                <td>{{emp_det.Sat_Hours}}</td>
-                <td>{{emp_det.Sat_Minutes}}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>{{emp_det.Sat_Total_Pay}}</td>
-            </tr>
-            <tr>
-                <th>Adjust Friday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <th>Adjust Saturday</th>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-        </table>
+<div class="right-payroll right-emp-dash">
+    <div class="admin-rightdash-top">
+        <h1>Hello, <span>{{email}}</span>!</h1>
+        <p>As of <span id="date">Monday, January 1, 2024</span></p> 
+        <p id="time">00:00:00</p>
     </div>
-    <div class="left-payroll-btm">
-        <div class="pie btm-payroll">
-            <div class="pie-chart"></div>
-        </div>
-        <div class="pay-per btm-payroll">
-            <div class="pay-per-num">
-                <p>Pay per Hour: ₱ <span>10.00</span></p>
-                <p>Pay per Minute: ₱ <span>00.17</span></p> 
-            </div>
-            <div>
-                <h2>Additional Notes:</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quod, dolores quia nihil voluptatibus qui! Praesentium neque enim odit possimus?</p>    
-            </div>
-            </div>
-        <div class="weekly-total btm-payroll">
-            <h1>Weekly Total</h1>
-            <table>
-                <tr>
-                    <td>Bale:</td>
-                    <td>{{emp_det.Weekly_Total_Bale}}</td>
-                </tr>
-                <tr>
-                    <td>Bonus:</td>
-                    <td>{{emp_det.Weekly_Total_Bonus}}</td>
-                </tr>
-                <tr>
-                    <td>Deductions:</td>
-                    <td>{{emp_det.Weekly_Total_Deductions}}</td>
-                </tr>
-            </table>
-            <h2>Total: ₱ <span>{{emp_det.Weekly_Total_Pay}}</span></h2>
-        </div>
+   <div class="ad-dash-spacer"></div>
+    <div class="admin-rightdash-mid">
+        <button type="button" class="ad-rightdash-btn" onclick="togglePopup()">
+            <i class="fi fi-rr-calendar-clock"></i>
+            <p>Time Log</p>
+        </button>
+        <br><br>
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-employee-man-alt"></i>            
+            <p>Employee Dashboard</p>
+        </button>
     </div>
-
-</div>
-<div class="right-emp-dash right-payroll">
-    <h1>Hello, <span>{{email}}</span>!</h1>
-    <button type="button">
-        <i class="fi fi-rr-settings"></i>
-        <p>Settings</p>
-    </button>
-    <button type="button" class="log-btn-payroll" onclick="togglePopup()">
-        <i class="fi fi-rr-enter"></i>
-        <p>Time-in</p>
-    </button>
-    <button type="button" class="log-btn-payroll" id="time-out-btn-2">
-        <i class="fi fi-rr-exit"></i>
-        <p>Time-out</p>   
-    </button>  
-    {{!-- <h2>Log-Out</h2> --}}
-    <h2><a href="/logout">Log-Out</a></h2>
+    <div class="admin-rightdash-bottom">
+        <br><br>
+        <h2><a href="/logout">Log-Out</a></h2>
+    </div>
 </div>
 <script src="/js/display-employee-payroll.js"></script>
 <script src="/js/otp-verify.js"></script>
