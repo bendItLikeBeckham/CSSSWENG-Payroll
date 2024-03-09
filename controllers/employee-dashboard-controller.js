@@ -10,8 +10,11 @@ const employee_dashboard_controller = {
     get_employee_details: async function (req, res){//employee dashboard details
         console.log("get_employee_details part here");
         employee_email = req.session.Email;
+        selectedWeek = req.body.week
+        console.log(selectedWeek);
+        console.log(employee_email);
         try{
-            const emp_det = await database.findOne(payroll, {Email: employee_email});
+            const emp_det = await database.findOne(payroll, {Email: employee_email, Week : selectedWeek});
             
             console.log("emp_det data: " + emp_det);
             
@@ -21,6 +24,7 @@ const employee_dashboard_controller = {
             emp_det.Thu_Total_Pay = emp_det.Thu_Total_Pay.toFixed(2);
             emp_det.Fri_Total_Pay = emp_det.Fri_Total_Pay.toFixed(2);
             emp_det.Sat_Total_Pay = emp_det.Sat_Total_Pay.toFixed(2);
+            emp_det.Sun_Total_Pay = emp_det.Sun_Total_Pay.toFixed(2);
             emp_det.Weekly_Total_Pay = emp_det.Weekly_Total_Pay.toFixed(2);
         
             res.render("employee-dashboard", {email: req.session.Email, emp_type: req.session.Employee_type, ETI_weekdayIndex: req.session.ETI_weekdayIndex, emp_det});

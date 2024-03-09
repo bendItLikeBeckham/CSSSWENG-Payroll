@@ -12,11 +12,22 @@
         <h2>Employee Management</h2>
         <div class="empman-midhead">
             <div class="dropdown">
-                <p>Select Week:</p>
-                <input type="week">
+                {{!-- <p>Select Week:</p> --}}
+                <label>Select Week:</label>
+                <select id="emp-dropdown-week-id" onchange="doSomething()" focusIndex="-1">
+                    {{!-- default display week 0 --}}
+                    <option>Select Week</option>
+                    {{!-- <input type="hidden" name="week-0-id" value="{{emp_wpay._id}}"> --}}
+                    <option>Current Week</option>
+                    {{!-- <input type="hidden" name="week-0-id" value="{{emp_wpay._id}}"> --}}
+                    <option>Last Week</option>
+                    {{!-- <input type="hidden" name="week-1-id" value="{{emp_wpay._id}}"> --}}
+                    <option>2 Weeks Ago</option>
+                </select>
+                {{!-- <input type="week"> --}}
             </div>
-        </div>   
-    </div>
+        </div>
+    </div>   
     <div>
         <table>
             <tr>
@@ -31,80 +42,80 @@
             </tr>
             <tr><!-- Placeholder info -->
                 <td>Monday</td>
-                <td>10:30:00</td>
-                <td>17:00:00</td>
-                <td>6:30:47</td>
-                <td>5</td>
-                <td>0</td>
-                <td>₱ 500</td>
-                <td>₱ 0</td>
+                <td>{{emp_det.Mon_Time_In}}</td>
+                <td>{{emp_det.Mon_Time_Out}}</td>
+                <td>{{emp_det.Mon_Hours}}</td>
+                <td>{{emp_det.Mon_Hours}}</td>
+                <td>{{emp_det.Mon_Hours}}</td>
+                <td>₱ {{emp_det.Mon_Total_Pay}}</td>
+                <td>₱ {{emp_det.Mon_Total_Pay}}</td>
             </tr>
             <tr>
                 <td>Tuesday</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{emp_det.Tue_Time_In}}</td>
+                <td>{{emp_det.Tue_Time_Out}}</td>
+                <td>{{emp_det.Tue_Hours}}</td>
+                <td>{{emp_det.Tue_Hours}}</td>
+                <td>{{emp_det.Tue_Hours}}</td>
+                <td>₱ {{emp_det.Tue_Total_Pay}}</td>
+                <td>₱ {{emp_det.Tue_Total_Pay}}</td>
             </tr>
             <tr>
                 <td>Wednesday</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{emp_det.Wed_Time_In}}</td>
+                <td>{{emp_det.Wed_Time_Out}}</td>
+                <td>{{emp_det.Wed_Hours}}</td>
+                <td>{{emp_det.Wed_Hours}}</td>
+                <td>{{emp_det.Wed_Hours}}</td>
+                <td>₱ {{emp_det.Wed_Total_Pay}}</td>
+                <td>₱ {{emp_det.Wed_Total_Pay}}</td>
             </tr>
             <tr>
                 <td>Thursday</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{emp_det.Thu_Time_In}}</td>
+                <td>{{emp_det.Thu_Time_Out}}</td>
+                <td>{{emp_det.Thu_Hours}}</td>
+                <td>{{emp_det.Thu_Hours}}</td>
+                <td>{{emp_det.Thu_Hours}}</td>
+                <td>₱ {{emp_det.Thu_Total_Pay}}</td>
+                <td>₱ {{emp_det.Thu_Total_Pay}}</td>
             </tr>
             <tr>
                 <td>Friday</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{emp_det.Fri_Time_In}}</td>
+                <td>{{emp_det.Fri_Time_Out}}</td>
+                <td>{{emp_det.Fri_Hours}}</td>
+                <td>{{emp_det.Fri_Hours}}</td>
+                <td>{{emp_det.Fri_Hours}}</td>
+                <td>₱ {{emp_det.Fri_Total_Pay}}</td>
+                <td>₱ {{emp_det.Fri_Total_Pay}}</td>
             </tr>
             <tr>
                 <td>Saturday</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                 <td>{{emp_det.Sat_Time_In}}</td>
+                <td>{{emp_det.Sat_Time_Out}}</td>
+                <td>{{emp_det.Sat_Hours}}</td>
+                <td>{{emp_det.Sat_Hours}}</td>
+                <td>{{emp_det.Sat_Hours}}</td>
+                <td>₱ {{emp_det.Sat_Total_Pay}}</td>
+                <td>₱ {{emp_det.Sat_Total_Pay}}</td>
             </tr>
             <tr>
                 <td>Sunday</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{emp_det.Sun_Time_In}}</td>
+                <td>{{emp_det.Sun_Time_Out}}</td>
+                <td>{{emp_det.Sun_Hours}}</td>
+                <td>{{emp_det.Sun_Hours}}</td>
+                <td>{{emp_det.Sun_Hours}}</td>
+                <td>₱ {{emp_det.Sun_Total_Pay}}</td>
+                <td>₱ {{emp_det.Sun_Total_Pay}}</td>
             </tr>
         </table>
     <div style="display: table-row; height: 20px;">
     </div>
     <div class="pay-info">
-        <h3>Total Calculated Rate:</h3>
-        <h1>Total Pay:</h1>
+        <h3>Total Calculated Rate: ₱ {{emp_det.Weekly_Total_Pay}}</h3>
+        <h1>Total Pay: ₱ {{emp_det.Weekly_Total_Pay}}</h1>
     </div>
     </div>
 </div>
@@ -131,6 +142,7 @@
         <h2>Log-out</h2>
     </div>
 </div>
+<script src="/js/display-employee-payroll.js"></script>
 </body>
 </html>
 
@@ -150,7 +162,7 @@
             <p>As of <span id="date">Monday, January 1, 2024</span> <span id="time">00:00:00</span> </p>
         </div>
     </div>
-    {{!-- changes here --}}
+    {{! changes here }
     <div class = "popup" id="popup-1">
         
         <div class="overlay"></div>
@@ -166,7 +178,7 @@
             </form>
         </div>
     </div>
-    {{!-- end of changes here --}}
+    {{!end of changes here }}
     <div class="left-payroll-mid">
         <table>
             <tr>
@@ -292,7 +304,7 @@
         <i class="fi fi-rr-exit"></i>
         <p>Time-out</p>   
     </button>  
-    {{!-- <h2>Log-Out</h2> --}}
+    {{! <h2>Log-Out</h2> }}
     <h2><a href="/logout">Log-Out</a></h2>
 </div>
 <script src="/js/display-employee-payroll.js"></script>

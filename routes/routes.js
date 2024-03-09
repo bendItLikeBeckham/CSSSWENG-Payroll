@@ -33,7 +33,7 @@ app.get('/get_otp', otp_controller.get_current_otp);
 app.post('/employee_time_in', employee_clockpage_controllers.post_employee_time_in);
 app.post('/employee_time_out', employee_clockpage_controllers.post_employee_time_out);
 app.get('/admin_dashboard', admin_dash_logs_controllers.get_admin_dash_logs);
-app.get('/retrieve_employee_payroll', employee_dashboard_controllers.get_employee_details);
+app.post('/retrieve_employee_payroll', employee_dashboard_controllers.get_employee_details);
 app.get('/retrieve_employee_summary', admin_dash_logs_controllers.get_employee_summary);
 app.get('/delete_user', delete_user_controller.get_delete_user );
 app.post('/delete_chosen_user', delete_user_controller.post_delete_user);
@@ -45,7 +45,7 @@ app.get('/admin_retrieve_employee_total_ar', admin_empman_attendrecs_controllers
 app.get('/admin_retrieve_emp_pay', admin_empman_attendrecs_controllers.get_emp_pay);
 //app.get('/admin_retrieve_employee_total_ei', admin_empman_emprecs_controllers.get_emp_total);
 //app.get('/admin_retrieve_emp_det', admin_empman_emprecs_controllers.get_emp_det);
-app.get('/display_employee_records', admin_empman_emprecs_controllers.get_emprecs);
+app.get('/admin_empman_emprecs', admin_empman_emprecs_controllers.get_emprecs);
 app.post('/display_specific_employee_records', admin_empman_emprecs_controllers.post_specific_emprecs);
 app.get('/admin_retrieve_employee_total_wp', admin_empman_payroll_controllers.get_emp_total);
 app.get('/admin_retrieve_emp_wpay', admin_empman_payroll_controllers.get_emp_wpay);
