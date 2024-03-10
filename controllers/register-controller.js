@@ -194,6 +194,6 @@ const register_controller = {
             }
         }
     }
-}
+} 
 
 module.exports = register_controller;

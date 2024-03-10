@@ -174,6 +174,6 @@ const update_payroll_controller = {
         }
 
     }
-}
+} 
 
 module.exports = update_payroll_controller;
