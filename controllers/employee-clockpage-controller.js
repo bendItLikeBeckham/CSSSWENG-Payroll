@@ -296,6 +296,8 @@ const employee_clockpage_controller = {
             }
         }
 
+        //include sun day timein and timeout parts
+
         //it is friday so why is it updating and deleting the payroll index week 7
 
         // const e_o_week = await database.findOne(payroll, {Email: employee_email, Week: 0});
