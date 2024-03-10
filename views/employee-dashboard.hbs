@@ -11,7 +11,7 @@
     <div class="admin-leftdash-top">
         <h2>Employee Management</h2>
         <div class="empman-midhead">
-            <div class="dropdown">
+            <div class="dropdown sel-week">
                 {{!-- <p>Select Week:</p> --}}
                 <label>Select Week:</label>
                 <select id="emp-dropdown-week-id" onchange="doSomething()" focusIndex="-1">
@@ -111,35 +111,41 @@
                 <td>₱ {{emp_det.Sun_Total_Pay}}</td>
             </tr>
         </table>
-    <div style="display: table-row; height: 20px;">
     </div>
-    <div class="pay-info">
-        <h3>Total Calculated Rate: ₱ {{emp_det.Weekly_Total_Pay}}</h3>
-        <h1>Total Pay: ₱ {{emp_det.Weekly_Total_Pay}}</h1>
-    </div>
+    <div class="empman-btm">
+            <div class="num-input-1">
+            <h3>Additional: ₱<span></span></h3>
+            <h3>Advance: ₱<span></span></h3>      
+            <h3>Deduction: ₱<span></span></h3>
+        </div>
+        <div>
+            <h3>Total Calculated Rate:</h3>
+            <h1>Total Pay: {{emp_wpay.Weekly_Total_Pay}}</h1>
+        </div>
     </div>
 </div>
 
 <div class="right-payroll right-emp-dash">
-    <div class="overlay"></div>
     <div class="admin-rightdash-top">
-        <h1>Dashboard</h1>
-        <p>As of <span id="date">Monday, January 1, 2024</span></p>
+        <h1>Hello, <span>username</span>!</h1>
+        <p>As of <span id="date">Monday, January 1, 2024</span></p> 
         <p id="time">00:00:00</p>
     </div>
    <div class="ad-dash-spacer"></div>
     <div class="admin-rightdash-mid">
-        <button type="button" class="ad-rightdash-btn" onclick="window.location.href = 'admin-dash-logs.html'> // will add a proper time in that will synced in
+        <button type="button" class="ad-rightdash-btn">
             <i class="fi fi-rr-calendar-clock"></i>
-            <p>Time-In</p>
+            <p>Time Log</p>
         </button>
-        <button type="button" class="ad-rightdash-btn" onclick="window.location.href = 'admin-empman-payroll-1.html'> // will add a proper time out that will synced in
-            <i class="fi fi-rr-employee-man"></i>
-            <p>Time Out</p>
+        <br><br>
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-employee-man-alt"></i>            
+            <p>Employee Dashboard</p>
         </button>
     </div>
     <div class="admin-rightdash-bottom">
-        <h2>Log-out</h2>
+        <br><br>
+        <h2>Log-out</h2>   
     </div>
 </div>
 <script src="/js/display-employee-payroll.js"></script>
