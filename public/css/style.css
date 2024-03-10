@@ -503,6 +503,9 @@ body{
     padding: 20px;
     box-sizing: border-box;
 }
+#popup-2 .content{
+    height: 200px;
+}
 .popup .close-btn{
     cursor: pointer;
     position: absolute;

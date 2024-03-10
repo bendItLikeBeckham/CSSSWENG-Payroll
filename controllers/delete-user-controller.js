@@ -6,6 +6,21 @@ const delete_user_controller = {
         res.render('delete-user');
     },
 
+    post_display_info: async function (req,res){
+        const email = req.body.email;
+        
+        try {
+            const emp_sum = await employee.findOne({ Email: email });
+    
+            console.log("emp_sum data: " + emp_sum);
+    
+            res.render("delete-user", {emp_sum});
+        } catch (error) {
+            console.error("Error processing employee summary: ", error);
+            res.status(500).send("Internal Server Error!");
+        }
+    },
+
     post_delete_user: async function (req, res){
         const {email} = req.body;
         const user_exists = await employee.findOne({Email: email});
