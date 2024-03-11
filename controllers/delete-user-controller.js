@@ -26,9 +26,13 @@ const delete_user_controller = {
         const user_exists = await employee.findOne({Email: email});
         if(user_exists){
             try {
-                const user_payroll = await payroll.findOne({Email:email});
+                const user_payroll0 = await payroll.findOne({Email:email, Week:0});
+                const user_payroll1 = await payroll.findOne({Email:email, Week:1});
+                const user_payroll2 = await payroll.findOne({Email:email, Week:2});
                 await employee.deleteOne(user_exists);
-                await payroll.deleteOne(user_payroll);
+                await payroll.deleteOne(user_payroll0);
+                await payroll.deleteOne(user_payroll1);
+                await payroll.deleteOne(user_payroll2);
                 res.json({success: true, message: "Deletion successful!"})
             } catch (error) {
                 console.error('Error updating data in MongoDB:', error);      

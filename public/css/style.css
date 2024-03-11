@@ -706,3 +706,6 @@ body{
     text-transform: uppercase;
     color: #FF0033;
 }
+.sel-week{
+    width: 23vw;
+}
