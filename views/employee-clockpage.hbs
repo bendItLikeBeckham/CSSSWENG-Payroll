@@ -41,21 +41,23 @@
     </div>
 </div>
 
-<div class="right-emp-dash">
-    <h1>Dashboard</h1>
-    <button type="button">
-        <i class="fi fi-rr-employee-man-alt"></i>            
-         {{!-- <p>Profile</p> --}}
-        <p><a href="/employee_dashboard">Employee Dashboard</a></p>
-    </button>
-    {{!-- <form action="/employee_dashboard" method="get">
-    <button type="button">
-        <i class="fi fi-rr-circle-user"></i>
-        <p>Profile</p>
-    </button>
-    </form> --}}
-    {{!-- <h2>Log-Out</h2> --}}
-    <h2><a href="/logout">Log-Out</a></h2>
+<div class="right-payroll right-emp-dash">
+    <div class="admin-rightdash-top">
+        <h1>Hello, <span>{{emp_rec.First_Name}}</span>!</h1>
+        <p>As of <span id="date">Monday, January 1, 2024</span></p> 
+        <p id="time">00:00:00</p>
+    </div>
+   <div class="ad-dash-spacer"></div>
+    <div class="admin-rightdash-mid">
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-employee-man"></i>
+            <p><a href="/employee_dashboard">Employee Dashboard</a></p>
+        </button>
+    </div>
+    <div class="admin-rightdash-bottom">
+        <br><br>
+        <h2><a href="/logout">Log-Out</a></h2>   
+    </div>
 </div>
 <script src="/js/otp-verify.js"></script>
 <script src="/js/time_retrieval.js"></script>
