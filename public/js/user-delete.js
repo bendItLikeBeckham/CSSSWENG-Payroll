@@ -22,6 +22,7 @@ async function delete_function(){
         });
         const data = await response.json();
         if(data.success){
+            togglePopup();
             console.log("Data Sent")
         }else{
             //error_message.textContent = data.message;
