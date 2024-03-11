@@ -26,9 +26,11 @@ const admin_empman_payroll_controller = {
         console.log("get_emp_wpay part here"); //remove later
         const selected_employee = req.query.employee;
         console.log("employee email: "+selected_employee); //remove later
+        const selected_week = req.query.week;
+        console.log("selected week: " + selected_week);
         const emp_type = "Employee";
         try{
-            const emp_wpay = await database.findOne(payroll, {Email: selected_employee, Week: 0});//default is week 0
+            const emp_wpay = await database.findOne(payroll, {Email: selected_employee, Week: selected_week});//default is week 0
             const emp_total = await database.findMany(employee, {Employee_Type: emp_type});
 
 
@@ -61,8 +63,9 @@ const admin_empman_payroll_controller = {
         var thu_t_pay = 0;
         var fri_t_pay = 0;
         var sat_t_pay = 0;
+        var sun_t_pay = 0;
 
-
+        //make this cleaner
         if(PPH === "" && PPM !== ""){//10
             mon_t_pay = (upd_pay.Mon_Hours * 10) + (upd_pay.Mon_Minutes * PPM);
             tue_t_pay = (upd_pay.Tue_Hours * 10) + (upd_pay.Tue_Minutes * PPM);
@@ -70,6 +73,7 @@ const admin_empman_payroll_controller = {
             thu_t_pay = (upd_pay.Thu_Hours * 10) + (upd_pay.Thu_Minutes * PPM);
             fri_t_pay = (upd_pay.Fri_Hours * 10) + (upd_pay.Fri_Minutes * PPM);
             sat_t_pay = (upd_pay.Sat_Hours * 10) + (upd_pay.Sat_Minutes * PPM);
+            sun_t_pay = (upd_pay.Sun_Hours * 10) + (upd_pay.Sun_Minutes * PPM);
         }else if(PPH !== "" && PPM === ""){//0.17
             mon_t_pay = (upd_pay.Mon_Hours * PPH) + (upd_pay.Mon_Minutes * 0.17);
             tue_t_pay = (upd_pay.Tue_Hours * PPH) + (upd_pay.Tue_Minutes * 0.17);
@@ -77,6 +81,7 @@ const admin_empman_payroll_controller = {
             thu_t_pay = (upd_pay.Thu_Hours * PPH) + (upd_pay.Thu_Minutes * 0.17);
             fri_t_pay = (upd_pay.Fri_Hours * PPH) + (upd_pay.Fri_Minutes * 0.17);
             sat_t_pay = (upd_pay.Sat_Hours * PPH) + (upd_pay.Sat_Minutes * 0.17);
+            sun_t_pay = (upd_pay.Sun_Hours * PPH) + (upd_pay.Sun_Minutes * 0.17);
         }else{
             mon_t_pay = (upd_pay.Mon_Hours * PPH) + (upd_pay.Mon_Minutes * PPM);
             tue_t_pay = (upd_pay.Tue_Hours * PPH) + (upd_pay.Tue_Minutes * PPM);
@@ -84,6 +89,7 @@ const admin_empman_payroll_controller = {
             thu_t_pay = (upd_pay.Thu_Hours * PPH) + (upd_pay.Thu_Minutes * PPM);
             fri_t_pay = (upd_pay.Fri_Hours * PPH) + (upd_pay.Fri_Minutes * PPM);
             sat_t_pay = (upd_pay.Sat_Hours * PPH) + (upd_pay.Sat_Minutes * PPM);
+            sun_t_pay = (upd_pay.Sun_Hours * PPH) + (upd_pay.Sun_Minutes * PPM);
         }
 
         var weekly_pay_total = mon_t_pay + tue_t_pay + wed_t_pay + 
@@ -91,22 +97,24 @@ const admin_empman_payroll_controller = {
 
         if(Additional === ""){
             weekly_pay_total += upd_pay.Weekly_Total_Additional;
+            Additional = upd_pay.Weekly_Total_Additional;
         }else{
             weekly_pay_total += Additional;
         }
 
         if(Advance === ""){
             weekly_pay_total += upd_pay.Weekly_Total_Advance;
+            Advance = upd_pay.Weekly_Total_Advance;
         }else{
             weekly_pay_total += Advance;
         }
 
         if(Deduction === ""){
             weekly_pay_total -= upd_pay.Weekly_Total_Deduction;
+            Deduction = upd_pay.Weekly_Total_Deduction;
         }else{
             weekly_pay_total -= Deduction;
         }
-        
         
         try{
             await database.updateOne(payroll, {_id: Payroll_ID}, {
@@ -120,7 +128,8 @@ const admin_empman_payroll_controller = {
                     Wed_Total_Pay: wed_t_pay,
                     Thu_Total_Pay: thu_t_pay,
                     Fri_Total_Pay: fri_t_pay,
-                    Sat_Total_Pay: sat_t_pay
+                    Sat_Total_Pay: sat_t_pay,
+                    Sun_Total_Pay: sun_t_pay
                 }
             });
             res.json({ success: true, message: "Payroll updated successfully!" });

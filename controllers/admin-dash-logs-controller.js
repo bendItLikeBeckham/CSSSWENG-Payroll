@@ -22,6 +22,7 @@ const admin_dash_logs_controller = {
                     { Thu_Date: selected_date },
                     { Fri_Date: selected_date },
                     { Sat_Date: selected_date },
+                    { Sun_Date: selected_date },
                 ]
             };
 

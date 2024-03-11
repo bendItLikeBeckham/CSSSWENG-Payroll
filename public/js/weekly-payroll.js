@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
     console.log("DOM display weekly payroll"); //remove later
 
-    fetch("/admin_retrieve_employee_total_wp")
+    fetch("/admin_retrieve_employee_total_wp")//retrieve the employees
     .then(response =>{
         if (!response.ok){
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(){
         return response.text();
     })
     .then(html =>{
-        document.body.innerHTML = html;
+        document.body.innerHTML = html; 
         dropdown();
     })
     .catch(error =>{
@@ -23,8 +23,9 @@ function dropdown(){
 
     emp_dropdown_select.addEventListener('change', function(){
         const selected_emp = emp_dropdown_select.value;
+        var selectedWeek = document.getElementById("emp-dropdown-week-id").selectedIndex - 1;
 
-        fetch(`/admin_retrieve_emp_wpay?employee=${selected_emp}`)
+        fetch(`/admin_retrieve_emp_wpay?employee=${selected_emp}&week=${selectedWeek}`)
         .then(response =>{
             if (!response.ok){
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -34,6 +35,7 @@ function dropdown(){
         .then(html =>{
             document.body.innerHTML = html;
             dropdown();
+            //create button here
         })
         .catch(error =>{
             console.error('Error fetching /admin_retrieve_emp_wpay:', error);
@@ -64,52 +66,56 @@ function dropdown(){
     async function update_payroll(event){
         event.preventDefault();
 
-        const pph_0 = document.getElementById("pph-id").value;
-        const pph = parseFloat(pph_0);
-        const ppm_0 = document.getElementById("ppm-id").value;
-        const ppm = parseFloat(ppm_0);
-        const additional_0 = document.getElementById("add-id").value;
-        const additional = parseFloat(additional_0);
-        const advance_0 = document.getElementById("adv-id").value;
-        const advance = parseFloat(advance_0);
-        const deduction_0 = document.getElementById("ded-id").value;
-        const deduction = parseFloat(deduction_0);
-        var payroll_id = document.querySelector('input[name="payroll-id"]').value; 
+        var payroll_id = document.querySelector('input[name="payroll-id"]').value;
+        if(payroll_id){
+            const pph_0 = document.getElementById("pph-id").value;
+            const pph = parseFloat(pph_0);
+            // const ppm_0 = document.getElementById("ppm-id").value;
+            // const ppm = parseFloat(ppm_0);
+            const ppm = (pph/60).toFixed(2);
+            const additional_0 = document.getElementById("add-id").value;
+            const additional = parseFloat(additional_0);
+            const advance_0 = document.getElementById("adv-id").value;
+            const advance = parseFloat(advance_0);
+            const deduction_0 = document.getElementById("ded-id").value;
+            const deduction = parseFloat(deduction_0);
+            //var payroll_id = document.querySelector('input[name="payroll-id"]').value; 
 
-        console.log("PPH: " + pph);
-        console.log("PPM: " + ppm);
-        console.log("additional: " + additional);
-        console.log("advance: " + advance);
-        console.log("deduction : " + deduction);
-        console.log("payroll-id: " + payroll_id);
-        //post to controller
+            console.log("PPH: " + pph);
+            console.log("PPM: " + ppm);
+            console.log("additional: " + additional);
+            console.log("advance: " + advance);
+            console.log("deduction : " + deduction);
+            console.log("payroll-id: " + payroll_id);
+            //post to controller
 
-        try{
-            const response = await fetch('/admin_update_payroll', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    PPH: pph,
-                    PPM: ppm,
-                    Additional: additional,
-                    Advance: advance,
-                    Deduction: deduction,
-                    Payroll_ID: payroll_id
-                }),
-            });
-            const data = await response.json();
+            try{
+                const response = await fetch('/admin_update_payroll', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        PPH: pph,
+                        PPM: ppm,
+                        Additional: additional,
+                        Advance: advance,
+                        Deduction: deduction,
+                        Payroll_ID: payroll_id
+                    }),
+                });
+                const data = await response.json();
 
-            if(data.success){//add below here which page is loaded regarding the employee type
-                console.log("update payroll successful");
-                location.reload();
-            }else{
-                console.log(data.message);
+                if(data.success){//add below here which page is loaded regarding the employee type
+                    console.log("update payroll successful");
+                    location.reload();
+                }else{
+                    console.log(data.message);
+                }
+            }catch(error){
+                console.error(error);
+                error_message.textContent = "Login Controller Error";
             }
-        }catch(error){
-            console.error(error);
-            error_message.textContent = "Login Controller Error";
-        }
+        }        
     }
 }

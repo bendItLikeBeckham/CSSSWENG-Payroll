@@ -73,6 +73,13 @@ const employee_clockpage_controller = {
                     Sat_Date: Time_In_Date
                 }
             });
+        }else if(TI_weekdayIndex === 0){
+            await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
+                $set: {
+                    Sun_Time_In: Time_In,
+                    Sun_Date: Time_In_Date
+                }
+            });
         }
         res.render("employee-clockpage", {email: req.session.Email, emp_type: req.session.Employee_type, ETI_weekdayIndex: req.session.ETI_weekdayIndex});
     },
@@ -294,90 +301,43 @@ const employee_clockpage_controller = {
                 console.error(error);
                 res.status(500).json({ success: false, message: "Error recording time out!" });
             }
+        }else if(req.session.ETI_weekdayIndex === 0){//sunday keep or remove
+            let [hours, minutes] = day.Sat_Time_In.split(':');
+            const TI_hour = parseInt(hours);
+            const TI_minute = parseInt(minutes);
+            console.log("hours: " + TI_hour + " minutes: " + TI_minute);//remove later
+            console.log("TO hours: " + TO_hour + " TO minutes: " + TO_minute);//remove later
+            const time_in_total_minutes = TI_hour * 60 + TI_minute;
+            const time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            const total_time = time_out_total_minutes - time_in_total_minutes;
+
+            if(total_time < 0){
+                total_time += 24 * 60;
+            } 
+
+            const total_hours = Math.floor(total_time / 60);
+            const total_minutes = total_time % 60;
+
+            const total_day_pay = total_hours*10 + total_minutes*0.17;
+
+            try{//add the creation of new payroll here per employee
+                await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
+                    $set: {
+                        Sun_Time_Out: Time_Out,
+                        Sun_Hours: total_hours,
+                        Sun_Minutes: total_minutes,
+                        Sun_Total_Pay: total_day_pay
+                    }
+                });
+                res.json({ success: true, message: "Time out recorded successfully!" });
+                
+            }catch(error){
+                console.error(error);
+                res.status(500).json({ success: false, message: "Error recording time out!" });
+            }
         }
-
-        //include sun day timein and timeout parts
-
-        //it is friday so why is it updating and deleting the payroll index week 7
-
-        // const e_o_week = await database.findOne(payroll, {Email: employee_email, Week: 0});
-
-        // const weekly_pay_total = e_o_week.Mon_Total_Pay + e_o_week.Tue_Total_Pay + e_o_week.Wed_Total_Pay +
-        // e_o_week.Thu_Total_Pay + e_o_week.Fri_Total_Pay + e_o_week.Sat_Total_Pay + 
-        // e_o_week.Weekly_Total_Additional + e_o_week.Weekly_Total_Advance - e_o_week.Weekly_Total_Deduction;
-
-        
-
-        // const week_2_exist = await database.findOne(payroll, {Email: employee_email, Week: 2});
-        // if(week_2_exist){
-        //     await database.deleteOne(payroll, {Email: employee_email, Week: 2});
-        // }
-
-        // const week_1_exist = await database.findOne(payroll, {Email: employee_email, Week: 1});
-        // if(week_1_exist){
-        //     await database.updateOne(payroll, {Email: employee_email, Week: 1}, {
-        //         $set: {
-        //             Week: 2
-        //         }
-        //     });
-        // }
-        
-        // await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
-        //     $set: {
-        //         Weekly_Total_Pay: weekly_pay_total,
-        //         Week: 1
-        //     }
-        // });
-
-        // const new_payroll = new payroll({
-        //     Email: employee_email,
-        //     Week: 0,
-        //     Mon_Hours: 0,
-        //     Mon_Minutes: 0,
-        //     Mon_Date: 0,
-        //     Mon_Time_In: 0,
-        //     Mon_Time_Out: 0,
-        //     Mon_Total_Pay: 0,
-        //     Tue_Hours: 0,
-        //     Tue_Minutes: 0,
-        //     Tue_Date: 0,
-        //     Tue_Time_In: 0,
-        //     Tue_Time_Out: 0,
-        //     Tue_Total_Pay: 0,
-        //     Wed_Hours: 0,
-        //     Wed_Minutes: 0,
-        //     Wed_Date: 0,
-        //     Wed_Time_In: 0,
-        //     Wed_Time_Out: 0,
-        //     Wed_Total_Pay: 0,
-        //     Thu_Hours: 0,
-        //     Thu_Minutes: 0,
-        //     Thu_Date: 0,
-        //     Thu_Time_In: 0,
-        //     Thu_Time_Out: 0,
-        //     Thu_Total_Pay: 0,
-        //     Fri_Hours: 0,
-        //     Fri_Minutes: 0,
-        //     Fri_Date: 0,
-        //     Fri_Time_In: 0,
-        //     Fri_Time_Out: 0,
-        //     Fri_Total_Pay: 0,
-        //     Sat_Hours: 0,
-        //     Sat_Minutes: 0,
-        //     Sat_Date: 0,
-        //     Sat_Time_In: 0,
-        //     Sat_Time_Out: 0,
-        //     Sat_Total_Pay: 0,
-        //     Weekly_Total_Advance: 0,
-        //     Weekly_Total_Additional: 0,
-        //     Weekly_Total_Deduction: 0,
-        //     Weekly_Total_Pay: 0,
-        // });
-        // await new_payroll.save();
     }
 
 }
 
 module.exports = employee_clockpage_controller;
-
-//if(req.session.ETI_weekdayIndex === 1)

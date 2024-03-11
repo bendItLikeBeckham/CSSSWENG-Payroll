@@ -34,14 +34,15 @@
             <div class="dropdown">
                 {{!-- <p>Select Week:</p> --}}
                 <label>Select Week:</label>
-                <select id="emp-dropdown-week-id">
+                <select id="emp-dropdown-week-id" onchange="doSomething()" focusIndex="-1">
                     {{!-- default display week 0 --}}
+                    <option>Select Week</option>
                     {{!-- <input type="hidden" name="week-0-id" value="{{emp_wpay._id}}"> --}}
-                    <option>Week 0</option>
+                    <option>Current Week</option>
                     {{!-- <input type="hidden" name="week-0-id" value="{{emp_wpay._id}}"> --}}
-                    <option>Week 1</option>
+                    <option>Last Week</option>
                     {{!-- <input type="hidden" name="week-1-id" value="{{emp_wpay._id}}"> --}}
-                    <option>Week 2</option>
+                    <option>2 Weeks Ago</option>
                 </select>
                 
 
@@ -50,8 +51,8 @@
             <div class="num-input">
                 <p>Pay Per Hour:</p>
                 <input type="number" id="pph-id">  
-                <p>Pay Per Minute:</p>
-                <input type="number" id="ppm-id">  
+                {{!-- <p>Pay Per Minute:</p>
+                <input type="number" id="ppm-id">   --}}
             </div>
         </div>   
     </div>
@@ -129,11 +130,11 @@
             </tr>
             <tr>
                 <td>Sunday</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{emp_wpay.Sun_Time_In}}</td>
+                <td>{{emp_wpay.Sun_Time_Out}}</td>
+                <td>{{emp_wpay.Sun_Hours}}:{{emp_wpay.Sat_Minutes}}</td>
+                <td>{{emp_wpay.Sun_Hours}}</td>
+                <td>{{emp_wpay.Sun_Minutes}}</td>
                 <td></td>
                 <td></td>
             </tr>
