@@ -57,32 +57,15 @@ const admin_empman_payroll_controller = {
         console.log("Advance: " + Advance);
         console.log("Deduction: " + Deduction);
 
-        var mon_t_pay = 0;
-        var tue_t_pay = 0;
-        var wed_t_pay = 0;
-        var thu_t_pay = 0;
-        var fri_t_pay = 0;
-        var sat_t_pay = 0;
-        var sun_t_pay = 0;
+        var mon_t_pay = upd_pay.Mon_Total_Pay;
+        var tue_t_pay = upd_pay.Tue_Total_Pay;
+        var wed_t_pay = upd_pay.Wed_Total_Pay;
+        var thu_t_pay = upd_pay.Thu_Total_Pay;
+        var fri_t_pay = upd_pay.Fri_Total_Pay;
+        var sat_t_pay = upd_pay.Sat_Total_Pay;
+        var sun_t_pay = upd_pay.Sun_Total_Pay;
 
-        //make this cleaner
-        if(PPH === "" && PPM !== ""){//10
-            mon_t_pay = (upd_pay.Mon_Hours * 10) + (upd_pay.Mon_Minutes * PPM);
-            tue_t_pay = (upd_pay.Tue_Hours * 10) + (upd_pay.Tue_Minutes * PPM);
-            wed_t_pay = (upd_pay.Wed_Hours * 10) + (upd_pay.Wed_Minutes * PPM);
-            thu_t_pay = (upd_pay.Thu_Hours * 10) + (upd_pay.Thu_Minutes * PPM);
-            fri_t_pay = (upd_pay.Fri_Hours * 10) + (upd_pay.Fri_Minutes * PPM);
-            sat_t_pay = (upd_pay.Sat_Hours * 10) + (upd_pay.Sat_Minutes * PPM);
-            sun_t_pay = (upd_pay.Sun_Hours * 10) + (upd_pay.Sun_Minutes * PPM);
-        }else if(PPH !== "" && PPM === ""){//0.17
-            mon_t_pay = (upd_pay.Mon_Hours * PPH) + (upd_pay.Mon_Minutes * 0.17);
-            tue_t_pay = (upd_pay.Tue_Hours * PPH) + (upd_pay.Tue_Minutes * 0.17);
-            wed_t_pay = (upd_pay.Wed_Hours * PPH) + (upd_pay.Wed_Minutes * 0.17);
-            thu_t_pay = (upd_pay.Thu_Hours * PPH) + (upd_pay.Thu_Minutes * 0.17);
-            fri_t_pay = (upd_pay.Fri_Hours * PPH) + (upd_pay.Fri_Minutes * 0.17);
-            sat_t_pay = (upd_pay.Sat_Hours * PPH) + (upd_pay.Sat_Minutes * 0.17);
-            sun_t_pay = (upd_pay.Sun_Hours * PPH) + (upd_pay.Sun_Minutes * 0.17);
-        }else{
+        if(!PPH){
             mon_t_pay = (upd_pay.Mon_Hours * PPH) + (upd_pay.Mon_Minutes * PPM);
             tue_t_pay = (upd_pay.Tue_Hours * PPH) + (upd_pay.Tue_Minutes * PPM);
             wed_t_pay = (upd_pay.Wed_Hours * PPH) + (upd_pay.Wed_Minutes * PPM);
@@ -95,34 +78,41 @@ const admin_empman_payroll_controller = {
         var weekly_pay_total = mon_t_pay + tue_t_pay + wed_t_pay + 
             thu_t_pay + fri_t_pay + sat_t_pay;
 
+        var add;
+        var adv;
+        var ded;
+
         if(Additional === ""){
             weekly_pay_total += upd_pay.Weekly_Total_Additional;
-            Additional = upd_pay.Weekly_Total_Additional;
+            add = upd_pay.Weekly_Total_Additional;
         }else{
             weekly_pay_total += Additional;
+            add = Additional;
         }
 
         if(Advance === ""){
             weekly_pay_total += upd_pay.Weekly_Total_Advance;
-            Advance = upd_pay.Weekly_Total_Advance;
+            adv = upd_pay.Weekly_Total_Advance;
         }else{
             weekly_pay_total += Advance;
+            adv = Advance;
         }
 
         if(Deduction === ""){
             weekly_pay_total -= upd_pay.Weekly_Total_Deduction;
-            Deduction = upd_pay.Weekly_Total_Deduction;
+            ded = upd_pay.Weekly_Total_Deduction;
         }else{
             weekly_pay_total -= Deduction;
+            ded = Deduction;
         }
         
         try{
             await database.updateOne(payroll, {_id: Payroll_ID}, {
                 $set: {
                     Weekly_Total_Pay: weekly_pay_total,
-                    Weekly_Total_Additional: Additional,
-                    Weekly_Total_Advance: Advance,
-                    Weekly_Total_Deduction: Deduction,
+                    Weekly_Total_Additional: add,
+                    Weekly_Total_Advance: adv,
+                    Weekly_Total_Deduction: ded,
                     Mon_Total_Pay: mon_t_pay,
                     Tue_Total_Pay: tue_t_pay,
                     Wed_Total_Pay: wed_t_pay,

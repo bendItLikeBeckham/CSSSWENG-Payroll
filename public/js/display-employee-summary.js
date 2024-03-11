@@ -83,6 +83,6 @@ function sidebar_buttons(){
     async function emp_mgm_redirect(event){
         event.preventDefault();
 
-        window.location.href = '/admin_empman_attendrecs';
+        window.location.href = '/admin_empman_emprecs';
     }
 }
