@@ -143,11 +143,11 @@
     {{!-- note to self test forms - joaquin --}}
     <div class="empman-btm">
         <div class="num-input-1">
-            <p>Additional:</p>
+            <p>Additional: {{emp_wpay.Weekly_Total_Additional}}</p>
             <input type="number" id="add-id">  
-            <p>Advance:</p>
+            <p>Advance: {{emp_wpay.Weekly_Total_Advance}}</p>
             <input type="number" id="adv-id"> 
-            <p>Deduction:</p>
+            <p>Deduction: {{emp_wpay.Weekly_Total_Deduction}}</p>
             <input type="number" id="ded-id">
             {{!-- change the button later --}}
             <br>
@@ -181,7 +181,7 @@
         </button>
         <button type="button" class="ad-rightdash-btn">
             <i class="fi fi-rr-users-alt"></i>
-            <p>Add Employee</p>
+            <p>Add/Delete User</p>
         </button>
     </div>
     <div class="admin-rightdash-bottom">
