@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Log Page</title>
+    <link rel="stylesheet" href="/css/style.css"> 
+    <script src="/js/script.js"></script> 
+</head>
+<body>
+<div class="left-emp-dash">
+    <img src="/css/images/greenatwork-logo.png" alt="Green at Work Logo" class="logo">
+    <div class="date-time-log">
+        <h1 id="time">00:00:00</h1>
+        <p id="date">Monday, January 1, 2024</p>
+    </div>
+
+    <div class = "popup" id="popup-1">
+        
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="closeBtn()">&times;</div>
+            <h1>Please Enter OTP</h1>
+            <form id="otp-form" onsubmit="submitOtp(event)">
+                <div class="otp-form">
+                    <input type="text" name="otp_value" placeholder="****" id="otp_value" class="log-text">
+                <span class="resend-otp" onclick="generateOtp()"><p>Resend OTP</p></span>
+                </div>
+                <div class="otp-button"><button type="submit" id="otp-button-send">Enter</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="log-buttons">
+        <button type="button" id="time-in-btn" onclick="timeIn()">
+            <i class="fi fi-rr-enter"></i>
+            <p>Time-in</p>
+        </button>
+        <button type="button" id="time-out-btn" onclick="enableTimeIn()" disabled>
+            <i class="fi fi-rr-exit"></i>
+            <p>Time-out</p>   
+        </button>  
+    </div>
+</div>
+
+<div class="right-payroll right-emp-dash">
+    <div class="admin-rightdash-top">
+        <h1>Hello !</h1>
+    </div>
+   <div class="ad-dash-spacer"></div>
+    <div class="admin-rightdash-mid">
+        <button type="button" class="ad-rightdash-btn">
+            <i class="fi fi-rr-employee-man"></i>
+            <p><a href="/employee_dashboard">Employee Dashboard</a></p>
+        </button>
+    </div>
+    <div class="admin-rightdash-bottom">
+        <br><br>
+        <h2><a href="/logout">Log-Out</a></h2>   
+    </div>
+</div>
+<script src="/js/otp-verify.js"></script>
+<script src="/js/time_retrieval.js"></script>
+</body>
+</html>

@@ -27,7 +27,7 @@ const register_controller = {
                     IsTimedIn: false
                 });
                 await new_employee.save();
-                if(employee_type === "Employee"){
+                if(employee_type === "Employee" || employee_type === "Work From Home"){
                     //changes: new payroll 
                     // const initial_date = new Date();
                     const new_payroll = new payroll({

@@ -15,10 +15,46 @@ window.onload  = async function enableButton(){
   }
 }
 
+function timeIn(){
+  enableTimeOut();
+          //changes start here
+          let current_time = new Date();
+          let hours = current_time.getHours();
+          let minutes = current_time.getMinutes();
+          let weekdayIndex = current_time.getDay();
+          let formattedTime = hours + ':' + minutes;
+
+          let month = current_time.getMonth()+1;
+          let day = current_time.getDate();
+          let year = current_time.getFullYear();
+          month = (month < 10 ? '0' : '') + month;
+          day = (day < 10 ? '0' : '') + day;
+          let formattedDate = year + '-' + month + '-' + day; 
+
+          console.log("hour: " + hours); //remove later
+          console.log("minutes: " + minutes); //remove later
+          console.log("weekday: " + weekdayIndex); //remove later
+          console.log("formattedTime: " + formattedTime); //remove later
+          console.log("formattedTime: " + formattedDate); //remove later
+
+          fetch('/employee_time_in',{
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              Time_In: formattedTime,
+              TI_weekdayIndex: weekdayIndex,
+              Time_In_Date: formattedDate
+              }),
+          })
+}
+
 function togglePopup(){
     closeBtn();
     generateOtp();
 }
+
 function closeBtn(){
     document.getElementById("popup-1").classList.toggle("active");
 }

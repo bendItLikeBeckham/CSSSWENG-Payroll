@@ -4,7 +4,11 @@ const database = require('../models/database.js');
 
 const employee_clockpage_controller = {
     get_employee_clockpage: function (req, res){
-        res.render("employee-clockpage", {email: req.session.Email, emp_type: req.session.Employee_type, timeInStatus: req.session.IsTimedIn});
+        res.render("employee-clockpage", {email: req.session.Email, emp_type: req.session.Employee_type});
+    },
+
+    get_wfh_clockpage: function(req, res){
+        res.render("work-from-home-clockpage", {email: req.session.Email, emp_type: req.session.Employee_type});
     },
 
     get_employee_time_in_status: async function(req, res){
