@@ -424,9 +424,6 @@ body{
 .ad-rightdash-btn p{
     text-align: center;
 }
-.admin-rightdash-bottom{
-    margin-top: 15vh;
-}
 .admin-rightdash-mid{
     display: flex;
     flex-direction: column;
