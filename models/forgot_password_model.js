@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var forgot_password_schema = new mongoose.Schema({
-    Forgot_Password_Number:{
+    Forgot_Password_Number:{ //index or queue numbers
         type: Number,
         required: true
     },
@@ -11,6 +11,10 @@ var forgot_password_schema = new mongoose.Schema({
     },
     Time:{
         type: String,
+        required: true
+    },
+    Name:{
+        type: String, 
         required: true
     }
 })

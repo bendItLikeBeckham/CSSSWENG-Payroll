@@ -23,9 +23,11 @@
                 <input type="password" name="password" placeholder="Password" id="password" class="log-text">
                 <i class="fi fi-rr-eye-crossed pw-icon" id="eye-icon"></i>    
             </div>
+                
         </div>
+        {{!-- <p>Forgot Password?</p>  --}}
         <div>
-            <p>Forgot Password?</p> 
+            <button type="button" onclick="togglePopup()" style="text-decoration: none; color: #86B745; background: none; border: none; cursor: pointer;">Forgot Password?</button>
         </div>
         <div>
             <p id="error_issue" style="font-weight: bold; color: red; text-align: center;"></p>
@@ -35,6 +37,23 @@
         </div>
     </form>
 </div>
+
+<div class = "popup" id="popup-1"> 
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="close-btn" onclick="closeBtn()">&times;</div>
+        <h1>Please Enter Your Email</h1>
+        <form id="forgot-password-form-id">
+            <div class="log-field">
+                <input type="email" name="email" placeholder="Email" id="for-pas-email" class="log-text">
+            </div>
+            <div>
+                <button type="button" id="forgot-password-button-id"><h2>Submit</h2></button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
     let eyeicon = document.getElementById("eye-icon");
     let password = document.getElementById("password");
@@ -47,8 +66,9 @@
             password.type = "password";
             eyeicon.className = "fi fi-rr-eye-crossed pw-icon"
         }
-    }
+    } 
 </script>
 <script src="/js/login.js"></script>
+{{!-- <script src="/js/forgot-password.js"></script> --}}
 </body>
 </html>

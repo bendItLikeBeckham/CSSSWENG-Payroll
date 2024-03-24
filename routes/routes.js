@@ -10,7 +10,8 @@ const admin_empman_attendrecs_controllers = require('../controllers/admin-empman
 const admin_empman_emprecs_controllers = require('../controllers/admin-empman-emprecs-controller');
 const admin_empman_payroll_controllers = require('../controllers/admin-empman-payroll-controller');
 const update_payroll_controllers = require('../controllers/update-payroll-controller');
-
+const forgot_password_controllers = require('../controllers/forgot-password-controller');
+const admin_notifs_controllers = require('../controllers/admin-notifs-controller');
 
 const register_controllers = require('../controllers/register-controller');
  
@@ -54,5 +55,10 @@ app.get('/admin_retrieve_employee_total_wp', admin_empman_payroll_controllers.ge
 app.get('/admin_retrieve_emp_wpay', admin_empman_payroll_controllers.get_emp_wpay);
 app.post('/admin_update_payroll', admin_empman_payroll_controllers.post_update_payroll);
 app.post('/update_employee_payroll', update_payroll_controllers.post_update_employee_payroll);
+app.get('/forgot_password', forgot_password_controllers.get_forgot_password);
+app.post('/add_forgot_password', forgot_password_controllers.post_add_forgot_password);
+app.get('/admin_notifs', admin_notifs_controllers.get_admin_notifs);
+app.get('/display_forgot_password', admin_notifs_controllers.get_forgot_password);
+app.post('/delete_forgot_password', forgot_password_controllers.post_delete_forgot_password);
 
 module.exports = app;
