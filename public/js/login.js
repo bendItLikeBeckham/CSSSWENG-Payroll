@@ -47,8 +47,7 @@ document.addEventListener("DOMContentLoaded", function(){
             if(data.success){//add below here which page is loaded regarding the employee type
                 if(data.type === "Employee"){
                     window.location.href = '/employee_clockpage';
-                }
-                if (data.type === "Work From Home"){
+                }else if (data.type === "Work From Home"){
                     window.location.href = '/work_from_home_clockpage'
                 }else{
                     window.location.href = '/admin_dashboard';
