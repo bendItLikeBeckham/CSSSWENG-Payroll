@@ -23,8 +23,8 @@ const login_controller = {
                 if(user_exists.Employee_Type === "Employee"){
                     res.status(200).json({success: true, type: "Employee", message: "Login Successful!"});
                 }else if(user_exists.Employee_Type === "Work From Home"){
-                    res.status(200).json({success: true, type: "Work From Home", message: "Login Successful!"});}
-                else{
+                    res.status(200).json({success: true, type: "Work From Home", message: "Login Successful!"});
+                }else{
                     res.status(200).json({success: true, type: "Admin", message: "Login Successful!"});
                 }
                 //res.json({success: true, message: "Login Successful!"});
