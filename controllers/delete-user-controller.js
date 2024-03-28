@@ -1,12 +1,21 @@
 const employee = require('../models/employee_model.js');
 const payroll = require('../models/payroll_model.js');
+const database = require('../models/database.js');
 
 const delete_user_controller = {
-    get_delete_user: function(req, res){
+    get_delete_user: async function(req, res){
+        const emp_emails = await database.findMany(employee, {Employee_Type:"Employee"});
+        try{
+            res.render("delete-user", {emp_emails});
+        }catch (err){
+            console.error("Error processing employee summary: ", error);
+            res.status(500).send("Internal Server Error!");
+        }
         res.render('delete-user');
     },
 
     post_display_info: async function (req,res){
+        const emp_emails = await database.findMany(employee, {Employee_Type:"Employee"});
         const email = req.body.email;
         
         try {
@@ -14,7 +23,7 @@ const delete_user_controller = {
     
             console.log("emp_sum data: " + emp_sum);
     
-            res.render("delete-user", {emp_sum});
+            res.render("delete-user", {emp_sum, emp_emails});
         } catch (error) {
             console.error("Error processing employee summary: ", error);
             res.status(500).send("Internal Server Error!");

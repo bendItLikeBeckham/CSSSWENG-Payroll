@@ -31,10 +31,19 @@
             </div>
         </div>
         <div class="search-bar">
-            <input type="text" name="email" placeholder="Email: {{emp_sum.Email}}" id="email">
+            <div class="dropdown">
+                <label>Employee:</label>
+                <select id="email" onchange="displayDetail()"><!-- Placeholder info -->
+                    <option>Select User</option>
+                    {{#each emp_emails}}
+                    <option>{{this.Email}}</option>
+                    {{/each}}
+                </select>
+            </div>  
+            <!--<input type="text" name="email" placeholder="Email: {{emp_sum.Email}}" id="email">
             <button id="searchButton" onclick="displayDetail()">
                 <i class="fi fi-rr-search"></i>
-            </button>
+            </button>-->
         </div>
         <div class="emp-info">
             <div><!-- Placeholder info -->
