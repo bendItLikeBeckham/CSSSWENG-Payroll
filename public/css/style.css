@@ -503,6 +503,9 @@ body{
 #popup-2 .content{
     height: 200px;
 }
+#popup-3 .content{
+    height: 150px;
+}
 .popup .close-btn{
     cursor: pointer;
     position: absolute;

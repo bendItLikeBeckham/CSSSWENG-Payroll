@@ -7,6 +7,29 @@
     <script src="/js/script.js"></script> 
 </head>
 <body>
+    <div class = "popup" id="popup-2">    
+        <div class="overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup()">&times;</div>
+                <h1>Confirm Register</h1>
+                    <span><p>Do you want to add this user?</p></span>
+                <div class="otp-button"><button id="register-button" onclick="togglePopup2()">Confrim</button></div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+        <div class = "popup" id="popup-3">    
+        <div class="overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup()2">&times;</div>
+                <h1>New User Has Been Added</h1>
+                <div class="otp-button"><button id="register-button" onclick="togglePopup2()">Confrim</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
 <div class="left-payroll admin-leftdash">
     <div class="admin-leftdash-top">
         <h2>Add/Delete Employee</h2>
@@ -37,7 +60,7 @@
               </div>
         </div>
         <div class="ad-left-btn">
-            <button type="button" id="register-button" class="ad-leftdash-btn">
+            <button type="button"  class="ad-leftdash-btn" onclick="togglePopup()">
                 <p>Confirm Add Employee</p>
             </button>
         </div>

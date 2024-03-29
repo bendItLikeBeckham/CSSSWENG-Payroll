@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
             });
             const data = await response.json();
             if(data.success){
-                window.location.href = '/';
+                togglePopup();
             }else{
                 //error_message.textContent = data.message;
                 console.log(data.message);
@@ -44,4 +44,12 @@ document.addEventListener("DOMContentLoaded", function(){
             //error_message.textContent = "Register Controller Error";
         }
     }
-});
+
+
+})
+function togglePopup(){
+    document.getElementById("popup-2").classList.toggle("active");
+}
+function togglePopup2(){
+    document.getElementById("popup-3").classList.toggle("active");
+};

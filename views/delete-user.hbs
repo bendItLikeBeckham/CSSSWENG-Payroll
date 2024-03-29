@@ -7,15 +7,27 @@
     <script src="js/script.js"></script> 
 </head>
 <body>
-   <div class = "popup" id="popup-2">
-        
+   <div class = "popup" id="popup-2">    
         <div class="overlay"></div>
-        <div class="content">
-            <div class="close-btn" onclick="togglePopup()">&times;</div>
-            <h1>Confirm Deletion</h1>
-                <span><p>Please not that employee records will be PERMANENTLY deleted.</p></span>
-            <div class="otp-button"><button id="user-delete-button" onclick="delete_function()">Confrim</button></div>
-            </form>
+            <div class="content">
+                <div class="close-btn" onclick="togglePopup()">&times;</div>
+                <h1>Confirm Deletion</h1>
+                    <span><p>Please not that employee records will be PERMANENTLY deleted.</p></span>
+                <div class="otp-button"><button id="user-delete-button" onclick="delete_function(); togglePopup2()">Confrim</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </div>
+        <div class = "popup" id="popup-3">    
+        <div class="overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="reload()">&times;</div>
+                <h1>User Has Been Deleted</h1>
+                <div class="otp-button"><button id="register-button" onclick="reload()">Confrim</button></div>
+                </form>
+            </div>
         </div>
     </div>
 
