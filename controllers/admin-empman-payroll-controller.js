@@ -21,6 +21,7 @@ const admin_empman_payroll_controller = {
         }
     }, 
 
+    //start here
     get_emp_wpay: async function(req, res){
         const selected_employee = req.query.employee;
         const selected_week = req.query.week;
@@ -40,7 +41,7 @@ const admin_empman_payroll_controller = {
     post_update_payroll: async function(req, res){
         console.log("post_update_payroll"); //remove later
 
-        const {PPH, PPM, Additional, Advance, Deduction, Payroll_ID} = req.body;
+        const {PPH, PPM, Additional, Advance, Deduction, Payroll_ID, cur_email, cur_week} = req.body;
 
         const upd_pay = await database.findOne(payroll, {_id: Payroll_ID});
 

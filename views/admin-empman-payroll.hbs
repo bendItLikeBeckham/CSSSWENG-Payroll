@@ -22,20 +22,21 @@
             <div class="dropdown">
                 <label>Employee:</label>
                 <select id="emp-dropdown-id"><!-- Placeholder info -->
-                    <option>Select</option>
+                    <option id="current-emp-option">Select</option>
                     {{#each emp_total}}
-                    <option>{{this.Last_Name}} - {{this.Email}}</option>
+                    {{!-- <option>{{this.Last_Name}} - {{this.Email}}</option> --}}
+                    <option>{{this.Email}}</option>
                     {{/each}}
                 </select>
             </div>  
         </div>
         <div class="empman-midhead">
-            <div class="dropdown">
+            <div class="dropdown" id="select-week-dropdown-id">
                 {{!-- <p>Select Week:</p> --}}
                 <label>Select Week:</label>
                 <select id="emp-dropdown-week-id" onchange="selectWeek()" focusIndex="-1">
                     {{!-- default display week 0 --}}
-                    <option>Select Week</option>
+                    <option id="current-week-option">Select Week</option>
                     {{!-- <input type="hidden" name="week-0-id" value="{{emp_wpay._id}}"> --}}
                     <option>Current Week</option>
                     {{!-- <input type="hidden" name="week-0-id" value="{{emp_wpay._id}}"> --}}
@@ -55,8 +56,8 @@
             </div>
         </div>   
     </div>
-    <div>
-        <table>
+    <div id="weekly-payroll-container-id">
+        <table id="weekly-payroll-table-id">
             <tr>
                 <th></th>
                 <th>Time-In</th>

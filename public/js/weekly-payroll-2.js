@@ -54,8 +54,6 @@ function dropdown(){
 
     //var selected_emp = emp_dropdown_select.value;
     var selectedWeek = document.getElementById("emp-dropdown-week-id");
-    //selectedWeek.addEventListener('change', fetch_weekly_payroll);
-    //function fetch_weekly_payroll(){
     selectedWeek.addEventListener('change', function(){
         const selected_emp = emp_dropdown_select.value;
         var selectedWeek2 = document.getElementById("emp-dropdown-week-id").selectedIndex - 1;
@@ -149,94 +147,32 @@ function dropdown(){
         console.log("deduction : " + deduction);
         console.log("payroll-id: " + payroll_id);
 
-        // try{
-        //     const response = await fetch('/admin_update_payroll', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             PPH: pph,
-        //             PPM: ppm,
-        //             Additional: additional,
-        //             Advance: advance,
-        //             Deduction: deduction,
-        //             Payroll_ID: payroll_id
-        //         }),
-        //     });
-        //     const data = await response.json();
+        try{
+            const response = await fetch('/admin_update_payroll', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    PPH: pph,
+                    PPM: ppm,
+                    Additional: additional,
+                    Advance: advance,
+                    Deduction: deduction,
+                    Payroll_ID: payroll_id
+                }),
+            });
+            const data = await response.json();
 
-        //     if(data.success){//add below here which page is loaded regarding the employee type
-        //         console.log("update payroll successful");
-        //         location.reload();
-        //     }else{
-        //         console.log(data.message);
-        //     }
-        // }catch(error){
-        //     console.error(error);
-        //     error_message.textContent = "Login Controller Error";
-        // }
-
-        fetch('/admin_update_payroll', {
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                PPH: pph,
-                PPM: ppm,
-                Additional: additional,
-                Advance: advance,
-                Deduction: deduction,
-                Payroll_ID: payroll_id,
-                cur_email: curr_emp,
-                cur_week: week_index,
-            }),
-        })
-        .then(response => {
-            if(!response.ok){
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if(data.success){ //add below here which page is loaded regarding the employee type
+            if(data.success){//add below here which page is loaded regarding the employee type
                 console.log("update payroll successful");
-                //location.reload();
-                //document.getElementById("weekly-payroll-container-id").innerHTML = data;
-                fetch_weekly_payroll()
+                location.reload();
             }else{
                 console.log(data.message);
             }
-        })
-        // .then(html => {
-        //     //document.getElementById("weekly-payroll-container-id").innerHTML = html;
-        //     fetch_weekly_payroll()
-        // })
-        .catch(error => {
+        }catch(error){
             console.error(error);
             error_message.textContent = "Login Controller Error";
-        });
+        }
     }
-
-    function fetch_weekly_payroll(){
-        fetch(`/admin_retrieve_emp_wpay?employee=${curr_emp}&week=${week_index}`)
-        .then(response =>{
-            if (!response.ok){
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(html =>{
-            document.body.innerHTML = html;
-            //add here
-            document.getElementById("current-emp-option").innerHTML = curr_emp;
-            document.getElementById("current-week-option").innerHTML = curr_week;
-            dropdown();
-
-        })
-        .catch(error =>{
-            console.error('Error fetching /admin_retrieve_emp_wpay:', error);
-        });
-    } 
 }
