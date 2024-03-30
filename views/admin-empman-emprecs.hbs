@@ -20,9 +20,10 @@
             <div class="dropdown">
                 <label>Employee:</label>
                 <select onchange="displayInfo();" id="selectedEmployee">
-                    <option>Select Employee</option>
+                    <option id="current-emp-option">Select Employee</option>
                 {{#each emp_emails}}
-                    <option>{{this.Last_Name}} - {{this.Email}}</option>
+                    {{!-- <option>{{this.Last_Name}} - {{this.Email}}</option> --}}
+                    <option>{{this.Email}}</option>
                 {{/each}}
                 </select>
                 
