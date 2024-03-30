@@ -12,7 +12,15 @@ const admin_empman_payroll_controller = {
         try{
             const emp_total = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
 
-            console.log("emp_total data: " + emp_total);
+            console.log("before emp_total data: " + emp_total);
+            emp_total.sort((a, b) => {
+                const emailA = (a.Email || '').toLowerCase();
+                const emailB = (b.Email || '').toLowerCase();
+                
+                return emailA.localeCompare(emailB);
+            });
+
+            console.log("after sort emp_total data: " + emp_total);
 
             res.render("admin-empman-payroll", {emp_total});
         }catch(error){
@@ -28,6 +36,13 @@ const admin_empman_payroll_controller = {
         try{
             const emp_wpay = await database.findOne(payroll, {Email: selected_employee, Week: selected_week});//default is week 0
             const emp_total = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
+
+            emp_total.sort((a, b) => {
+                const emailA = (a.Email || '').toLowerCase();
+                const emailB = (b.Email || '').toLowerCase();
+                
+                return emailA.localeCompare(emailB);
+            });
 
             console.log("emp_pay data: " + emp_wpay); //remove later
 
