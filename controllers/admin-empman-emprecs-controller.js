@@ -4,7 +4,7 @@ const database = require('../models/database.js');
 
 const admin_empman_emprecs_controller = {
     get_emprecs: async function(req, res){
-        const emp_emails = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"},{Employee_Type: "Admin"}]});
+        const emp_emails = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
     try{
         res.render("admin-empman-emprecs", {emp_emails});
     }catch (err){
@@ -14,7 +14,7 @@ const admin_empman_emprecs_controller = {
 },
 
     post_specific_emprecs: async function(req, res){
-        const emp_emails = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"},{Employee_Type: "Admin"}]});
+        const emp_emails = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
         const email = req.body.email; // Get the selected email from the request body
     
         try {

@@ -9,7 +9,6 @@ const admin_empman_payroll_controller = {
 
     get_emp_total: async function(req, res){
         console.log("get_emp_total_wp part here"); //remove later
-        const emp_type = "Admin";
         try{
             const emp_total = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
 

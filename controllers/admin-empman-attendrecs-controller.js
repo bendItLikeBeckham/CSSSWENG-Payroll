@@ -9,7 +9,6 @@ const admin_empman_attendrecs_controller = {
 
     get_emp_total: async function(req, res){
         console.log("get_emp_total_ar part here"); //remove later
-        const emp_type = "Admin";
         try{
             const emp_total = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
 
@@ -26,7 +25,6 @@ const admin_empman_attendrecs_controller = {
         console.log("get_emp_pay part here"); //remove later
         const selected_employee = req.query.employee;
         console.log("employee email: "+selected_employee); //remove later
-        const emp_type = "Admin";
         try{
             //const emp_det = await database.findOne(employee, {Email: selected_employee});
             const emp_pay = await database.findOne(payroll, {Email: selected_employee});
