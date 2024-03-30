@@ -101,6 +101,9 @@ const employee_clockpage_controller = {
 
         await database.updateOne(employee, {Email: req.session.Email}, {IsTimedIn: false})//makes employee time-in status be false 
 
+        const hr = day.Weekly_Hourly_Rate;
+        const mr = (hr/60).toFixed(2);
+
         if(req.session.ETI_weekdayIndex === 1){
             let [hours, minutes] = day.Mon_Time_In.split(':');
             const TI_hour = parseInt(hours);
@@ -118,7 +121,7 @@ const employee_clockpage_controller = {
             const total_hours = Math.floor(total_time / 60);
             const total_minutes = total_time % 60;
 
-            const total_day_pay = total_hours*10 + total_minutes*0.17;
+            const total_day_pay = total_hours*hr + total_minutes*mr;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -152,7 +155,7 @@ const employee_clockpage_controller = {
             const total_hours = Math.floor(total_time / 60);
             const total_minutes = total_time % 60;
 
-            const total_day_pay = total_hours*10 + total_minutes*0.17;
+            const total_day_pay = total_hours*hr + total_minutes*mr;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -186,7 +189,7 @@ const employee_clockpage_controller = {
             const total_hours = Math.floor(total_time / 60);
             const total_minutes = total_time % 60;
 
-            const total_day_pay = total_hours*10 + total_minutes*0.17;
+            const total_day_pay = total_hours*hr + total_minutes*mr;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -220,7 +223,7 @@ const employee_clockpage_controller = {
             const total_hours = Math.floor(total_time / 60);
             const total_minutes = total_time % 60;
 
-            const total_day_pay = total_hours*10 + total_minutes*0.17;
+            const total_day_pay = total_hours*hr + total_minutes*mr;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -254,7 +257,7 @@ const employee_clockpage_controller = {
             const total_hours = Math.floor(total_time / 60);
             const total_minutes = total_time % 60;
 
-            const total_day_pay = total_hours*10 + total_minutes*0.17;
+            const total_day_pay = total_hours*hr + total_minutes*mr;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -288,7 +291,7 @@ const employee_clockpage_controller = {
             const total_hours = Math.floor(total_time / 60);
             const total_minutes = total_time % 60;
 
-            const total_day_pay = total_hours*10 + total_minutes*0.17;
+            const total_day_pay = total_hours*hr + total_minutes*mr;
 
             try{//add the creation of new payroll here per employee
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -322,7 +325,7 @@ const employee_clockpage_controller = {
             const total_hours = Math.floor(total_time / 60);
             const total_minutes = total_time % 60;
 
-            const total_day_pay = total_hours*10 + total_minutes*0.17;
+            const total_day_pay = total_hours*hr + total_minutes*mr;
 
             try{//add the creation of new payroll here per employee
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {

@@ -79,6 +79,7 @@ const register_controller = {
                         Weekly_Total_Additional: 0,
                         Weekly_Total_Deduction: 0,
                         Weekly_Total_Pay: 0,
+                        Weekly_Hourly_Rate: 10
                     });
                     await new_payroll.save();
 
@@ -131,6 +132,7 @@ const register_controller = {
                         Weekly_Total_Additional: 0,
                         Weekly_Total_Deduction: 0,
                         Weekly_Total_Pay: 0,
+                        Weekly_Hourly_Rate: 10
                     });
                     await new_payroll_1.save();
 
@@ -183,6 +185,7 @@ const register_controller = {
                         Weekly_Total_Additional: 0,
                         Weekly_Total_Deduction: 0,
                         Weekly_Total_Pay: 0,
+                        Weekly_Hourly_Rate: 10
                     });
                     await new_payroll_2.save();
                 }

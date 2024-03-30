@@ -64,6 +64,7 @@ const update_payroll_controller = {
                         Weekly_Total_Additional: week_1.Weekly_Total_Additional,
                         Weekly_Total_Deduction: week_1.Weekly_Total_Deduction,
                         Weekly_Total_Pay: week_1.Weekly_Total_Pay,
+                        Weekly_Hourly_Rate: week_1.Weekly_Hourly_Rate
                     }
                 });
         
@@ -116,6 +117,7 @@ const update_payroll_controller = {
                         Weekly_Total_Additional: week_0.Weekly_Total_Additional,
                         Weekly_Total_Deduction: week_0.Weekly_Total_Deduction,
                         Weekly_Total_Pay: week_0.Weekly_Total_Pay,
+                        Weekly_Hourly_Rate: week_0.Weekly_Hourly_Rate
                     }
                 });
         
@@ -168,6 +170,7 @@ const update_payroll_controller = {
                         Weekly_Total_Additional: 0,
                         Weekly_Total_Deduction: 0,
                         Weekly_Total_Pay: 0,
+                        Weekly_Hourly_Rate: 10
                     }
                 });
             }

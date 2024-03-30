@@ -65,7 +65,7 @@ const admin_empman_payroll_controller = {
         var sat_t_pay = upd_pay.Sat_Total_Pay;
         var sun_t_pay = upd_pay.Sun_Total_Pay;
 
-        if(!PPH){
+        if(PPH){
             mon_t_pay = (upd_pay.Mon_Hours * PPH) + (upd_pay.Mon_Minutes * PPM);
             tue_t_pay = (upd_pay.Tue_Hours * PPH) + (upd_pay.Tue_Minutes * PPM);
             wed_t_pay = (upd_pay.Wed_Hours * PPH) + (upd_pay.Wed_Minutes * PPM);
@@ -119,7 +119,8 @@ const admin_empman_payroll_controller = {
                     Thu_Total_Pay: thu_t_pay,
                     Fri_Total_Pay: fri_t_pay,
                     Sat_Total_Pay: sat_t_pay,
-                    Sun_Total_Pay: sun_t_pay
+                    Sun_Total_Pay: sun_t_pay,
+                    Weekly_Hourly_Rate: PPH,
                 }
             });
             res.json({ success: true, message: "Payroll updated successfully!" });

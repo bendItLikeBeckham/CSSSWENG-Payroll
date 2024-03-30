@@ -159,6 +159,10 @@ var payroll_schema = new mongoose.Schema({
     },
     Weekly_Total_Pay: {
         type: Number
+    },
+    Weekly_Hourly_Rate: {
+        type: Number,
+        required: true
     }
 
 });
