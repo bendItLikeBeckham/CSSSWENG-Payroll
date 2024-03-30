@@ -4,7 +4,7 @@ const database = require('../models/database.js');
 
 const delete_user_controller = {
     get_delete_user: async function(req, res){
-        const emp_emails = await database.findMany(employee, {Employee_Type:"Employee"});
+        const emp_emails = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"},{Employee_Type: "Admin"}]});
         try{
             res.render("delete-user", {emp_emails});
         }catch (err){
@@ -15,7 +15,7 @@ const delete_user_controller = {
     },
 
     post_display_info: async function (req,res){
-        const emp_emails = await database.findMany(employee, {Employee_Type:"Employee"});
+        const emp_emails = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"},{Employee_Type: "Admin"}]});
         const email = req.body.email;
         
         try {
