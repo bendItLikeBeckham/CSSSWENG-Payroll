@@ -132,9 +132,13 @@
     </div>
    <div class="ad-dash-spacer"></div>
     <div class="admin-rightdash-mid">
-        <button type="button" class="ad-rightdash-btn">
+        {{!-- <button type="button" class="ad-rightdash-btn">
             <i class="fi fi-rr-calendar-clock"></i>
             <p><a href="/employee_clockpage">Time Log</a></p>
+        </button> --}}
+        <button type="button" class="ad-rightdash-btn" onclick="redirect_to_clockpage()">
+            <i class="fi fi-rr-calendar-clock"></i>
+            <p>Time Log</p>
         </button>
     </div>
     <div class="admin-rightdash-bottom">
@@ -142,6 +146,15 @@
         <h2><a href="/logout">Log-Out</a></h2>   
     </div>
 </div>
+<script>
+    function redirect_to_clockpage(){
+        if("{{emp_rec.Employee_Type}}" === "Employee"){
+            window.location.href = "/employee_clockpage";
+        }else{
+            window.location.href = "work_from_home_clockpage";
+        }
+    }
+</script>
 <script src="/js/display-employee-payroll.js"></script>
 </body>
 </html>

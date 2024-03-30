@@ -32,7 +32,7 @@ const otp_controller = {
         }
       },
 
-      get_current_otp: async function (req, res){
+      get_current_otp: async (req, res)=>{
         try{
             const curr_otp = await Current_otp.findOne().sort({ _id: -1 });
             
@@ -51,7 +51,11 @@ const otp_controller = {
             console.error("Error displaying current OTP ", error);
             res.status(500).send("Internal Server Error!");
         }
-    }
+      },
+
+      get_otp_page: (req, res)=>{
+        res.render("otp-page");
+      }
 }
 
 module.exports = otp_controller;

@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function(){
         let hours = current_time.getHours();
         let minutes = current_time.getMinutes();
 
-        console.log("hour: " + hours); //remove later
-        console.log("minutes: " + minutes); //remove later
+        console.log("TO hour: " + hours); //remove later
+        console.log("TO minutes: " + minutes); //remove later
 
         try{ 
             const response = await fetch('/employee_time_out',{
@@ -28,7 +28,11 @@ document.addEventListener("DOMContentLoaded", function(){
             const data = await response.json();
             
             if(data.success){
-                window.location.href = 'employee_clockpage';
+                if(data.type === "Emp"){
+                    window.location.href = '/employee_clockpage';
+                }else{
+                    window.location.href = '/work_from_home_clockpage';
+                }
             }else{
                 console.log("unsuccesful");
             }
@@ -37,3 +41,5 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 });
+
+//type: "Employee",

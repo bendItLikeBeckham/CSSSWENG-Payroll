@@ -33,6 +33,7 @@ const register_controller = {
                     const new_payroll = new payroll({
                         Email: email,
                         Week: 0,
+                        Time_In_Weekday_Index: 0,
                         Mon_Hours: 0,
                         Mon_Minutes: 0,
                         Mon_Date: 0,
@@ -86,6 +87,7 @@ const register_controller = {
                     const new_payroll_1 = new payroll({
                         Email: email,
                         Week: 1,
+                        Time_In_Weekday_Index: 0,
                         Mon_Hours: 0,
                         Mon_Minutes: 0,
                         Mon_Date: 0,
@@ -139,6 +141,7 @@ const register_controller = {
                     const new_payroll_2 = new payroll({
                         Email: email,
                         Week: 2,
+                        Time_In_Weekday_Index: 0,
                         Mon_Hours: 0,
                         Mon_Minutes: 0,
                         Mon_Date: 0,

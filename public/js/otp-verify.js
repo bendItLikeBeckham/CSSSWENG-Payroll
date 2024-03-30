@@ -53,10 +53,16 @@ function timeIn(){
 function togglePopup(){
     closeBtn();
     generateOtp();
+    otp_window();
 }
 
 function closeBtn(){
     document.getElementById("popup-1").classList.toggle("active");
+}
+
+function generateOtpAndOpenOTPWindow(){
+  generateOtp();
+  otp_window();
 }
 
 function generateOtp(){
@@ -138,4 +144,9 @@ function generateOtp(){
   function enableTimeOut(){
     document.getElementById("time-in-btn").disabled = true;
     document.getElementById("time-out-btn").disabled = false;
+  }
+
+  function otp_window(){
+    //add here
+    window.open('/otp_page', '_blank');//check for wfh
   }

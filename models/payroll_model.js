@@ -14,6 +14,9 @@ var payroll_schema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    Time_In_Weekday_Index: {
+        type: Number
+    },
     
     Mon_Time_In: {
         type: String

@@ -18,6 +18,7 @@ const update_payroll_controller = {
                 //updating the values of week 2 with week 1 values
                 await database.updateOne(payroll, {Email: employee_email, Week: 2}, {
                     $set: {
+                        Time_In_Weekday_Index: 0,
                         Mon_Hours: week_1.Mon_Hours,
                         Mon_Minutes: week_1.Mon_Minutes,
                         Mon_Date: week_1.Mon_Date,
@@ -71,6 +72,7 @@ const update_payroll_controller = {
                 //updating the values of week 1 with week 0 values
                 await database.updateOne(payroll, {Email: employee_email, Week: 1}, {
                     $set: {
+                        Time_In_Weekday_Index: 0,
                         Mon_Hours: week_0.Mon_Hours,
                         Mon_Minutes: week_0.Mon_Minutes,
                         Mon_Date: week_0.Mon_Date,
@@ -124,6 +126,7 @@ const update_payroll_controller = {
                 //updating the values of week 0 with default values
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
                     $set: {
+                        Time_In_Weekday_Index: 0,
                         Mon_Hours: 0,
                         Mon_Minutes: 0,
                         Mon_Date: 0,
