@@ -9,9 +9,8 @@ const admin_empman_payroll_controller = {
 
     get_emp_total: async function(req, res){
         console.log("get_emp_total_wp part here"); //remove later
-        const emp_type = "Employee";
         try{
-            const emp_total = await database.findMany(employee, {Employee_Type: emp_type});
+            const emp_total = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
 
             console.log("emp_total data: " + emp_total);
 
@@ -23,16 +22,11 @@ const admin_empman_payroll_controller = {
     }, 
 
     get_emp_wpay: async function(req, res){
-        console.log("get_emp_wpay part here"); //remove later
         const selected_employee = req.query.employee;
-        console.log("employee email: "+selected_employee); //remove later
         const selected_week = req.query.week;
-        console.log("selected week: " + selected_week);
-        const emp_type = "Employee";
         try{
             const emp_wpay = await database.findOne(payroll, {Email: selected_employee, Week: selected_week});//default is week 0
-            const emp_total = await database.findMany(employee, {Employee_Type: emp_type});
-
+            const emp_total = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
 
             console.log("emp_pay data: " + emp_wpay); //remove later
 

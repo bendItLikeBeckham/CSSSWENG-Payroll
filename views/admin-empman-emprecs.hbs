@@ -22,7 +22,7 @@
                 <select onchange="displayInfo();" id="selectedEmployee">
                     <option>Select Employee</option>
                 {{#each emp_emails}}
-                    <option>{{this.Email}}</option>
+                    <option>{{this.Last_Name}} - {{this.Email}}</option>
                 {{/each}}
                 </select>
                 
