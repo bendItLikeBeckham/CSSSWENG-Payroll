@@ -10,7 +10,8 @@ const update_payroll_controller = {
         if(employee_email_data.length > 0){
             console.log("email data: " + employee_email_data);
             for(let i = 0; i < employee_email_data.length; i++){
-                const employee_email = employee_email_data[i].Email;
+                // const employee_email = employee_email_data[i].Email;
+                const employee_email = employee_email_data[i];
 
                 const week_1 = await database.findOne(payroll, {Email: employee_email, Week: 1});
                 const week_0 = await database.findOne(payroll, {Email: employee_email, Week: 0});
