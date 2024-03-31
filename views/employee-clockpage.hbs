@@ -13,8 +13,7 @@
         <p id="date">Monday, January 1, 2024</p>
     </div>
 
-    <div class = "popup" id="popup-1">
-        
+    <div class = "popup" id="popup-1"> 
         <div class="overlay"></div>
         <div class="content">
             <div class="close-btn" onclick="closeBtn()">&times;</div>
@@ -29,12 +28,34 @@
         </div>
     </div>
 
+    <div class = "popup" id="popup-3">    
+        <div class="overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="reload()">&times;</div>
+                <h1>Time In Successful</h1>
+                <div class="otp-button"><button id="register-button" onclick="reload()">Confirm</button></div>
+                </form>
+            </div>
+        </div>
+    
+
+    <div class = "popup" id="popup-4">    
+        <div class="overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="reload()">&times;</div>
+                <h1>Time Out Successful</h1>
+                <div class="otp-button"><button id="register-button" onclick="reload()">Confirm</button></div>
+                </form>
+            </div>
+        </div>
+    
+
     <div class="log-buttons">
         <button type="button" id="time-in-btn" onclick="togglePopup()">
             <i class="fi fi-rr-enter"></i>
             <p>Time-in</p>
         </button>
-        <button type="button" id="time-out-btn" onclick="enableTimeIn()" disabled>
+        <button type="button" id="time-out-btn" onclick="enableTimeIn(); togglePopup3()" disabled>
             <i class="fi fi-rr-exit"></i>
             <p>Time-out</p>   
         </button>  
@@ -43,7 +64,7 @@
 
 <div class="right-payroll right-emp-dash">
     <div class="admin-rightdash-top">
-        <h1>Hello !</h1>
+        <h1>Hello!</h1>
     </div>
    <div class="ad-dash-spacer"></div>
     <div class="admin-rightdash-mid">

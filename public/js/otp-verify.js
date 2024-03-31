@@ -56,6 +56,18 @@ function togglePopup(){
     //otp_window(); 
 }
 
+function togglePopup2(){
+  document.getElementById("popup-3").classList.toggle("active");
+}
+
+function togglePopup3(){
+  document.getElementById("popup-4").classList.toggle("active");
+}
+
+function reload(){
+  location.reload()
+}
+
 function closeBtn(){
     document.getElementById("popup-1").classList.toggle("active");
 }

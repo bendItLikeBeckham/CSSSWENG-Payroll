@@ -13,28 +13,34 @@
         <p id="date">Monday, January 1, 2024</p>
     </div>
 
-    <div class = "popup" id="popup-1">
-        
+    <div class = "popup" id="popup-3">    
         <div class="overlay"></div>
-        <div class="content">
-            <div class="close-btn" onclick="closeBtn()">&times;</div>
-            <h1>Please Enter OTP</h1>
-            <form id="otp-form" onsubmit="submitOtp(event)">
-                <div class="otp-form">
-                    <input type="text" name="otp_value" placeholder="****" id="otp_value" class="log-text">
-                <span class="resend-otp" onclick="generateOtp()"><p>Resend OTP</p></span>
-                </div>
-                <div class="otp-button"><button type="submit" id="otp-button-send">Enter</button></div>
-            </form>
+            <div class="content">
+                <div class="close-btn" onclick="reload()">&times;</div>
+                <h1>Time In Successful</h1>
+                <div class="otp-button"><button id="register-button" onclick="reload()">Confirm</button></div>
+                </form>
+            </div>
         </div>
-    </div>
+    
+
+    <div class = "popup" id="popup-4">    
+        <div class="overlay"></div>
+            <div class="content">
+                <div class="close-btn" onclick="reload()">&times;</div>
+                <h1>Time Out Successful</h1>
+                <div class="otp-button"><button id="register-button" onclick="reload()">Confirm</button></div>
+                </form>
+            </div>
+        </div>
+    
 
     <div class="log-buttons">
-        <button type="button" id="time-in-btn" onclick="timeIn()">
+        <button type="button" id="time-in-btn" onclick="timeIn(); togglePopup2()">
             <i class="fi fi-rr-enter"></i>
             <p>Time-in</p>
         </button>
-        <button type="button" id="time-out-btn" onclick="enableTimeIn()" disabled>
+        <button type="button" id="time-out-btn" onclick="enableTimeIn(); togglePopup3()" disabled>
             <i class="fi fi-rr-exit"></i>
             <p>Time-out</p>   
         </button>  
