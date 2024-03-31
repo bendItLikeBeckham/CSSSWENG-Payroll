@@ -1,5 +1,3 @@
-console.log(process.env.TZ);//to check the timezone
-
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
@@ -50,7 +48,7 @@ app.use('/', routes);
 //not what happens to the fetch values when the payroll website is on render
 //what happens when the payroll is opened on monday would it not update the payroll since it is passed sunday 12am
 // schedule.scheduleJob('0 0 * * 0', function(){//uncomment this after checking
-schedule.scheduleJob('27 2 * * 0', function(){
+schedule.scheduleJob('50 14 * * 0', function(){
     //call to routes
     console.log("Updating payroll!!");
 
