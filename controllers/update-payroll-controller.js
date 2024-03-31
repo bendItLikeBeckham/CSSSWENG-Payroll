@@ -5,12 +5,13 @@ const database = require('../models/database.js');
 const update_payroll_controller = {
     post_update_employee_payroll: async function (req, res){
         console.log("post update employee payroll");
-        const employee_email_data = await database.findMany(employee, {Employee_Type: "Employee"});
+        const employee_email_data = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
 
         if(employee_email_data.length > 0){
             console.log("email data: " + employee_email_data);
             for(let i = 0; i < employee_email_data.length; i++){
-                const employee_email = employee_email_data[i];
+                const employee_email = employee_email_data[i].Email;
+                console.log("employee email: " + employee_email);//++
 
                 const week_1 = await database.findOne(payroll, {Email: employee_email, Week: 1});
                 const week_0 = await database.findOne(payroll, {Email: employee_email, Week: 0});

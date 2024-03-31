@@ -40,6 +40,7 @@ app.use('/', routes);
 //not what happens to the fetch values when the payroll website is on render
 //what happens when the payroll is opened on monday would it not update the payroll since it is passed sunday 12am
 schedule.scheduleJob('0 0 * * 0', function(){
+    // schedule.scheduleJob('34 21 * * 0', function(){
     //schedule.scheduleJob('*/3 * * * * *', function(){
         //call to routes
         console.log("updating payroll!!");
