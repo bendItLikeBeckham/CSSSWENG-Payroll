@@ -53,9 +53,9 @@ const otp_controller = {
         }
       },
 
-      get_otp_page: (req, res)=>{
-        res.render("otp-page");
-      }
+      // get_otp_page: (req, res)=>{
+      //   res.render("otp-page");
+      // }
 }
 
 module.exports = otp_controller;
