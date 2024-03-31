@@ -53,7 +53,19 @@ function timeIn(){
 function togglePopup(){
     closeBtn();
     generateOtp();
-    otp_window();
+    //otp_window(); 
+}
+
+function togglePopup2(){
+  document.getElementById("popup-3").classList.toggle("active");
+}
+
+function togglePopup3(){
+  document.getElementById("popup-4").classList.toggle("active");
+}
+
+function reload(){
+  location.reload()
 }
 
 function closeBtn(){
@@ -62,7 +74,7 @@ function closeBtn(){
 
 function generateOtpAndOpenOTPWindow(){
   generateOtp();
-  otp_window();
+  //otp_window();
 }
 
 function generateOtp(){
@@ -146,7 +158,7 @@ function generateOtp(){
     document.getElementById("time-out-btn").disabled = false;
   }
 
-  function otp_window(){
-    //add here
-    window.open('/otp_page', '_blank');//check for wfh
-  }
+  // function otp_window(){
+  //   //add here
+  //   window.open('/otp_page', '_blank');//check for wfh
+  // }
