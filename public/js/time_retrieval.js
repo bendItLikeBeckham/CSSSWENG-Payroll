@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let current_time = new Date();
         let hours = current_time.getHours();
         let minutes = current_time.getMinutes();
+        let weekdayIndex = current_time.getDay();
 
         console.log("TO hour: " + hours); //remove later
         console.log("TO minutes: " + minutes); //remove later
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 body: JSON.stringify({
                   TO_hour: hours,
                   TO_minute: minutes,
+                  TO_weekdayIndex: weekdayIndex
                 }),
             });
             const data = await response.json();

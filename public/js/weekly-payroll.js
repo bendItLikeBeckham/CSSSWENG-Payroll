@@ -27,8 +27,65 @@ function dropdown(){
     var emp_mgm_page_select = document.getElementById("emp-mgm-page-id"); 
     const Ti_To_logs_btn = document.getElementById("Ti-To-logs-id");
     var emp_dropdown_select = document.getElementById("emp-dropdown-id");
-    const payroll_changes_btn = document.getElementById("payroll-changes-btn");
-    payroll_changes_btn.addEventListener('click', w_e_selected);//maybe check for valid inputs first
+    var payroll_id = document.querySelector('input[name="payroll-id"]').value;
+    // const payroll_changes_btn = document.getElementById("payroll-changes-btn");
+    // payroll_changes_btn.addEventListener('click', w_e_selected);//maybe check for valid inputs first
+    
+    const payroll_pph_changes_btn = document.getElementById("payroll-pph-changes-btn");
+    payroll_pph_changes_btn.addEventListener('click', function(){
+        if(payroll_id && week_index === 0){
+            const pph_c = document.getElementById("pph-id").value;
+            validateInputPPH(pph_c);
+        }else if(payroll_id && week_index !== 0){
+            alert("Error: Only current week is adjustable.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }else{
+            alert("Select a week and an employee first.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }
+    })
+
+    const payroll_additional_changes_btn = document.getElementById("payroll-additional-changes-btn");
+    payroll_additional_changes_btn.addEventListener('click', function(){
+        if(payroll_id && week_index === 0){
+            const additional_c = document.getElementById("add-id").value;
+            validateInput(additional_c);
+        }else if(payroll_id && week_index !== 0){
+            alert("Error: Only current week is adjustable.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }else{
+            alert("Select a week and an employee first.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }
+    })
+
+    const payroll_advance_changes_btn = document.getElementById("payroll-advance-changes-btn");
+    payroll_advance_changes_btn.addEventListener('click', function(){
+        if(payroll_id && week_index === 0){
+            const advance_c = document.getElementById("adv-id").value;
+            validateInput(advance_c);
+        }else if(payroll_id && week_index !== 0){
+            alert("Error: Only current week is adjustable.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }else{
+            alert("Select a week and an employee first.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }
+    })
+
+    const payroll_deduction_changes_btn = document.getElementById("payroll-deduction-changes-btn");
+    payroll_deduction_changes_btn.addEventListener('click', function(){
+        if(payroll_id && week_index === 0){
+            const deduction_c = document.getElementById("ded-id").value;
+            validateInput(deduction_c);
+        }else if(payroll_id && week_index !== 0){
+            alert("Error: Only current week is adjustable.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }else{
+            alert("Select a week and an employee first.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }
+    })
 
     emp_mgm_page_select.addEventListener('change', function(){
         const selected_page = emp_mgm_page_select.value;
@@ -90,34 +147,86 @@ function dropdown(){
     })
 
     //validation etc.
-    function w_e_selected(){
-        var payroll_id = document.querySelector('input[name="payroll-id"]').value;
-        if(payroll_id && week_index === 0){
-            validateInput()
-        }else if(payroll_id && week_index !== 0){
-            alert("Error: Only current week is adjustable.");
-            document.getElementById("weekly-payroll-form-id").reset();
-        }else{
-            alert("Select a week and an employee first.");
-            document.getElementById("weekly-payroll-form-id").reset();
-        }
-    }
+    // function w_e_selected(){
+    //     var payroll_id = document.querySelector('input[name="payroll-id"]').value;
+    //     if(payroll_id && week_index === 0){
+    //         //validateInput()
+    //         const pph_c = document.getElementById("pph-id").value;
+    //         const additional_c = document.getElementById("add-id").value;
+    //         const advance_c = document.getElementById("adv-id").value;
+    //         const deduction_c = document.getElementById("ded-id").value;
+
+    //         console.log("pph: ", pph_c);//remove logs later
+    //         console.log("additional: ", additional_c);
+    //         console.log("advance: ", advance_c);
+    //         console.log("deduction: ", deduction_c);
+            
+    //         var bool_pph = validateInput(pph_c);
+    //         var bool_additional = validateInput(additional_c);
+    //         var bool_advance = validateInput(advance_c);
+    //         var bool_deduction = validateInput(deduction_c);
+
+    //         if(bool_pph === false || bool_additional === false || bool_advance === false || bool_deduction === false){
+    //             alert("Please enter a valid non-negative integer.");
+    //             document.getElementById("weekly-payroll-form-id").reset();
+    //         }else{
+    //             // showConfirmMessage();
+    //             console.log("Proceeding with showConfirmMessage function");
+    //         }
+
+        // }else if(payroll_id && week_index !== 0){
+        //     alert("Error: Only current week is adjustable.");
+        //     document.getElementById("weekly-payroll-form-id").reset();
+        // }else{
+        //     alert("Select a week and an employee first.");
+        //     document.getElementById("weekly-payroll-form-id").reset();
+        // }
+    // }
     
-    function validateInput() {
-        const pph_c = document.getElementById("pph-id").value;
-        const additional_c = document.getElementById("add-id").value;
-        const advance_c = document.getElementById("adv-id").value;
-        const deduction_c = document.getElementById("ded-id").value;
-        if (isNaN(parseFloat(pph_c)) || parseFloat(pph_c) < 0 || pph_c.includes('/') || pph_c.includes('-') || pph_c === '.' ||
-        isNaN(parseFloat(additional_c)) || parseFloat(additional_c) < 0 || additional_c.includes('/') || additional_c.includes('-') || additional_c === '.' ||
-        isNaN(parseFloat(advance_c)) || parseFloat(advance_c) < 0 || advance_c.includes('/') || advance_c.includes('-') || advance_c === '.' ||
-        isNaN(parseFloat(deduction_c)) || parseFloat(deduction_c) < 0 || deduction_c.includes('/') || deduction_c.includes('-')  || deduction_c === '.') {
+
+    //++
+    function validateInputPPH(input){//parsefloat input <0 except for pph_c
+        if(isNaN(parseFloat(input)) || parseFloat(input) < 1 || input.includes('/') || input.includes('-') || input === '.'){
             alert("Please enter a valid non-negative integer.");
             document.getElementById("weekly-payroll-form-id").reset();
         }else{
             showConfirmMessage();
+            console.log("Proceeding with showConfirmMessage function");
         }
     }
+
+    function validateInput(input){//parsefloat input <0 except for pph_c
+        if(isNaN(parseFloat(input)) || parseFloat(input) < 0 || input.includes('/') || input.includes('-') || input === '.'){
+            alert("Please enter a valid non-negative integer.");
+            document.getElementById("weekly-payroll-form-id").reset();
+        }else{
+            showConfirmMessage();
+            console.log("Proceeding with showConfirmMessage function");
+        }
+    }
+    //--
+
+    // if (isNaN(value) || value < 0 || value.includes('/') || value.includes('-')) {
+    //     alert("Please enter a valid non-negative integer for " + inputType + ".");
+    //     document.querySelector("input[type='number'][oninput*='" + inputType + "']").value = "";
+    // }
+
+    // function validateInput() {
+    //     const pph_c = document.getElementById("pph-id").value;
+    //     const additional_c = document.getElementById("add-id").value;
+    //     const advance_c = document.getElementById("adv-id").value;
+    //     const deduction_c = document.getElementById("ded-id").value;
+    //     if (isNaN(parseFloat(pph_c)) || parseFloat(pph_c) < 1 || pph_c.includes('/') || pph_c.includes('-') || pph_c === '.' ||
+    //     isNaN(parseFloat(additional_c)) || parseFloat(additional_c) < 0 || additional_c.includes('/') || additional_c.includes('-') || additional_c === '.' ||
+    //     isNaN(parseFloat(advance_c)) || parseFloat(advance_c) < 0 || advance_c.includes('/') || advance_c.includes('-') || advance_c === '.' ||
+    //     isNaN(parseFloat(deduction_c)) || parseFloat(deduction_c) < 0 || deduction_c.includes('/') || deduction_c.includes('-')  || deduction_c === '.') {
+    //         alert("Please enter a valid non-negative integer.");
+    //         document.getElementById("weekly-payroll-form-id").reset();
+    //     }else{
+    //         showConfirmMessage();
+    //     }
+    // }
+
 
     function showConfirmMessage(){
         var confirmation = confirm("Are you sure you want to confirm the new value for this week?");
@@ -131,23 +240,47 @@ function dropdown(){
 
     async function update_payroll(){
         var payroll_id = document.querySelector('input[name="payroll-id"]').value;
+        
         const pph_0 = document.getElementById("pph-id").value;
-        const pph = parseFloat(pph_0);
-
-        const ppm = (pph/60).toFixed(2);
+        var pph, ppm;
+        if(pph_0 !== ""){
+            pph = parseFloat(pph_0);
+            ppm = (pph/60).toFixed(2);
+        }else{
+            pph = false;
+            ppm = false;
+        }
+        
         const additional_0 = document.getElementById("add-id").value;
-        const additional = parseFloat(additional_0);
+        var additional;
+        if(additional_0 !== ""){
+            additional = parseFloat(additional_0);
+        }else{
+            additional = false;
+        }
+        
         const advance_0 = document.getElementById("adv-id").value;
-        const advance = parseFloat(advance_0);
-        const deduction_0 = document.getElementById("ded-id").value;
-        const deduction = parseFloat(deduction_0);
+        var advance;
+        if(advance_0 !== ""){
+            advance = parseFloat(advance_0);
+        }else{
+            advance = false;
+        }
 
-        console.log("PPH: " + pph);
-        console.log("PPM: " + ppm);
-        console.log("additional: " + additional);
-        console.log("advance: " + advance);
-        console.log("deduction : " + deduction);
-        console.log("payroll-id: " + payroll_id);
+        const deduction_0 = document.getElementById("ded-id").value;
+        var deduction;
+        if(deduction_0 !== ""){
+            deduction = parseFloat(deduction_0);
+        }else{
+            deduction = false;
+        }
+        
+        // console.log("PPH: " + pph);
+        // console.log("PPM: " + ppm);
+        // console.log("additional: " + additional);
+        // console.log("advance: " + advance);
+        // console.log("deduction : " + deduction);
+        // console.log("payroll-id: " + payroll_id);
 
         // try{
         //     const response = await fetch('/admin_update_payroll', {

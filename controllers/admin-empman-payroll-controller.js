@@ -75,7 +75,7 @@ const admin_empman_payroll_controller = {
         var sat_t_pay = upd_pay.Sat_Total_Pay;
         var sun_t_pay = upd_pay.Sun_Total_Pay;
 
-        if(PPH){
+        if(Additional === false && Advance === false && Deduction === false){
             mon_t_pay = (upd_pay.Mon_Hours * PPH) + (upd_pay.Mon_Minutes * PPM);
             tue_t_pay = (upd_pay.Tue_Hours * PPH) + (upd_pay.Tue_Minutes * PPM);
             wed_t_pay = (upd_pay.Wed_Hours * PPH) + (upd_pay.Wed_Minutes * PPM);
@@ -84,6 +84,15 @@ const admin_empman_payroll_controller = {
             sat_t_pay = (upd_pay.Sat_Hours * PPH) + (upd_pay.Sat_Minutes * PPM);
             sun_t_pay = (upd_pay.Sun_Hours * PPH) + (upd_pay.Sun_Minutes * PPM);
         }
+        // if(PPH){
+        //     mon_t_pay = (upd_pay.Mon_Hours * PPH) + (upd_pay.Mon_Minutes * PPM);
+        //     tue_t_pay = (upd_pay.Tue_Hours * PPH) + (upd_pay.Tue_Minutes * PPM);
+        //     wed_t_pay = (upd_pay.Wed_Hours * PPH) + (upd_pay.Wed_Minutes * PPM);
+        //     thu_t_pay = (upd_pay.Thu_Hours * PPH) + (upd_pay.Thu_Minutes * PPM);
+        //     fri_t_pay = (upd_pay.Fri_Hours * PPH) + (upd_pay.Fri_Minutes * PPM);
+        //     sat_t_pay = (upd_pay.Sat_Hours * PPH) + (upd_pay.Sat_Minutes * PPM);
+        //     sun_t_pay = (upd_pay.Sun_Hours * PPH) + (upd_pay.Sun_Minutes * PPM);
+        // }
 
         var weekly_pay_total = mon_t_pay + tue_t_pay + wed_t_pay + 
             thu_t_pay + fri_t_pay + sat_t_pay;
@@ -92,7 +101,7 @@ const admin_empman_payroll_controller = {
         var adv;
         var ded;
 
-        if(Additional === ""){
+        if(Additional === false){
             weekly_pay_total += upd_pay.Weekly_Total_Additional;
             add = upd_pay.Weekly_Total_Additional;
         }else{
@@ -100,7 +109,7 @@ const admin_empman_payroll_controller = {
             add = Additional;
         }
 
-        if(Advance === ""){
+        if(Advance === false){
             weekly_pay_total += upd_pay.Weekly_Total_Advance;
             adv = upd_pay.Weekly_Total_Advance;
         }else{
@@ -108,7 +117,7 @@ const admin_empman_payroll_controller = {
             adv = Advance;
         }
 
-        if(Deduction === ""){
+        if(Deduction === false){
             weekly_pay_total -= upd_pay.Weekly_Total_Deduction;
             ded = upd_pay.Weekly_Total_Deduction;
         }else{
