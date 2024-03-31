@@ -1,3 +1,5 @@
+console.log(process.env.TZ);//to check the timezone
+
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
