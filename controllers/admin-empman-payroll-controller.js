@@ -28,7 +28,7 @@ const admin_empman_payroll_controller = {
             res.status(500).send("Internal Server Error!");
         }
     }, 
-
+    
     //start here
     get_emp_wpay: async function(req, res){
         const selected_employee = req.query.employee;
