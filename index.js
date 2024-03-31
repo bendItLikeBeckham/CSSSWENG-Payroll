@@ -44,19 +44,20 @@ app.use('/', routes);
 
 //not what happens to the fetch values when the payroll website is on render
 //what happens when the payroll is opened on monday would it not update the payroll since it is passed sunday 12am
-schedule.scheduleJob('0 0 * * 0', function(){
-    //schedule.scheduleJob('*/3 * * * * *', function(){
-        //call to routes
-        console.log("updating payroll!!");
-    
-        //fetch("/update_employee_payroll");
-        fetch(`http://${hostname}:${port}/update_employee_payroll`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            }, 
-        });
+// schedule.scheduleJob('0 0 * * 0', function(){//uncomment this after checking
+    schedule.scheduleJob('0 19 * * 1', function(){
+//schedule.scheduleJob('*/3 * * * * *', function(){
+    //call to routes
+    console.log("updating payroll!!");
+
+    //fetch("/update_employee_payroll");
+    fetch(`http://${hostname}:${port}/update_employee_payroll`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }, 
     });
+});
 
 app.use(function(req, res){
     res.status(404).send('Error 404: Page Not Found');
