@@ -16,6 +16,23 @@ document.addEventListener("DOMContentLoaded", function(){
 
         console.log(first_name_input);
 
+        if (!first_name_input || !last_name_input || !password_input || !address_input) {
+            alert("Please fill in all fields");
+            return; 
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email_input)) {
+            alert("Invalid email format");
+            return;
+        }
+
+        const contactRegex =/^09\d{9}$/
+        if (!contactRegex.test(contact_input)) {
+            alert("Invalid contact number format");
+            return;
+        }
+
         try{
             const response = await fetch('/register_employee', {
                 method: 'POST',
@@ -35,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function(){
             const data = await response.json();
             if(data.success){
                 togglePopup();
+                togglePopup2();
             }else{
                 //error_message.textContent = data.message;
                 console.log(data.message);

@@ -7,8 +7,7 @@ const session = require('express-session');
 const database = require('./models/database.js');
 
 const schedule = require('node-schedule');//might remove this
-// const cron = require('node-cron');
-// const axios = require('axios');
+const axios = require('axios');
 
 const MongoStore = require('connect-mongo');
 
@@ -49,19 +48,20 @@ app.use('/', routes);
 //not what happens to the fetch values when the payroll website is on render
 //what happens when the payroll is opened on monday would it not update the payroll since it is passed sunday 12am
 // schedule.scheduleJob('0 0 * * 0', function(){//uncomment this after checking
-schedule.scheduleJob('40 20 * * 0', function(){
+schedule.scheduleJob('58 21 * * 0', function(){
     //call to routes
     console.log("updating payroll!!");
 
     //fetch("/update_employee_payroll");
     // fetch(`http://${hostname}:${port}/update_employee_payroll`, {
-    fetch(`https://payroll-os1n.onrender.com/update_employee_payroll`, {
+    axios.post('https://payroll-os1n.onrender.com/update_employee_payroll')
     // fetch("/update_employee_payroll", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        }, 
-    });
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 });
 
 app.use(function(req, res){
