@@ -29,9 +29,9 @@ document.addEventListener("DOMContentLoaded", function(){
             
             if(data.success){
                 if(data.type === "Emp"){
-                    window.location.href = '/employee_clockpage';
+                    
                 }else{
-                    window.location.href = '/work_from_home_clockpage';
+                   
                 }
             }else{
                 console.log("unsuccesful");
