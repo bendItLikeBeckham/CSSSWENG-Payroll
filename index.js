@@ -6,6 +6,7 @@ const hbs = require('hbs');
 const session = require('express-session');
 const database = require('./models/database.js');
 const schedule = require('node-schedule');
+const MongoStore = require('connect-mongo');
 
 const app = express();
 
@@ -29,8 +30,12 @@ app.use(session({
     secret: 'session-secret-key', // Replace with your secret key
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: 'mongodb+srv://Admin_Acc:6rtztqN8cgcS6uwg@payrollcluster.ho2w0w9.mongodb.net/'
+    }),
     cookie: { 
-        httpOnly: true 
+        httpOnly: true, 
+        maxAge: 24 * 60 * 60 * 1000
     }
 }));
 
