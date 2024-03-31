@@ -48,7 +48,8 @@
                 <select id="email" onchange="displayDetail()"><!-- Placeholder info -->
                     <option>Select User</option>
                     {{#each emp_emails}}
-                    <option>{{this.Last_Name}} - {{this.Email}}</option>
+                    {{!-- <option>{{this.Last_Name}} - {{this.Email}}</option> --}}
+                    <option>{{this.Email}}</option>
                     {{/each}}
                 </select>
             </div>  
