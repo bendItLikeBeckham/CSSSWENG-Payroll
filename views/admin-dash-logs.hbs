@@ -73,6 +73,14 @@
                 <td>{{this.Sat_Hours}}</td>
             </tr>
             {{/if}}
+            {{#if (eq @root.d_week "Sunday")}}
+            <tr>
+                <td>{{this.Email}}</td>
+                <td>{{this.Sun_Time_In}}</td>
+                <td>{{this.Sun_Time_Out}}</td>
+                <td>{{this.Sun_Hours}}</td>
+            </tr>
+            {{/if}}
             {{/each}}
         </table>
     </div>
