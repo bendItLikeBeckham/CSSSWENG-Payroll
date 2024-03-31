@@ -53,7 +53,7 @@ function timeIn(){
 function togglePopup(){
     closeBtn();
     generateOtp();
-    otp_window();
+    //otp_window(); 
 }
 
 function closeBtn(){
@@ -62,7 +62,7 @@ function closeBtn(){
 
 function generateOtpAndOpenOTPWindow(){
   generateOtp();
-  otp_window();
+  //otp_window();
 }
 
 function generateOtp(){
@@ -146,7 +146,7 @@ function generateOtp(){
     document.getElementById("time-out-btn").disabled = false;
   }
 
-  function otp_window(){
-    //add here
-    window.open('/otp_page', '_blank');//check for wfh
-  }
+  // function otp_window(){
+  //   //add here
+  //   window.open('/otp_page', '_blank');//check for wfh
+  // }
