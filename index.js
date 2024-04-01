@@ -52,7 +52,7 @@ app.use(session({
 app.use('/', routes);
 
 //PST: Sunday 12am/ UTC: Saturday 4pm
-schedule.scheduleJob('39 23 * * 1', function(){
+schedule.scheduleJob('0 0 * * 0', function(){
     axios.post(`http://${hostname}:${port}/update_employee_payroll`)
         .then(response => {
             console.log(response.data);
