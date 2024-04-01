@@ -1,14 +1,11 @@
-/*document.addEventListener("DOMContentLoaded", function(){
-    var delete_button_submit = document.getElementById("user-delete-button");
-    delete_button_submit.addEventListener('click', delete_function);
-
-
-});*/
+/*
+Functions:
+-Request to server-side to display the data of the chosen employee
+-Request to server-side to delete the employee and its corresponding documents
+*/
 
 async function delete_function(){
-
     var email_input = document.getElementById("emailToDelete").textContent;
-    console.log(email_input);
 
     try{
         const response = await fetch('/delete_chosen_user', {
@@ -25,12 +22,10 @@ async function delete_function(){
             togglePopup();
             console.log("Data Sent")
         }else{
-            //error_message.textContent = data.message;
             console.log(data.message);
         }
     }catch(error){
         console.error(error);
-        //error_message.textContent = "Register Controller Error";
     }
 }
 
@@ -42,7 +37,7 @@ function displayDetail(){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: selectedEmployee }), // Pass the selected email
+        body: JSON.stringify({ email: selectedEmployee }),
     })
     .then(response => {
         if (!response.ok) {

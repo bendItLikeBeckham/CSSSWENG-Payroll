@@ -1,16 +1,16 @@
-//old payroll_model.js
-var mongoose = require('mongoose');
-
 /*
-the total per day for now i can just use calculations
+Functions:
+Payroll model/attributes
 */
 
+var mongoose = require('mongoose');
+
 var payroll_schema = new mongoose.Schema({
-    Email: { // or is it Username or /id
+    Email: {
         type: String,
         required: true
     },
-    Week: {//change
+    Week: {
         type: Number,
         required: true
     },

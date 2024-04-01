@@ -1,3 +1,8 @@
+/*
+Functions:
+OTP model/attributes
+*/
+
 var mongoose = require('mongoose');
 
 var Current_otp = new mongoose.Schema({

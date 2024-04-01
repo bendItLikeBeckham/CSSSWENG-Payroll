@@ -8,8 +8,6 @@
 </head>
 <body>
 <div class="left-payroll admin-leftdash">
-    {{!-- added forms --}}
-    {{!-- <form id="weekly-payroll-form-id"> --}}
     <div class="admin-leftdash-top">
         <h2>Employee Management</h2>
         <div class="empman-header">
@@ -21,10 +19,9 @@
             </div>
             <div class="dropdown">
                 <label>Employee:</label>
-                <select id="emp-dropdown-id"><!-- Placeholder info -->
+                <select id="emp-dropdown-id">
                     <option id="current-emp-option">Select</option>
                     {{#each emp_total}}
-                    {{!-- <option>{{this.Last_Name}} - {{this.Email}}</option> --}}
                     <option>{{this.Email}}</option>
                     {{/each}}
                 </select>
@@ -32,28 +29,18 @@
         </div>
         <div class="empman-midhead">
             <div class="dropdown" id="select-week-dropdown-id">
-                {{!-- <p>Select Week:</p> --}}
                 <label>Select Week:</label>
                 <select id="emp-dropdown-week-id" focusIndex="-1">
-                    {{!-- default display week 0 --}}
                     <option id="current-week-option">Select Week</option>
-                    {{!-- <input type="hidden" name="week-0-id" value="{{emp_wpay._id}}"> --}}
                     <option>Current Week</option>
-                    {{!-- <input type="hidden" name="week-0-id" value="{{emp_wpay._id}}"> --}}
                     <option>Last Week</option>
-                    {{!-- <input type="hidden" name="week-1-id" value="{{emp_wpay._id}}"> --}}
                     <option>2 Weeks Ago</option>
                 </select>
-                
-
-                {{!-- <input type="week"> --}}
             </div>
             <div class="num-input">
                 <p>Pay Per Hour: {{emp_wpay.Weekly_Hourly_Rate}}</p>
                 <form id="PPH-form-id">
                 <input type="number" id="pph-id">  
-                {{!-- <p>Pay Per Minute:</p>
-                <input type="number" id="ppm-id">   --}}
                 <input type="hidden" name="payroll-id" value="{{emp_wpay._id}}">
                 <button type="button" id="payroll-pph-changes-btn">SUBMIT</button>
                 </form>
@@ -152,7 +139,6 @@
             </tr>
         </table>
     </div>
-    {{!-- note to self test forms - joaquin --}}
     <div class="empman-btm">
         <div class="num-input-1">
             <p>Additional: {{emp_wpay.Weekly_Total_Additional}}</p>
@@ -173,19 +159,11 @@
                 <input type="hidden" name="payroll-id" value="{{emp_wpay._id}}">
                 <button type="button" id="payroll-deduction-changes-btn">SUBMIT</button>
             </form>
-            {{!-- change the button later --}}
-            {{!-- <br>
-            <br>
-            <input type="hidden" name="payroll-id" value="{{emp_wpay._id}}">
-            <button type="button" id="payroll-changes-btn">SUBMIT</button>   --}}
         </div>
         <div>
-            {{!-- <h3>Total Calculated Rate:</h3> --}}
             <h1>Total Pay:{{emp_wpay.Weekly_Total_Pay}}</h1>
         </div>
     </div>
-    {{!-- end of changes --}}
-    {{!-- </form> --}}
 </div>
 <div class="right-payroll right-emp-dash">
     <div class="admin-rightdash-top">
@@ -213,7 +191,6 @@
         </button>
     </div>
     <div class="admin-rightdash-bottom">
-        {{!-- <h2>Log-out</h2>    --}}
         <h2><a href="/logout">Log-Out</a></h2>
     </div>
 </div>

@@ -1,6 +1,10 @@
-document.addEventListener("DOMContentLoaded", function (){
-    console.log("DOM display employee summary");
+/*
+Functions:
+-Request data for Admin: Time-In/Out Logs
+-Implemented Sidebar button functions
+*/
 
+document.addEventListener("DOMContentLoaded", function (){
     current_date_logs();
 
     var input_date = document.getElementById("get-date-id");
@@ -26,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function (){
         var day_of_the_week = day2.getDay();
         var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         var day_name = day_names[day_of_the_week];
-        console.log("Day of the week: " + day_name);
 
         fetch(`/retrieve_employee_summary?s_date=${current_date}&d_week=${day_name}`)
         .then(response =>{
@@ -48,13 +51,11 @@ document.addEventListener("DOMContentLoaded", function (){
 function get_date (){
     var input_date = document.getElementById("get-date-id");
     var selected_date = input_date.value;
-    console.log("selected date: " + selected_date);
 
     var day = new Date(selected_date);
     var day_of_the_week = day.getDay();
     var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var day_name = day_names[day_of_the_week];
-    console.log("Day of the week: " + day_name);
 
     fetch(`/retrieve_employee_summary?s_date=${selected_date}&d_week=${day_name}`)
     .then(response =>{

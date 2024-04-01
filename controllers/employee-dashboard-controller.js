@@ -1,5 +1,11 @@
-const payroll = require('../models/payroll_model.js'); // to be implemented later
-const employee = require('../models/employee_model.js'); // to be implemented later
+/*
+Functions:
+-Display the employee-dashboard.hbs (Employee Dashboard Page)
+-Populate the page with the current logged in employee
+*/
+
+const payroll = require('../models/payroll_model.js');
+const employee = require('../models/employee_model.js');
 const database = require('../models/database.js');
 
 const employee_dashboard_controller = {
@@ -14,17 +20,12 @@ const employee_dashboard_controller = {
         }
     },
 
-    get_employee_details: async function (req, res){//employee dashboard details
-        console.log("get_employee_details part here");
+    get_employee_details: async function (req, res){
         employee_email = req.session.Email;
         selectedWeek = req.body.week
-        console.log(selectedWeek);
-        console.log(employee_email);
         try{
             const emp_det = await database.findOne(payroll, {Email: employee_email, Week : selectedWeek});
             const emp_rec = await database.findOne(employee, {Email: employee_email});
-            
-            console.log("emp_det data: " + emp_det);
 
             var Weekly_Minute_Rate = (emp_det.Weekly_Hourly_Rate/60).toFixed(2);
             var Total_Hour_Rate = [];
@@ -58,7 +59,6 @@ const employee_dashboard_controller = {
                 if (num < 10){
                     num = "0" + num
                 }
-                console.log(num)
                 return num
             }
 

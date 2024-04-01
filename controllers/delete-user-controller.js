@@ -1,3 +1,10 @@
+/*
+Functions:
+-Display the delete-user.hbs (Admin: Delete Employee Page)
+-Populate the page with employee details corresponding to the chosen employee
+-Delete the documents in the mongodb regarding the chosen employee
+*/
+
 const employee = require('../models/employee_model.js');
 const payroll = require('../models/payroll_model.js');
 const database = require('../models/database.js');
@@ -31,8 +38,6 @@ const delete_user_controller = {
         });
         try {
             const emp_sum = await employee.findOne({ Email: email });
-    
-            console.log("emp_sum data: " + emp_sum);
     
             res.render("delete-user", {emp_sum, emp_emails});
         } catch (error) {

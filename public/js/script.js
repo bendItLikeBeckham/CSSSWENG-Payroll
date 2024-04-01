@@ -1,3 +1,8 @@
+/*
+Functions:
+-Display of local date and time
+*/
+
 setInterval(()=>{
     const time = document.querySelector("#time");
     const date = document.querySelector("#date");

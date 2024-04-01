@@ -1,3 +1,8 @@
+/*
+Functions:
+Employee model/attributes
+*/
+
 var mongoose = require('mongoose');
 
 var employee_schema = new mongoose.Schema({
@@ -13,7 +18,7 @@ var employee_schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Email: { // or is it Username
+    Email: {
         type: String,
         required: true
     },

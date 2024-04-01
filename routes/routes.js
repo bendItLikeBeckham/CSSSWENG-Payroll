@@ -1,3 +1,9 @@
+/*
+Functions:
+-Routing of the web service pages and CRUD operations
+-Routing access limitations depending if the employee is logged in and employee type
+*/
+
 const controllers = require('../controllers/controller');
 const login_controllers = require('../controllers/login-controller');
 const employee_dashboard_controllers = require('../controllers/employee-dashboard-controller');
@@ -6,7 +12,6 @@ const logout_controllers = require('../controllers/logout-controller');
 const otp_controller = require('../controllers/otp-controller');
 const admin_dash_logs_controllers = require('../controllers/admin-dash-logs-controller');
 const delete_user_controller = require('../controllers/delete-user-controller');
-const admin_empman_attendrecs_controllers = require('../controllers/admin-empman-attendrecs-controller');
 const admin_empman_emprecs_controllers = require('../controllers/admin-empman-emprecs-controller');
 const admin_empman_payroll_controllers = require('../controllers/admin-empman-payroll-controller');
 const update_payroll_controllers = require('../controllers/update-payroll-controller');
@@ -16,7 +21,6 @@ const admin_notifs_controllers = require('../controllers/admin-notifs-controller
 const register_controllers = require('../controllers/register-controller');
  
 const express = require('express');
-const logout_controller = require('../controllers/logout-controller');
 const app = express();
 app.use(express.json());
 
@@ -77,9 +81,8 @@ function admin_access(req, res, next){
 }
 
 
-//include logic for these four req.session.Email must not exist
+//initial routes access
 app.get('/', must_be_logged_out, controllers.get_index);
-app.get('/forgot_password', must_be_logged_out, forgot_password_controllers.get_forgot_password);
 app.post('/add_forgot_password', must_be_logged_out, forgot_password_controllers.post_add_forgot_password);
 app.post('/login_account', must_be_logged_out, login_controllers.post_login);
 app.get('/logout', initial_process, logout_controllers.get_logout);
@@ -91,8 +94,6 @@ app.get('/work_from_home_clockpage', initial_process, employee_wfh_access, wfh_a
 app.get('/employee_clockpage', initial_process, employee_wfh_access, employee_access, employee_clockpage_controllers.get_employee_clockpage);
 app.post('/generate_otp', initial_process, employee_wfh_access, employee_access, otp_controller.post_generate_otp);
 app.post('/verify_otp', initial_process, employee_wfh_access, employee_access, otp_controller.post_verify_otp); 
-app.get('/get_otp', initial_process, employee_wfh_access, employee_access, otp_controller.get_current_otp);
-// app.get('/otp_page', otp_controller.get_otp_page);
 
 //employee and wfh routes access
 app.get('/time_in_status', initial_process, employee_wfh_access, employee_clockpage_controllers.get_employee_time_in_status);
@@ -109,10 +110,7 @@ app.get('/retrieve_employee_summary', initial_process, admin_access, admin_dash_
 app.get('/delete_user', initial_process, admin_access, delete_user_controller.get_delete_user );
 app.post('/delete_chosen_user', initial_process, admin_access, delete_user_controller.post_delete_user);
 app.post('/display_delete_info', initial_process, admin_access, delete_user_controller.post_display_info);
-app.get('/admin_empman_attendrecs', initial_process, admin_access, admin_empman_attendrecs_controllers.get_admin_empman_attendrecs);
 app.get('/admin_empman_payroll', initial_process, admin_access, admin_empman_payroll_controllers.get_admin_empman_payroll);
-app.get('/admin_retrieve_employee_total_ar', initial_process, admin_access, admin_empman_attendrecs_controllers.get_emp_total);
-app.get('/admin_retrieve_emp_pay', initial_process, admin_access, admin_empman_attendrecs_controllers.get_emp_pay);
 app.get('/admin_empman_emprecs', initial_process, admin_access, admin_empman_emprecs_controllers.get_emprecs);
 app.post('/display_specific_employee_records', initial_process, admin_access, admin_empman_emprecs_controllers.post_specific_emprecs);
 app.get('/admin_retrieve_employee_total_wp', initial_process, admin_access, admin_empman_payroll_controllers.get_emp_total);
@@ -122,8 +120,5 @@ app.post('/update_employee_payroll', initial_process, admin_access, update_payro
 app.get('/admin_notifs', initial_process, admin_access, admin_notifs_controllers.get_admin_notifs);
 app.get('/display_forgot_password', initial_process, admin_access, admin_notifs_controllers.get_forgot_password);
 app.post('/delete_forgot_password', initial_process, admin_access, forgot_password_controllers.post_delete_forgot_password);
-//app.get('/admin_retrieve_employee_total_ei', admin_empman_emprecs_controllers.get_emp_total);
-//app.get('/admin_retrieve_emp_det', admin_empman_emprecs_controllers.get_emp_det);
-//app.get('/admin_empman_emprecs', admin_empman_emprecs_controllers.get_admin_empman_emprecs); 
 
 module.exports = app;

@@ -1,9 +1,13 @@
+/*
+Functions:
+-Request to server-side for new employee creation with the details inputted
+*/
+
 document.addEventListener("DOMContentLoaded", function(){
     var register_button_submit = document.getElementById("register-button");
     register_button_submit.addEventListener('click', register_function);
 
     async function register_function(event){
-        console.log("register part");
         event.preventDefault();
 
         var first_name_input = document.getElementById("firstName").value;
@@ -13,8 +17,6 @@ document.addEventListener("DOMContentLoaded", function(){
         var password_input = document.getElementById("password").value;
         var address_input = document.getElementById("address").value;
         var employee_type_input = document.getElementById("employee-type").value;
-
-        console.log(first_name_input);
 
         if (!first_name_input || !last_name_input || !password_input || !address_input) {
             alert("Please fill in all fields");
@@ -54,12 +56,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 togglePopup();
                 togglePopup2();
             }else{
-                //error_message.textContent = data.message;
                 console.log(data.message);
             }
         }catch(error){
             console.error(error);
-            //error_message.textContent = "Register Controller Error";
         }
     }
 

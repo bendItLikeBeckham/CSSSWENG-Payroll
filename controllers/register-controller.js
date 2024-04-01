@@ -1,3 +1,9 @@
+/*
+Functions:
+-Display the register.hbs (Admin: Add Employee Page)
+-Create new employee and weekly payroll
+*/
+
 const employee = require('../models/employee_model.js');
 const payroll = require('../models/payroll_model.js');
 
