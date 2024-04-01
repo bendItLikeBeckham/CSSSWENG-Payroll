@@ -1,13 +1,14 @@
+/*
+Functions:
+-Update the forgot_password of employees that sent a notification
+-Delete of forgot password notifcations that were addressed
+*/
+
 const forgot_password = require('../models/forgot_password_model.js'); 
 const employee = require('../models/employee_model.js'); 
 const database = require('../models/database.js');
 
 const forgot_password_controller = {
-    get_forgot_password: function (req, res){
-        res.render("forgot-password");
-    },
-
-
     post_add_forgot_password: async function (req, res){
         const {email, cTime} = req.body;
         const user_exists = await employee.findOne({Email: email});
@@ -36,10 +37,7 @@ const forgot_password_controller = {
         }
     },
 
-    post_delete_forgot_password: async function (req, res){
-        //const forgot_password_number = req.body;
-        //const forgot_password_exists = await forgot_password.findOne({Forgot_Password_Number: forgot_password_number});
-        
+    post_delete_forgot_password: async function (req, res){        
         const email = req.body.email;
         const user_exists = await forgot_password.findOne({Email: email});
         
@@ -51,7 +49,6 @@ const forgot_password_controller = {
                 await forgot_password.updateMany({Forgot_Password_Number: {$gt: curr_forgot_password_number}}, {$inc: {Forgot_Password_Number: -1}});
                 res.status(200).json({success: true, messasge: "Forgot Password Record Deleted Successfully."});
             }catch(error){
-                //res.status(500).send({success: false, message: "Forgot Password Controller Error!"});
                 res.status(500).send("Internal Server Error!");
             }
         }else{

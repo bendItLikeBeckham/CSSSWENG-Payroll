@@ -1,6 +1,10 @@
-document.addEventListener("DOMContentLoaded", function(){
-    console.log("admin-notifs.js");
+/*
+Functions:
+-Request data for Admin: Notifications Page
+-Request to delete document on the database depending on the employee email inputted
+*/
 
+document.addEventListener("DOMContentLoaded", function(){
     fetch("/display_forgot_password")
     .then(response =>{
         if(!response.ok){
@@ -40,7 +44,6 @@ function delete_forgot_password(){
             if(data.success === true){
                 location.reload();
             }else if(data.success === false){
-                console.log("Email Does Not Exist In The Record.");
                 document.getElementById("addressed-id").reset();
             }
         }catch(error){

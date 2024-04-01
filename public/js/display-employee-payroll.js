@@ -1,6 +1,9 @@
-document.addEventListener("DOMContentLoaded", function (){
-    console.log("DOM display employee payroll");
+/*
+Functions:
+-Request data for Employee Dashboard Page depending on the week chosen
+*/
 
+document.addEventListener("DOMContentLoaded", function (){
     fetch("/employee_dashboard")
     .then(response =>{
         if (!response.ok){
@@ -19,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function (){
 
 function selectWeek(){
     var selectedWeek = document.getElementById("emp-dropdown-week-id").selectedIndex - 1;
-    console.log(selectedWeek);
 
     fetch('/retrieve_employee_payroll', {
         method: 'post',

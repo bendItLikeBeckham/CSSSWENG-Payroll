@@ -45,21 +45,16 @@
         <div class="search-bar">
             <div class="dropdown">
                 <label>Employee:</label>
-                <select id="email" onchange="displayDetail()"><!-- Placeholder info -->
+                <select id="email" onchange="displayDetail()">
                     <option>Select User</option>
                     {{#each emp_emails}}
-                    {{!-- <option>{{this.Last_Name}} - {{this.Email}}</option> --}}
                     <option>{{this.Email}}</option>
                     {{/each}}
                 </select>
             </div>  
-            <!--<input type="text" name="email" placeholder="Email: {{emp_sum.Email}}" id="email">
-            <button id="searchButton" onclick="displayDetail()">
-                <i class="fi fi-rr-search"></i>
-            </button>-->
         </div>
         <div class="emp-info">
-            <div><!-- Placeholder info -->
+            <div>
                 <p>First Name: <span>{{emp_sum.First_Name}}</span></p>
                 <p>Last Name: <span>{{emp_sum.Last_Name}}</span></p>
                 <p>Address: <span>{{emp_sum.Address}}</span></p> 
@@ -119,18 +114,3 @@
 <script src="/js/user-delete.js"></script>
 </body>
 </html>
-
-
-<!--<!DOCTYPE html>
-<html>
-<head>
-    <title>Delete_User</title>
-</head>
-<body>
-    <form id="user-delete">
-        <input type="text" name="email" placeholder="Email" id="email">
-        <button type="button" id="user-delete-button"><h2>Enter</h2></button>
-    </form>
-<script src="/js/user-delete.js"></script>
-</body>
-</html>-->

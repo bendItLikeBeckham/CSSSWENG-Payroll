@@ -1,3 +1,10 @@
+/*
+Functions:
+-Display the delete-user.hbs (Admin: Delete Employee Page)
+-Populate the page with employee details corresponding to the chosen employee
+-Delete the documents in the mongodb regarding the chosen employee
+*/
+
 const employee = require('../models/employee_model.js');
 const payroll = require('../models/payroll_model.js');
 const database = require('../models/database.js');
@@ -5,6 +12,12 @@ const database = require('../models/database.js');
 const delete_user_controller = {
     get_delete_user: async function(req, res){
         const emp_emails = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"},{Employee_Type: "Admin"}]});
+        emp_emails.sort((a, b) => {
+            const emailA = (a.Email || '').toLowerCase();
+            const emailB = (b.Email || '').toLowerCase();
+            
+            return emailA.localeCompare(emailB);
+        });
         try{
             res.render("delete-user", {emp_emails});
         }catch (err){
@@ -17,11 +30,14 @@ const delete_user_controller = {
     post_display_info: async function (req,res){
         const emp_emails = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"},{Employee_Type: "Admin"}]});
         const email = req.body.email;
-        
+        emp_emails.sort((a, b) => {
+            const emailA = (a.Email || '').toLowerCase();
+            const emailB = (b.Email || '').toLowerCase();
+            
+            return emailA.localeCompare(emailB);
+        });
         try {
             const emp_sum = await employee.findOne({ Email: email });
-    
-            console.log("emp_sum data: " + emp_sum);
     
             res.render("delete-user", {emp_sum, emp_emails});
         } catch (error) {

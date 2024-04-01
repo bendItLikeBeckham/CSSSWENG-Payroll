@@ -1,5 +1,10 @@
+/*
+Functions: 
+-Display the admin-notifs.hbs (Admin: Notifications Page)
+-Populate the page with employees with Forgot Password
+*/
+
 const forgot_password = require('../models/forgot_password_model.js'); 
-const employee = require('../models/employee_model.js'); 
 const database = require('../models/database.js');
 
 const admin_notifs_controller = {

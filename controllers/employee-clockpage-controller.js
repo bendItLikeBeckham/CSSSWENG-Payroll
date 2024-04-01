@@ -1,3 +1,10 @@
+/*
+Functions:
+-Display the employee-clockpage.hbs (Employee Clockpage) or work-from-home-clockpage.hbs (Work From Home Clock Page) depending on the employee type
+-Update the employee time-in status
+-Update the payroll with time-in/out logs, date of time-in, and calculations for total hours and minutes per day, total day pay, and weekly total pay
+*/
+
 const employee = require('../models/employee_model.js');
 const payroll = require('../models/payroll_model.js');
 const database = require('../models/database.js');
@@ -25,17 +32,12 @@ const employee_clockpage_controller = {
         }
     },
 
-    post_employee_time_in: async function (req, res){ // include checking if a week has passed, if yes create new payroll.
+    post_employee_time_in: async function (req, res){
         const {Time_In, TI_weekdayIndex, Time_In_Date} = req.body;
-        //req.session.ETI_weekdayIndex = TI_weekdayIndex;// uncomment this later
-        //req.session.ETI_weekdayIndex = 6;//remove later
         const employee_email = req.session.Email;
 
-        console.log(employee_email)
-
         await database.updateOne(employee, {Email: req.session.Email}, {IsTimedIn: true})
-
-        if(TI_weekdayIndex === 1){//change this later to TI_weekdayIndex
+        if(TI_weekdayIndex === 1){
             await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
                 $set: {
                     Mon_Time_In: Time_In, 
@@ -96,19 +98,16 @@ const employee_clockpage_controller = {
         res.render("employee-clockpage", {email: req.session.Email, emp_type: req.session.Employee_type});
     },
 
-    post_employee_time_out: async function (req, res){//debug/check data if time in is monday and timeout is tuesday
-        const {TO_hour, TO_minute} = req.body;
+    post_employee_time_out: async function (req, res){
+        const {TO_hour, TO_minute, TO_weekdayIndex} = req.body;
         const employee_email = req.session.Email;
         const Time_Out = TO_hour + ':' + TO_minute;
         const TO_hour_int = parseInt(TO_hour);
         const TO_minute_int = parseInt(TO_minute);
-        console.log("Time_Out: " + Time_Out);
-        //const hr = 10.00; //hourly rate
-        //const mr = 0.17; //minute rate
+
         const day = await database.findOne(payroll, {Email: employee_email, Week: 0});
         const current_employee = await database.findOne(employee, {Email: employee_email});
-        await database.updateOne(employee, {Email: req.session.Email}, {IsTimedIn: false})//makes employee time-in status be false 
-
+        await database.updateOne(employee, {Email: req.session.Email}, {IsTimedIn: false})
         const hr = day.Weekly_Hourly_Rate;
         const mr = (hr/60).toFixed(2);
         const TI_weekdayIndex = day.Time_In_Weekday_Index;
@@ -117,10 +116,13 @@ const employee_clockpage_controller = {
             let [hours, minutes] = day.Mon_Time_In.split(':');
             const TI_hour = parseInt(hours);
             const TI_minute = parseInt(minutes);
-            console.log("hours: " + TI_hour + " minutes: " + TI_minute);//remove later
-            console.log("TO hours: " + TO_hour + " TO minutes: " + TO_minute);//remove later
             const time_in_total_minutes = TI_hour * 60 + TI_minute;
-            const time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            var time_out_total_minutes;
+            if(TI_weekdayIndex !== TO_weekdayIndex){
+                time_out_total_minutes = 23 * 60 + 59;
+            }else{
+                time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            }
             const total_time = time_out_total_minutes - time_in_total_minutes;
 
             if(total_time < 0){
@@ -131,6 +133,7 @@ const employee_clockpage_controller = {
             const total_minutes = total_time % 60;
 
             const total_day_pay = total_hours*hr + total_minutes*mr;
+            const Weekly_Pay = day.Weekly_Total_Pay + total_day_pay;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -138,7 +141,8 @@ const employee_clockpage_controller = {
                         Mon_Time_Out: Time_Out,
                         Mon_Hours: total_hours,
                         Mon_Minutes: total_minutes,
-                        Mon_Total_Pay: total_day_pay
+                        Mon_Total_Pay: total_day_pay,
+                        Weekly_Total_Pay: Weekly_Pay
                     }
                 });
                 if(current_employee.Employee_Type === "Employee"){
@@ -156,10 +160,13 @@ const employee_clockpage_controller = {
             let [hours, minutes] = day.Tue_Time_In.split(':');
             const TI_hour = parseInt(hours);
             const TI_minute = parseInt(minutes);
-            console.log("hours: " + TI_hour + " minutes: " + TI_minute);//remove later
-            console.log("TO hours: " + TO_hour + " TO minutes: " + TO_minute);//remove later
             const time_in_total_minutes = TI_hour * 60 + TI_minute;
-            const time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            var time_out_total_minutes;
+            if(TI_weekdayIndex !== TO_weekdayIndex){
+                time_out_total_minutes = 23 * 60 + 59;
+            }else{
+                time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            }
             const total_time = time_out_total_minutes - time_in_total_minutes;
 
             if(total_time < 0){
@@ -170,6 +177,7 @@ const employee_clockpage_controller = {
             const total_minutes = total_time % 60;
 
             const total_day_pay = total_hours*hr + total_minutes*mr;
+            const Weekly_Pay = day.Weekly_Total_Pay + total_day_pay;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -177,7 +185,8 @@ const employee_clockpage_controller = {
                         Tue_Time_Out: Time_Out,
                         Tue_Hours: total_hours,
                         Tue_Minutes: total_minutes,
-                        Tue_Total_Pay: total_day_pay
+                        Tue_Total_Pay: total_day_pay,
+                        Weekly_Total_Pay: Weekly_Pay
                     }
                 });
                 if(current_employee.Employee_Type === "Employee"){
@@ -194,10 +203,13 @@ const employee_clockpage_controller = {
             let [hours, minutes] = day.Wed_Time_In.split(':');
             const TI_hour = parseInt(hours);
             const TI_minute = parseInt(minutes);
-            console.log("hours: " + TI_hour + " minutes: " + TI_minute);//remove later
-            console.log("TO hours: " + TO_hour + " TO minutes: " + TO_minute);//remove later
             const time_in_total_minutes = TI_hour * 60 + TI_minute;
-            const time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            var time_out_total_minutes;
+            if(TI_weekdayIndex !== TO_weekdayIndex){
+                time_out_total_minutes = 23 * 60 + 59;
+            }else{
+                time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            }
             const total_time = time_out_total_minutes - time_in_total_minutes;
 
             if(total_time < 0){
@@ -208,6 +220,7 @@ const employee_clockpage_controller = {
             const total_minutes = total_time % 60;
 
             const total_day_pay = total_hours*hr + total_minutes*mr;
+            const Weekly_Pay = day.Weekly_Total_Pay + total_day_pay;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -215,7 +228,8 @@ const employee_clockpage_controller = {
                         Wed_Time_Out: Time_Out,
                         Wed_Hours: total_hours,
                         Wed_Minutes: total_minutes,
-                        Wed_Total_Pay: total_day_pay
+                        Wed_Total_Pay: total_day_pay,
+                        Weekly_Total_Pay: Weekly_Pay
                     }
                 });
                 if(current_employee.Employee_Type === "Employee"){
@@ -232,10 +246,13 @@ const employee_clockpage_controller = {
             let [hours, minutes] = day.Thu_Time_In.split(':');
             const TI_hour = parseInt(hours);
             const TI_minute = parseInt(minutes);
-            console.log("hours: " + TI_hour + " minutes: " + TI_minute);//remove later
-            console.log("TO hours: " + TO_hour + " TO minutes: " + TO_minute);//remove later
             const time_in_total_minutes = TI_hour * 60 + TI_minute;
-            const time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            var time_out_total_minutes;
+            if(TI_weekdayIndex !== TO_weekdayIndex){
+                time_out_total_minutes = 23 * 60 + 59;
+            }else{
+                time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            }
             const total_time = time_out_total_minutes - time_in_total_minutes;
 
             if(total_time < 0){
@@ -246,6 +263,7 @@ const employee_clockpage_controller = {
             const total_minutes = total_time % 60;
 
             const total_day_pay = total_hours*hr + total_minutes*mr;
+            const Weekly_Pay = day.Weekly_Total_Pay + total_day_pay;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -253,7 +271,8 @@ const employee_clockpage_controller = {
                         Thu_Time_Out: Time_Out,
                         Thu_Hours: total_hours,
                         Thu_Minutes: total_minutes,
-                        Thu_Total_Pay: total_day_pay
+                        Thu_Total_Pay: total_day_pay,
+                        Weekly_Total_Pay: Weekly_Pay
                     }
                 });
                 if(current_employee.Employee_Type === "Employee"){
@@ -270,10 +289,13 @@ const employee_clockpage_controller = {
             let [hours, minutes] = day.Fri_Time_In.split(':');
             const TI_hour = parseInt(hours);
             const TI_minute = parseInt(minutes);
-            console.log("hours: " + TI_hour + " minutes: " + TI_minute);//remove later
-            console.log("TO hours: " + TO_hour + " TO minutes: " + TO_minute);//remove later
             const time_in_total_minutes = TI_hour * 60 + TI_minute;
-            const time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            var time_out_total_minutes;
+            if(TI_weekdayIndex !== TO_weekdayIndex){
+                time_out_total_minutes = 23 * 60 + 59;
+            }else{
+                time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            }
             const total_time = time_out_total_minutes - time_in_total_minutes;
 
             if(total_time < 0){
@@ -284,6 +306,7 @@ const employee_clockpage_controller = {
             const total_minutes = total_time % 60;
 
             const total_day_pay = total_hours*hr + total_minutes*mr;
+            const Weekly_Pay = day.Weekly_Total_Pay + total_day_pay;
 
             try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -291,7 +314,8 @@ const employee_clockpage_controller = {
                         Fri_Time_Out: Time_Out,
                         Fri_Hours: total_hours,
                         Fri_Minutes: total_minutes,
-                        Fri_Total_Pay: total_day_pay
+                        Fri_Total_Pay: total_day_pay,
+                        Weekly_Total_Pay: Weekly_Pay
                     }
                 });
                 if(current_employee.Employee_Type === "Employee"){
@@ -308,10 +332,13 @@ const employee_clockpage_controller = {
             let [hours, minutes] = day.Sat_Time_In.split(':');
             const TI_hour = parseInt(hours);
             const TI_minute = parseInt(minutes);
-            console.log("hours: " + TI_hour + " minutes: " + TI_minute);//remove later
-            console.log("TO hours: " + TO_hour + " TO minutes: " + TO_minute);//remove later
             const time_in_total_minutes = TI_hour * 60 + TI_minute;
-            const time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            var time_out_total_minutes;
+            if(TI_weekdayIndex !== TO_weekdayIndex){
+                time_out_total_minutes = 23 * 60 + 59;
+            }else{
+                time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            }
             const total_time = time_out_total_minutes - time_in_total_minutes;
 
             if(total_time < 0){
@@ -322,6 +349,7 @@ const employee_clockpage_controller = {
             const total_minutes = total_time % 60;
 
             const total_day_pay = total_hours*hr + total_minutes*mr;
+            const Weekly_Pay = day.Weekly_Total_Pay + total_day_pay;
 
             try{//add the creation of new payroll here per employee
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
@@ -329,7 +357,8 @@ const employee_clockpage_controller = {
                         Sat_Time_Out: Time_Out,
                         Sat_Hours: total_hours,
                         Sat_Minutes: total_minutes,
-                        Sat_Total_Pay: total_day_pay
+                        Sat_Total_Pay: total_day_pay,
+                        Weekly_Total_Pay: Weekly_Pay
                     }
                 });
                 if(current_employee.Employee_Type === "Employee"){
@@ -346,10 +375,13 @@ const employee_clockpage_controller = {
             let [hours, minutes] = day.Sun_Time_In.split(':');
             const TI_hour = parseInt(hours);
             const TI_minute = parseInt(minutes);
-            console.log("hours: " + TI_hour + " minutes: " + TI_minute);//remove later
-            console.log("TO hours: " + TO_hour + " TO minutes: " + TO_minute);//remove later
             const time_in_total_minutes = TI_hour * 60 + TI_minute;
-            const time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            var time_out_total_minutes;
+            if(TI_weekdayIndex !== TO_weekdayIndex){
+                time_out_total_minutes = 23 * 60 + 59;
+            }else{
+                time_out_total_minutes = TO_hour_int * 60 + TO_minute_int;
+            }
             const total_time = time_out_total_minutes - time_in_total_minutes;
 
             if(total_time < 0){
@@ -360,14 +392,16 @@ const employee_clockpage_controller = {
             const total_minutes = total_time % 60;
 
             const total_day_pay = total_hours*hr + total_minutes*mr;
+            const Weekly_Pay = day.Weekly_Total_Pay + total_day_pay;
 
-            try{//add the creation of new payroll here per employee
+            try{
                 await database.updateOne(payroll, {Email: employee_email, Week: 0}, {
                     $set: {
                         Sun_Time_Out: Time_Out,
                         Sun_Hours: total_hours,
                         Sun_Minutes: total_minutes,
-                        Sun_Total_Pay: total_day_pay
+                        Sun_Total_Pay: total_day_pay,
+                        Weekly_Total_Pay: Weekly_Pay
                     }
                 });
                 if(current_employee.Employee_Type === "Employee"){

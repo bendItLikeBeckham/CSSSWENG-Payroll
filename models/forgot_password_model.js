@@ -1,3 +1,8 @@
+/*
+Functions:
+Forgot_Password model/attributes
+*/
+
 var mongoose = require('mongoose');
 
 var forgot_password_schema = new mongoose.Schema({

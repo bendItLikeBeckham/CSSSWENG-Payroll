@@ -1,3 +1,10 @@
+/*
+Functions: 
+-Display the admin-empman-payroll.hbs (Admin: Employee Management - Weekly Payroll Page)
+-Populate the page with the employee's weekly payroll summary corresponding with the chosen employee and week
+-Update/Edit the weekly payroll of the chosen employee and week
+*/
+
 const employee = require('../models/employee_model.js');
 const payroll = require('../models/payroll_model.js');
 const database = require('../models/database.js');
@@ -8,11 +15,9 @@ const admin_empman_payroll_controller = {
     },
 
     get_emp_total: async function(req, res){
-        console.log("get_emp_total_wp part here"); //remove later
         try{
             const emp_total = await database.findMany(employee, {$or: [{Employee_Type: "Employee"},{Employee_Type: "Work From Home"}]});
 
-            console.log("before emp_total data: " + emp_total);
             emp_total.sort((a, b) => {
                 const emailA = (a.Email || '').toLowerCase();
                 const emailB = (b.Email || '').toLowerCase();
@@ -20,16 +25,13 @@ const admin_empman_payroll_controller = {
                 return emailA.localeCompare(emailB);
             });
 
-            console.log("after sort emp_total data: " + emp_total);
-
             res.render("admin-empman-payroll", {emp_total});
         }catch(error){
             console.error("Error processing employee total: ", error);
             res.status(500).send("Internal Server Error!");
         }
     }, 
-    
-    //start here
+
     get_emp_wpay: async function(req, res){
         const selected_employee = req.query.employee;
         const selected_week = req.query.week;
@@ -44,9 +46,50 @@ const admin_empman_payroll_controller = {
                 return emailA.localeCompare(emailB);
             });
 
-            console.log("emp_pay data: " + emp_wpay); //remove later
+            var Weekly_Minute_Rate = (emp_wpay.Weekly_Hourly_Rate/60).toFixed(2);
+            var Total_Hour_Rate = [];
+            var Total_Minute_Rate = [];
+            for(let i = 0; i < 7; i++){
+                if(i === 0){
+                    Total_Hour_Rate[i] = emp_wpay.Sun_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Sun_Minutes * Weekly_Minute_Rate;
+                }else if(i === 1){
+                    Total_Hour_Rate[i] = emp_wpay.Mon_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Mon_Minutes * Weekly_Minute_Rate;
+                }else if(i === 2){
+                    Total_Hour_Rate[i] = emp_wpay.Tue_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Tue_Minutes * Weekly_Minute_Rate;
+                }else if(i === 3){
+                    Total_Hour_Rate[i] = emp_wpay.Wed_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Wed_Minutes * Weekly_Minute_Rate;
+                }else if(i === 4){
+                    Total_Hour_Rate[i] = emp_wpay.Thu_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Thu_Minutes * Weekly_Minute_Rate;
+                }else if(i === 5){
+                    Total_Hour_Rate[i] = emp_wpay.Fri_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Fri_Minutes * Weekly_Minute_Rate;
+                }else if(i === 6){
+                    Total_Hour_Rate[i] = emp_wpay.Sat_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Sat_Minutes * Weekly_Minute_Rate;
+                }
+            }
 
-            res.render("admin-empman-payroll", {emp_wpay, emp_total});
+            function padZero(num){
+                if (num < 10){
+                    num = "0" + num
+                }
+                return num
+            }
+
+            emp_wpay.Mon_Minutes =  padZero(emp_wpay.Mon_Minutes.toString());
+            emp_wpay.Tue_Minutes =  padZero(emp_wpay.Tue_Minutes.toString());
+            emp_wpay.Wed_Minutes =  padZero(emp_wpay.Wed_Minutes.toString());
+            emp_wpay.Thu_Minutes =  padZero(emp_wpay.Thu_Minutes.toString());
+            emp_wpay.Fri_Minutes =  padZero(emp_wpay.Fri_Minutes.toString());
+            emp_wpay.Sat_Minutes =  padZero(emp_wpay.Sat_Minutes.toString());
+            emp_wpay.Sun_Minutes =  padZero(emp_wpay.Sun_Minutes.toString());
+
+            res.render("admin-empman-payroll", {emp_wpay, emp_total, Total_Hour_Rate, Total_Minute_Rate});
         }catch(error){
             console.error("Error processing weekly payroll: ", error);
             res.status(500).send("Internal Server Error!");
@@ -54,18 +97,8 @@ const admin_empman_payroll_controller = {
     },
 
     post_update_payroll: async function(req, res){
-        console.log("post_update_payroll"); //remove later
-
         const {PPH, PPM, Additional, Advance, Deduction, Payroll_ID, cur_email, cur_week} = req.body;
-
         const upd_pay = await database.findOne(payroll, {_id: Payroll_ID});
-
-        //sun hours and minutes to add??
-        console.log("PPH: " + PPH);
-        console.log("PPM: " + PPM);
-        console.log("Additional: " + Additional);
-        console.log("Advance: " + Advance);
-        console.log("Deduction: " + Deduction);
 
         var mon_t_pay = upd_pay.Mon_Total_Pay;
         var tue_t_pay = upd_pay.Tue_Total_Pay;
@@ -75,7 +108,7 @@ const admin_empman_payroll_controller = {
         var sat_t_pay = upd_pay.Sat_Total_Pay;
         var sun_t_pay = upd_pay.Sun_Total_Pay;
 
-        if(PPH){
+        if(Additional === false && Advance === false && Deduction === false){
             mon_t_pay = (upd_pay.Mon_Hours * PPH) + (upd_pay.Mon_Minutes * PPM);
             tue_t_pay = (upd_pay.Tue_Hours * PPH) + (upd_pay.Tue_Minutes * PPM);
             wed_t_pay = (upd_pay.Wed_Hours * PPH) + (upd_pay.Wed_Minutes * PPM);
@@ -92,7 +125,7 @@ const admin_empman_payroll_controller = {
         var adv;
         var ded;
 
-        if(Additional === ""){
+        if(Additional === false){
             weekly_pay_total += upd_pay.Weekly_Total_Additional;
             add = upd_pay.Weekly_Total_Additional;
         }else{
@@ -100,7 +133,7 @@ const admin_empman_payroll_controller = {
             add = Additional;
         }
 
-        if(Advance === ""){
+        if(Advance === false){
             weekly_pay_total += upd_pay.Weekly_Total_Advance;
             adv = upd_pay.Weekly_Total_Advance;
         }else{
@@ -108,7 +141,7 @@ const admin_empman_payroll_controller = {
             adv = Advance;
         }
 
-        if(Deduction === ""){
+        if(Deduction === false){
             weekly_pay_total -= upd_pay.Weekly_Total_Deduction;
             ded = upd_pay.Weekly_Total_Deduction;
         }else{

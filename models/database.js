@@ -1,7 +1,10 @@
+/*
+Functions:
+Connect the web service to the database (database utilized is MongoDB)
+Alternative CRUD operations for documents in the database
+*/
+
 const mongoose = require('mongoose');
-
-const Employee = require('./employee_model.js');
-
 const url = 'mongodb+srv://Admin_Acc:6rtztqN8cgcS6uwg@payrollcluster.ho2w0w9.mongodb.net/';
 
 const options = {

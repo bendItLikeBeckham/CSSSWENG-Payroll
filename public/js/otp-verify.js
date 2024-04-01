@@ -1,3 +1,10 @@
+/*
+Functions:
+-Request in the server-side for employee time-in status to enable/disable Time-In/Out buttons
+-Request to generate new OTP for Employee Type = Employee, verifying of OTP if correct
+-Request for new employee time-in logs in the server-side
+*/
+
 window.onload  = async function enableButton(){
   const response = await fetch('/time_in_status', {
     method: 'get',
@@ -17,10 +24,12 @@ window.onload  = async function enableButton(){
 
 function timeIn(){
   enableTimeOut();
-          //changes start here
           let current_time = new Date();
           let hours = current_time.getHours();
           let minutes = current_time.getMinutes();
+          if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
           let weekdayIndex = current_time.getDay();
           let formattedTime = hours + ':' + minutes;
 
@@ -30,12 +39,6 @@ function timeIn(){
           month = (month < 10 ? '0' : '') + month;
           day = (day < 10 ? '0' : '') + day;
           let formattedDate = year + '-' + month + '-' + day; 
-
-          console.log("hour: " + hours); //remove later
-          console.log("minutes: " + minutes); //remove later
-          console.log("weekday: " + weekdayIndex); //remove later
-          console.log("formattedTime: " + formattedTime); //remove later
-          console.log("formattedTime: " + formattedDate); //remove later
 
           fetch('/employee_time_in',{
             method: 'POST',
@@ -53,7 +56,6 @@ function timeIn(){
 function togglePopup(){
     closeBtn();
     generateOtp();
-    //otp_window(); 
 }
 
 function togglePopup2(){
@@ -74,7 +76,6 @@ function closeBtn(){
 
 function generateOtpAndOpenOTPWindow(){
   generateOtp();
-  //otp_window();
 }
 
 function generateOtp(){
@@ -100,14 +101,15 @@ function generateOtp(){
       .then(response => response.json())
       .then(data => {
         if (data.correctNumber == otp) {
-          alert(`Your input (${otp}) is correct.`);
+          alert(`Your input is correct.`);
 
           enableTimeOut();
-          //include functions here if otp is correct, time-in post method here?
-          //changes start here
           let current_time = new Date();
           let hours = current_time.getHours();
           let minutes = current_time.getMinutes();
+          if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
           let weekdayIndex = current_time.getDay();
           let formattedTime = hours + ':' + minutes;
 
@@ -117,12 +119,6 @@ function generateOtp(){
           month = (month < 10 ? '0' : '') + month;
           day = (day < 10 ? '0' : '') + day;
           let formattedDate = year + '-' + month + '-' + day; 
-
-          console.log("hour: " + hours); //remove later
-          console.log("minutes: " + minutes); //remove later
-          console.log("weekday: " + weekdayIndex); //remove later
-          console.log("formattedTime: " + formattedTime); //remove later
-          console.log("formattedTime: " + formattedDate); //remove later
 
           fetch('/employee_time_in',{
             method: 'POST',
@@ -136,11 +132,9 @@ function generateOtp(){
               }),
           })
 
-          //changes end here
-          //window.location.href = '/employee_clockpage';
           closeBtn();
         } else {
-          alert(`Sorry, your input (${otp}) is incorrect.`);
+          alert(`Sorry, your input is incorrect.`);
         }
       })
       .catch(error => console.error('Error submitting otp:', error));
@@ -157,8 +151,3 @@ function generateOtp(){
     document.getElementById("time-in-btn").disabled = true;
     document.getElementById("time-out-btn").disabled = false;
   }
-
-  // function otp_window(){
-  //   //add here
-  //   window.open('/otp_page', '_blank');//check for wfh
-  // }
