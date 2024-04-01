@@ -25,6 +25,22 @@ const employee_dashboard_controller = {
             const emp_rec = await database.findOne(employee, {Email: employee_email});
             
             console.log("emp_det data: " + emp_det);
+
+            function padZero(num){
+                if (num < 10){
+                    num = "0" + num
+                }
+                console.log(num)
+                return num
+            }
+
+            emp_det.Mon_Minutes =  padZero(emp_det.Mon_Minutes.toString());
+            emp_det.Tue_Minutes =  padZero(emp_det.Tue_Minutes.toString());
+            emp_det.Wed_Minutes =  padZero(emp_det.Wed_Minutes.toString());
+            emp_det.Thu_Minutes =  padZero(emp_det.Thu_Minutes.toString());
+            emp_det.Fri_Minutes =  padZero(emp_det.Fri_Minutes.toString());
+            emp_det.Sat_Minutes =  padZero(emp_det.Sat_Minutes.toString());
+            emp_det.Sun_Minutes =  padZero(emp_det.Sun_Minutes.toString());
             
             emp_det.Mon_Total_Pay = emp_det.Mon_Total_Pay.toFixed(2);
             emp_det.Tue_Total_Pay = emp_det.Tue_Total_Pay.toFixed(2);

@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
+
+function padZero(number) {
+    return number < 10 ? '0' + number : number;
+}
+
 function dropdown(){
     var emp_mgm_page_select = document.getElementById("emp-mgm-page-id"); 
     const Ti_To_logs_btn = document.getElementById("Ti-To-logs-id");

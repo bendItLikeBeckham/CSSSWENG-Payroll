@@ -44,6 +44,22 @@ const admin_empman_payroll_controller = {
                 return emailA.localeCompare(emailB);
             });
 
+            function padZero(num){
+                if (num < 10){
+                    num = "0" + num
+                }
+                console.log(num)
+                return num
+            }
+
+            emp_wpay.Mon_Minutes =  padZero(emp_wpay.Mon_Minutes.toString());
+            emp_wpay.Tue_Minutes =  padZero(emp_wpay.Tue_Minutes.toString());
+            emp_wpay.Wed_Minutes =  padZero(emp_wpay.Wed_Minutes.toString());
+            emp_wpay.Thu_Minutes =  padZero(emp_wpay.Thu_Minutes.toString());
+            emp_wpay.Fri_Minutes =  padZero(emp_wpay.Fri_Minutes.toString());
+            emp_wpay.Sat_Minutes =  padZero(emp_wpay.Sat_Minutes.toString());
+            emp_wpay.Sun_Minutes =  padZero(emp_wpay.Sun_Minutes.toString());
+
             console.log("emp_pay data: " + emp_wpay); //remove later
 
             res.render("admin-empman-payroll", {emp_wpay, emp_total});

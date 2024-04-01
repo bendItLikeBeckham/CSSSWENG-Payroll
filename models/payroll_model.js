@@ -28,7 +28,7 @@ var payroll_schema = new mongoose.Schema({
         type: Number,
     },
     Mon_Minutes: { 
-        type: Number,
+        type: String,
     },
     Mon_Total_Pay: { 
         type: Number,
@@ -47,7 +47,7 @@ var payroll_schema = new mongoose.Schema({
         type: Number,
     },
     Tue_Minutes: { 
-        type: Number,
+        type: String,
     },
     Tue_Total_Pay: { 
         type: Number,
@@ -66,7 +66,7 @@ var payroll_schema = new mongoose.Schema({
         type: Number,
     },
     Wed_Minutes: { 
-        type: Number,
+        type: String,
     },
     Wed_Total_Pay: { 
         type: Number,
@@ -85,7 +85,7 @@ var payroll_schema = new mongoose.Schema({
         type: Number,
     },
     Thu_Minutes: { 
-        type: Number,
+        type: String,
     },
     Thu_Total_Pay: { 
         type: Number,
@@ -104,7 +104,7 @@ var payroll_schema = new mongoose.Schema({
         type: Number,
     },
     Fri_Minutes: { 
-        type: Number,
+        type: String,
     },
     Fri_Total_Pay: { 
         type: Number,
@@ -123,7 +123,7 @@ var payroll_schema = new mongoose.Schema({
         type: Number,
     },
     Sat_Minutes: { 
-        type: Number,
+        type: String,
     },
     Sat_Total_Pay: { 
         type: Number,
@@ -142,7 +142,7 @@ var payroll_schema = new mongoose.Schema({
         type: Number,
     },
     Sun_Minutes: { 
-        type: Number,
+        type: String,
     },
     Sun_Total_Pay: { 
         type: Number,
