@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function(){
         let current_time = new Date();
         let hours = current_time.getHours();
         let minutes = current_time.getMinutes();
+        if (minutes < 10) {
+            minutes = "0" + minutes; // prepend '0' to minutes
+        }
         let weekdayIndex = current_time.getDay();
 
         console.log("TO hour: " + hours); //remove later
