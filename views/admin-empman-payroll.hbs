@@ -38,7 +38,7 @@
                 </select>
             </div>
             <div class="num-input">
-                <p>Pay Per Hour: {{emp_wpay.Weekly_Hourly_Rate}}</p>
+                <p>Pay Per Hour: ₱{{emp_wpay.Weekly_Hourly_Rate}}</p>
                 <form id="PPH-form-id">
                 <input type="number" id="pph-id">  
                 <input type="hidden" name="payroll-id" value="{{emp_wpay._id}}">
@@ -141,19 +141,19 @@
     </div>
     <div class="empman-btm">
         <div class="num-input-1">
-            <p>Additional: {{emp_wpay.Weekly_Total_Additional}}</p>
+            <p>Additional: ₱{{emp_wpay.Weekly_Total_Additional}}</p>
             <form id="additional-form-id">
                 <input type="number" id="add-id"> 
                 <input type="hidden" name="payroll-id" value="{{emp_wpay._id}}">
                 <button type="button" id="payroll-additional-changes-btn">SUBMIT</button>
             </form>
-            <p>Advance: {{emp_wpay.Weekly_Total_Advance}}</p>
+            <p>Advance: ₱{{emp_wpay.Weekly_Total_Advance}}</p>
             <form id="advance-form-id">
                 <input type="number" id="adv-id"> 
                 <input type="hidden" name="payroll-id" value="{{emp_wpay._id}}">
                 <button type="button" id="payroll-advance-changes-btn">SUBMIT</button>
             </form>
-            <p>Deduction: {{emp_wpay.Weekly_Total_Deduction}}</p>
+            <p>Deduction: ₱{{emp_wpay.Weekly_Total_Deduction}}</p>
             <form id="deduction-form-id">
                 <input type="number" id="ded-id">
                 <input type="hidden" name="payroll-id" value="{{emp_wpay._id}}">
@@ -161,7 +161,7 @@
             </form>
         </div>
         <div>
-            <h1>Total Weekly Pay:{{emp_wpay.Weekly_Total_Pay}}</h1>
+            <h1>Total Weekly Pay: ₱{{emp_wpay.Weekly_Total_Pay}}</h1>
         </div>
     </div>
 </div>
