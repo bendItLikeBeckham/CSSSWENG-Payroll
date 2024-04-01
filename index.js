@@ -18,8 +18,6 @@ const database = require('./models/database.js');
 const schedule = require('node-schedule');
 const axios = require('axios');
 const MongoStore = require('connect-mongo');
-const axios = require('axios');
-const MongoStore = require('connect-mongo');
 
 const app = express();
 
@@ -44,12 +42,7 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl: 'mongodb+srv://Admin_Acc:6rtztqN8cgcS6uwg@payrollcluster.ho2w0w9.mongodb.net/'
     }),
-    store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://Admin_Acc:6rtztqN8cgcS6uwg@payrollcluster.ho2w0w9.mongodb.net/'
-    }),
     cookie: { 
-        httpOnly: true, 
-        maxAge: 24 * 60 * 60 * 1000
         httpOnly: true, 
         maxAge: 24 * 60 * 60 * 1000
     }
@@ -66,7 +59,6 @@ schedule.scheduleJob('0 16 * * 6', function(){
         .catch(error => {
             console.error("Error Updating Payroll:", error);
         });
-});
 });
 
 app.use(function(req, res){
