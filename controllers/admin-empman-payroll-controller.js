@@ -44,6 +44,36 @@ const admin_empman_payroll_controller = {
                 return emailA.localeCompare(emailB);
             });
 
+            var Weekly_Minute_Rate = (emp_wpay.Weekly_Hourly_Rate/60).toFixed(2);
+            var Total_Hour_Rate = [];
+            var Total_Minute_Rate = [];
+            for(let i = 0; i < 7; i++){
+                if(i === 0){
+                    Total_Hour_Rate[i] = emp_wpay.Sun_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Sun_Minutes * Weekly_Minute_Rate;
+                }else if(i === 1){
+                    Total_Hour_Rate[i] = emp_wpay.Mon_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Mon_Minutes * Weekly_Minute_Rate;
+                }else if(i === 2){
+                    Total_Hour_Rate[i] = emp_wpay.Tue_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Tue_Minutes * Weekly_Minute_Rate;
+                }else if(i === 3){
+                    Total_Hour_Rate[i] = emp_wpay.Wed_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Wed_Minutes * Weekly_Minute_Rate;
+                }else if(i === 4){
+                    Total_Hour_Rate[i] = emp_wpay.Thu_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Thu_Minutes * Weekly_Minute_Rate;
+                }else if(i === 5){
+                    Total_Hour_Rate[i] = emp_wpay.Fri_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Fri_Minutes * Weekly_Minute_Rate;
+                }else if(i === 6){
+                    Total_Hour_Rate[i] = emp_wpay.Sat_Hours * emp_wpay.Weekly_Hourly_Rate;
+                    Total_Minute_Rate[i] = emp_wpay.Sat_Minutes * Weekly_Minute_Rate;
+                }
+            }
+
+
+            //after getting the others
             function padZero(num){
                 if (num < 10){
                     num = "0" + num
@@ -62,7 +92,7 @@ const admin_empman_payroll_controller = {
 
             console.log("emp_pay data: " + emp_wpay); //remove later
 
-            res.render("admin-empman-payroll", {emp_wpay, emp_total});
+            res.render("admin-empman-payroll", {emp_wpay, emp_total, Total_Hour_Rate, Total_Minute_Rate});
         }catch(error){
             console.error("Error processing weekly payroll: ", error);
             res.status(500).send("Internal Server Error!");
