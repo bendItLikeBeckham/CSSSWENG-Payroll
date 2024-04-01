@@ -104,8 +104,10 @@ async function forgot_password_function(event){
 
         if(data.success === true){
             //window.location.href = '/';
+            alert(`Successfully sent notification.`);
             window.location.reload();
         }else if(data.success === false){
+            alert(`Email does not exist or there is already a notification.`);
             document.getElementById("forgot-password-form-id").reset();
         }
     }catch(error){

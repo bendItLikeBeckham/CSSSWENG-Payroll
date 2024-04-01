@@ -26,11 +26,12 @@ document.addEventListener("DOMContentLoaded", function(){
                 }),
             });
             const data = await response.json();
-
+            console.log(data);
             if(data.success === true){
-                window.location.href = '/';
-                //window.location.reload();
+                alert(`Successfully sent forgot password notification.`);
+                console.log("Correct")
             }else if(data.success === false){
+                alert(`Email does not exist.`);
                 document.getElementById("forgot-password-form-id").reset();
             }
         }catch(error){
