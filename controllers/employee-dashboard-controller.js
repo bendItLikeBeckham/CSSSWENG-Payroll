@@ -33,25 +33,25 @@ const employee_dashboard_controller = {
             for(let i = 0; i < 7; i++){
                 if(i === 0){
                     Total_Hour_Rate[i] = emp_det.Sun_Hours * emp_det.Weekly_Hourly_Rate;
-                    Total_Minute_Rate[i] = emp_det.Sun_Minutes * Weekly_Minute_Rate;
+                    Total_Minute_Rate[i] = (emp_det.Sun_Minutes * Weekly_Minute_Rate).toFixed(2);;
                 }else if(i === 1){
                     Total_Hour_Rate[i] = emp_det.Mon_Hours * emp_det.Weekly_Hourly_Rate;
-                    Total_Minute_Rate[i] = emp_det.Mon_Minutes * Weekly_Minute_Rate;
+                    Total_Minute_Rate[i] = (emp_det.Mon_Minutes * Weekly_Minute_Rate).toFixed(2);;
                 }else if(i === 2){
                     Total_Hour_Rate[i] = emp_det.Tue_Hours * emp_det.Weekly_Hourly_Rate;
-                    Total_Minute_Rate[i] = emp_det.Tue_Minutes * Weekly_Minute_Rate;
+                    Total_Minute_Rate[i] = (emp_det.Tue_Minutes * Weekly_Minute_Rate).toFixed(2);;
                 }else if(i === 3){
                     Total_Hour_Rate[i] = emp_det.Wed_Hours * emp_det.Weekly_Hourly_Rate;
-                    Total_Minute_Rate[i] = emp_det.Wed_Minutes * Weekly_Minute_Rate;
+                    Total_Minute_Rate[i] = (emp_det.Wed_Minutes * Weekly_Minute_Rate).toFixed(2);;
                 }else if(i === 4){
                     Total_Hour_Rate[i] = emp_det.Thu_Hours * emp_det.Weekly_Hourly_Rate;
-                    Total_Minute_Rate[i] = emp_det.Thu_Minutes * Weekly_Minute_Rate;
+                    Total_Minute_Rate[i] = (emp_det.Thu_Minutes * Weekly_Minute_Rate).toFixed(2);;
                 }else if(i === 5){
                     Total_Hour_Rate[i] = emp_det.Fri_Hours * emp_det.Weekly_Hourly_Rate;
-                    Total_Minute_Rate[i] = emp_det.Fri_Minutes * Weekly_Minute_Rate;
+                    Total_Minute_Rate[i] = (emp_det.Fri_Minutes * Weekly_Minute_Rate).toFixed(2);;
                 }else if(i === 6){
                     Total_Hour_Rate[i] = emp_det.Sat_Hours * emp_det.Weekly_Hourly_Rate;
-                    Total_Minute_Rate[i] = emp_det.Sat_Minutes * Weekly_Minute_Rate;
+                    Total_Minute_Rate[i] = (emp_det.Sat_Minutes * Weekly_Minute_Rate).toFixed(2);;
                 }
             }
 
