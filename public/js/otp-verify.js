@@ -21,6 +21,9 @@ function timeIn(){
           let current_time = new Date();
           let hours = current_time.getHours();
           let minutes = current_time.getMinutes();
+          if (minutes < 10) {
+            minutes = "0" + minutes; // prepend '0' to minutes
+        }
           let weekdayIndex = current_time.getDay();
           let formattedTime = hours + ':' + minutes;
 
@@ -33,9 +36,9 @@ function timeIn(){
 
           console.log("hour: " + hours); //remove later
           console.log("minutes: " + minutes); //remove later
-          console.log("weekday: " + weekdayIndex); //remove later
-          console.log("formattedTime: " + formattedTime); //remove later
-          console.log("formattedTime: " + formattedDate); //remove later
+          //console.log("weekday: " + weekdayIndex); //remove later
+          //console.log("formattedTime: " + formattedTime); //remove later
+          //console.log("formattedTime: " + formattedDate); //remove later
 
           fetch('/employee_time_in',{
             method: 'POST',
@@ -100,7 +103,7 @@ function generateOtp(){
       .then(response => response.json())
       .then(data => {
         if (data.correctNumber == otp) {
-          alert(`Your input (${otp}) is correct.`);
+          alert(`Your input is correct.`);
 
           enableTimeOut();
           //include functions here if otp is correct, time-in post method here?
@@ -108,6 +111,9 @@ function generateOtp(){
           let current_time = new Date();
           let hours = current_time.getHours();
           let minutes = current_time.getMinutes();
+          if (minutes < 10) {
+            minutes = "0" + minutes; // prepend '0' to minutes
+        }
           let weekdayIndex = current_time.getDay();
           let formattedTime = hours + ':' + minutes;
 
@@ -120,9 +126,9 @@ function generateOtp(){
 
           console.log("hour: " + hours); //remove later
           console.log("minutes: " + minutes); //remove later
-          console.log("weekday: " + weekdayIndex); //remove later
-          console.log("formattedTime: " + formattedTime); //remove later
-          console.log("formattedTime: " + formattedDate); //remove later
+          //console.log("weekday: " + weekdayIndex); //remove later
+          //console.log("formattedTime: " + formattedTime); //remove later
+          //console.log("formattedTime: " + formattedDate); //remove later
 
           fetch('/employee_time_in',{
             method: 'POST',
@@ -140,7 +146,7 @@ function generateOtp(){
           //window.location.href = '/employee_clockpage';
           closeBtn();
         } else {
-          alert(`Sorry, your input (${otp}) is incorrect.`);
+          alert(`Sorry, your input is incorrect.`);
         }
       })
       .catch(error => console.error('Error submitting otp:', error));
