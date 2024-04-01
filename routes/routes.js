@@ -80,7 +80,6 @@ function admin_access(req, res, next){
     }
 }
 
-
 //initial routes access
 app.get('/', must_be_logged_out, controllers.get_index);
 app.post('/add_forgot_password', must_be_logged_out, forgot_password_controllers.post_add_forgot_password);
@@ -116,9 +115,10 @@ app.post('/display_specific_employee_records', initial_process, admin_access, ad
 app.get('/admin_retrieve_employee_total_wp', initial_process, admin_access, admin_empman_payroll_controllers.get_emp_total);
 app.get('/admin_retrieve_emp_wpay', initial_process, admin_access, admin_empman_payroll_controllers.get_emp_wpay);
 app.post('/admin_update_payroll', initial_process, admin_access, admin_empman_payroll_controllers.post_update_payroll);
-app.post('/update_employee_payroll', initial_process, admin_access, update_payroll_controllers.post_update_employee_payroll);
 app.get('/admin_notifs', initial_process, admin_access, admin_notifs_controllers.get_admin_notifs);
 app.get('/display_forgot_password', initial_process, admin_access, admin_notifs_controllers.get_forgot_password);
 app.post('/delete_forgot_password', initial_process, admin_access, forgot_password_controllers.post_delete_forgot_password);
+
+app.post('/update_employee_payroll', update_payroll_controllers.post_update_employee_payroll);
 
 module.exports = app;
