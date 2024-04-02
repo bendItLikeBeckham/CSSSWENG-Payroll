@@ -106,7 +106,8 @@ app.get('/admin_dashboard', initial_process, admin_access, admin_dash_logs_contr
 app.get('/register', initial_process, admin_access, register_controllers.get_register);
 app.post('/register_employee', initial_process, admin_access, register_controllers.post_register);
 app.get('/retrieve_employee_summary', initial_process, admin_access, admin_dash_logs_controllers.get_employee_summary);
-app.get('/delete_user', initial_process, admin_access, delete_user_controller.get_delete_user );
+app.get('/delete_user', initial_process, admin_access, delete_user_controller.get_delete_user_page);
+app.get('/delete_user_employee', initial_process, admin_access, delete_user_controller.get_delete_user);
 app.post('/delete_chosen_user', initial_process, admin_access, delete_user_controller.post_delete_user);
 app.post('/display_delete_info', initial_process, admin_access, delete_user_controller.post_display_info);
 app.get('/admin_empman_payroll', initial_process, admin_access, admin_empman_payroll_controllers.get_admin_empman_payroll);
