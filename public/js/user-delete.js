@@ -4,6 +4,22 @@ Functions:
 -Request to server-side to delete the employee and its corresponding documents
 */
 
+document.addEventListener("DOMContentLoaded", function(){
+    fetch("/delete_user_employee")
+    .then(response =>{
+        if (!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text();
+    })
+    .then(html =>{
+        document.body.innerHTML = html;
+    })
+    .catch(error =>{
+        console.error('Error fetching /delete_user_employee:', error);
+    });
+});
+
 async function delete_function(){
     var email_input = document.getElementById("emailToDelete").textContent;
 
@@ -25,7 +41,7 @@ async function delete_function(){
             console.log(data.message);
         }
     }catch(error){
-        console.error(error);
+        console.error(error); 
     }
 }
 
