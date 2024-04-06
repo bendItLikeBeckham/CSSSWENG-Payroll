@@ -56,17 +56,27 @@ const delete_user_controller = {
 
         if(user_exists){
             const user_exists_forgot_password = await forgot_password.findOne({Email: email});
-            const curr_forgot_password_number = user_exists_forgot_password.Forgot_Password_Number;
-            try {                
-                await forgot_password.deleteOne({Email: email});
-                await forgot_password.updateMany({Forgot_Password_Number: {$gt: curr_forgot_password_number}}, {$inc: {Forgot_Password_Number: -1}})
-
-                await employee.deleteOne(user_exists);
-                
-                res.json({success: true, message: "Deletion successful!"})
-            } catch (error) {
-                console.error('Error updating data in MongoDB:', error);     
-                res.status(500).render('error', { message: 'Internal Server Error' }); 
+            if(user_exists_forgot_password){
+                const curr_forgot_password_number = user_exists_forgot_password.Forgot_Password_Number;
+                try {                
+                    await forgot_password.deleteOne({Email: email});
+                    await forgot_password.updateMany({Forgot_Password_Number: {$gt: curr_forgot_password_number}}, {$inc: {Forgot_Password_Number: -1}})
+    
+                    await employee.deleteOne(user_exists);
+                    
+                    res.json({success: true, message: "Deletion successful!"})
+                } catch (error) {
+                    console.error('Error updating data in MongoDB:', error);     
+                    res.status(500).render('error', { message: 'Internal Server Error' }); 
+                }
+            }else{
+                try {                
+                    await employee.deleteOne(user_exists);   
+                    res.json({success: true, message: "Deletion successful!"})
+                } catch (error) {
+                    console.error('Error updating data in MongoDB:', error);     
+                    res.status(500).render('error', { message: 'Internal Server Error' }); 
+                }
             }
         }
         else{
