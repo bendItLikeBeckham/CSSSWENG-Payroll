@@ -4,7 +4,66 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/css/style.css"> 
      <link rel="icon" type="image/x-icon" href="/css/images/greenatwork-logo.png">
-    <script src="/js/script.js"></script> 
+    <script src="/js/script.js"></script>
+    <style>
+        .emp-info {
+            background-color: #282c34;
+            padding: 20px;
+            border-radius: 8px;
+            width: auto;
+            margin: 0 auto;
+            border: 2px solid #008b8b;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; 
+        }
+
+        .emp-info-header {
+            flex: 1; 
+        }
+
+        .emp-info-header {
+            text-align: left;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            margin-right: 10px;
+            font-weight: bold;
+            color: white;
+            width: 150px;
+        }
+
+        .form-group input, .form-group select {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            width: 100%;
+            max-width: 300px;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: darkcyan;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+            width: auto;
+            padding: 10px 20px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #21a1f1;
+        }
+    </style> 
 </head>
 <body>
     <div class = "popup" id="popup-2">    
